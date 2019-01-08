@@ -4,9 +4,8 @@ class Ship extends Component{
     constructor(props) {
         super(props);
         this.state={
-            // multiplier
-            dimension: props.dimension,
-            name: props.name,
+            dimension: props.dimension, // mulitplier for num tiles
+            name: props.name,           // name of ship
         }
     }
    
