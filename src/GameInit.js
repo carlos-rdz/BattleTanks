@@ -89,7 +89,7 @@ class GameInit extends Component {
     return vertArray;
   }
 
-  _rotateship = () => {
+  _rotateShip = () => {
     // toggle the state of selectedShipRotation
     let toggle = this.state.selectedShipRotation ? false : true;
     this.setState({
