@@ -3,7 +3,6 @@ import GameInit from './GameInit';
 import Button from './Button';
 import PlayableBoard from './PlayableBoard';
 import {BrowserRouter as Router, Route} from 'react-router-dom';       
-// const ws = new WebSocket("ws://localhost:3001");
 
 class App extends Component {
     constructor(props) {
@@ -36,6 +35,8 @@ class App extends Component {
                         console.log('set state performed')
                     }else if(message.type === 'shipLayoutDetailed' && message.id !== this.state.socketID){
                         this._player2SunkStatus(message.value)
+                        console.log('detailed object set')
+
                     }else{
                         console.log('conditionals broken')
                     }
@@ -244,6 +245,7 @@ class App extends Component {
                     <GameInit 
                         playerShipLoc = {this._player1LocationArray}
                         sunkStatus = {this._player1SunkStatus}
+                        shipObj = {this.state.player1SinkStat}
                         setSocketID = {this._setSocketID}
 
                     /> 
