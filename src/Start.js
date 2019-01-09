@@ -3,7 +3,7 @@ import React from 'react';
 const Start = (props) => {
     return (
 
-        <button onClick={()=>props.playerPieceLoc(props.flattenedArray)}>Set Pieces</button>
+        <button onClick={()=>props.playerShipLoc(props.flattenedArray)}>Set Pieces</button>
     );
 };
 

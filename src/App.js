@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import GameInit from './GameInit';
 import Button from './Button';
 import PlayableBoard from './PlayableBoard';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';       
+// const ws = new WebSocket("ws://localhost:3001");
 
 class App extends Component {
     constructor(props) {
         super(props);
+        this.ws = new WebSocket("ws://localhost:3001");
         this.state={
             player1Pieces: [],  // P1 placed ships
             player2Pieces: [],  // P2 placed ships
@@ -18,10 +20,25 @@ class App extends Component {
             player1SunkShips: [],   // contains names of any ships sunk by P2 opponent
             player2SunkShips: [],   // contains names of any ships sunk by P1 opponent
         }
+        
     }
     // Initialize status arrays on component mount 
     // rather than write out a default state of 2x 100 array zeros...
     componentDidMount(){
+        this.ws.onopen = () => {
+            this.ws.send('hello world');  
+            this.ws.onmessage = (e) => {
+                try{
+                    let message = JSON.parse(e.data)
+                    console.log(message);
+                    this._handleTurnClick(message)
+                }catch (error){
+
+                }
+                
+            }
+        } 
+             
         let newArr = new Array(100).fill(0);
         this.setState({
             player1Status: newArr,
@@ -149,29 +166,30 @@ class App extends Component {
 
 
     _handleTurnClick = (props) => {
+        this.ws.send(props)
         const status1 = this.state.player2Status
         const status2 = this.state.player1Status 
-        const pieces1 = this.state.player2Pieces
-        const pieces2 = this.state.player1Pieces
+        const ships1 = this.state.player2Pieces
+        const ships2 = this.state.player1Pieces
         let status;
-        let pieces;
+        let ships;
         // If turn true player one's turn
         // else player two's turn
         // toggle turn value
         if(props[0]===1 && this.state.turn){
             this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
             status = status1; 
-            pieces = pieces1;
+            ships = ships1;
         }else if(props[0]=== 2 && !this.state.turn){
             this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
             status = status2;
-            pieces = pieces2
+            ships = ships2
         }
 
         if (status){
             let modifyStatus = status.map((index,i) => {
                 if(i+1 === props[1]){//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
-                if(pieces.includes(props[1])){//shot index has a piece on it
+                if(ships.includes(props[1])){//shot index has a ship on it
                     return 'X'; //hit
                 }else{
                     return 'O'; //miss
@@ -197,6 +215,7 @@ class App extends Component {
     
 
     render() {
+      
         return (
             <Router>
             <div>
@@ -206,12 +225,12 @@ class App extends Component {
                     <div> 
                     <Button> </Button>
                     <GameInit 
-                        playerPieceLoc = {this._player1LocationArray}
+                        playerShipLoc = {this._player1LocationArray}
                         sunkStatus = {this._player1SunkStatus}
                     /> 
                     <div style={{height: 50+'px'}}/> 
                     <GameInit 
-                        playerPieceLoc = {this._player2LocationArray}
+                        playerShipLoc = {this._player2LocationArray}
                         sunkStatus = {this._player2SunkStatus}
                     />
                     </div>

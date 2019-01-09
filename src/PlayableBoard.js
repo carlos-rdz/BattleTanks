@@ -34,7 +34,7 @@ class PlayableBoard extends Component {
         let opponent = [];
         const coord = ['A', 'B','C','D','E','F','G','H','I', 'J'];
         // create both player and opponent arrays simultaneously
-        // pass the piece locations array down to the PlayerBoard and OpponentBoard
+        // pass the ship locations array down to the PlayerBoard and OpponentBoard
         for (let i = 0; i < 10; i++) {
           for(let j = 0; j < 10; j++){
               player.push(

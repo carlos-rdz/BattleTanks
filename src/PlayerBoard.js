@@ -32,7 +32,7 @@ class PlayerBoard extends Component {
                     {onShot}
                     </div>
             );
-        }else { //all player tiles without pieces
+        }else { //all player tiles without ships
             return (
                 <div style={{
                     backgroundColor: `lightblue`,
