@@ -27,15 +27,17 @@ class App extends Component {
     // rather than write out a default state of 2x 100 array zeros...
     componentDidMount(){
         this.ws.onopen = () => {
-            this.ws.send('hello world');  
             this.ws.onmessage = (e) => {
                 try{
                     let message = JSON.parse(e.data)
-                    if(message.type === 'shipLayout' && message.id !== this.state.socketID){
+                    console.log(message)
+                    if(message.type === 'shipLayoutFlat' && message.id !== this.state.socketID){
                         this._player2LocationArray(message.value)
                         console.log('set state performed')
+                    }else if(message.type === 'shipLayoutDetailed' && message.id !== this.state.socketID){
+                        this._player2SunkStatus(message.value)
                     }else{
-                        console.log('uhoh')
+                        console.log('conditionals broken')
                     }
                     
                 }catch (error){
@@ -220,6 +222,7 @@ class App extends Component {
                 console.log("Not your turn")
             }
         }
+
     _setSocketID = (id) => {
         this.setState({
             socketID: id   
@@ -242,6 +245,7 @@ class App extends Component {
                         playerShipLoc = {this._player1LocationArray}
                         sunkStatus = {this._player1SunkStatus}
                         setSocketID = {this._setSocketID}
+
                     /> 
                     </div>
                 )

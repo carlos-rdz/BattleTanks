@@ -8,7 +8,8 @@ const Start = (props) => {
     return (
         <button onClick={()=> {
             props.playerShipLoc(props.flattenedArray);
-            ws.send(JSON.stringify({type: 'shipLayout', value: props.flattenedArray, id: id }));
+            ws.send(JSON.stringify({type: 'shipLayoutFlat', value: props.flattenedArray, id: id }));
+            ws.send(JSON.stringify({type: 'shipLayoutDetailed', value: props.sunkStatus, id: id }));
             props.setSocketID(id);
         }
         }>Set Pieces</button>
