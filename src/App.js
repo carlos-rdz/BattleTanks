@@ -32,7 +32,8 @@ class App extends Component {
                 try{
                     let message = JSON.parse(e.data)
                     if(message.type === 'shipLayout' && message.id !== this.state.socketID){
-                        console.log(message.value)
+                        this._player2LocationArray(message.value)
+                        console.log('set state performed')
                     }else{
                         console.log('uhoh')
                     }
@@ -60,7 +61,10 @@ class App extends Component {
     _player2LocationArray = (arr) => {
         this.setState({
             player2Pieces: arr   
-        })
+        }, () => {
+            console.log(this.state.player1Pieces);
+            console.log(this.state.player2Pieces)
+        } )
     }
 
     _player1SunkStatus = (obj) => {
