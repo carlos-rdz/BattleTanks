@@ -1,9 +1,17 @@
 import React from 'react';
+import uuid from 'uuid/v4';
+const ws = new WebSocket("ws://localhost:3001");
 
 const Start = (props) => {
-    return (
+    const id = uuid();
 
-        <button onClick={()=>props.playerShipLoc(props.flattenedArray)}>Set Pieces</button>
+    return (
+        <button onClick={()=> {
+            props.playerShipLoc(props.flattenedArray);
+            ws.send(JSON.stringify({type: 'shipLayout', value: `${props.flattenedArray}`, id: id }));
+            props.setSocketID(id);
+        }
+        }>Set Pieces</button>
     );
 };
 

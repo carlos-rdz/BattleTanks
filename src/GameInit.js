@@ -154,6 +154,8 @@ _renderArray = () => {
       playerShipLoc = {this.props.playerShipLoc}
       shipObject = {this.state.shipsPlaced}
       flattenedArray = {this._renderArray()}
+      setSocketID = {this.props.setSocketID}
+
       />
         <div className="shipContainer">
         

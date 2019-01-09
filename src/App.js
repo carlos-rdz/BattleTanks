@@ -19,6 +19,7 @@ class App extends Component {
             player2SinkStat: [],    // array of P2 ship objects (contains name: location: sunk:) 
             player1SunkShips: [],   // contains names of any ships sunk by P2 opponent
             player2SunkShips: [],   // contains names of any ships sunk by P1 opponent
+            socketID: '',
         }
         
     }
@@ -30,12 +31,15 @@ class App extends Component {
             this.ws.onmessage = (e) => {
                 try{
                     let message = JSON.parse(e.data)
-                    console.log(message);
-                    this._handleTurnClick(message)
+                    if(message.type === 'shipLayout' && message.id !== this.state.socketID){
+                        console.log(message.value)
+                    }else{
+                        console.log('uhoh')
+                    }
+                    
                 }catch (error){
 
-                }
-                
+                }    
             }
         } 
              
@@ -212,6 +216,11 @@ class App extends Component {
                 console.log("Not your turn")
             }
         }
+    _setSocketID = (id) => {
+        this.setState({
+            socketID: id   
+        })
+    }
     
 
     render() {
@@ -223,16 +232,13 @@ class App extends Component {
             <Route path='/' exact render = {(props) => {
                 return (
                     <div> 
-                    <Button> </Button>
+                    <Button> </Button> 
+                    <div style={{height: 50+'px'}}/> 
                     <GameInit 
                         playerShipLoc = {this._player1LocationArray}
                         sunkStatus = {this._player1SunkStatus}
+                        setSocketID = {this._setSocketID}
                     /> 
-                    <div style={{height: 50+'px'}}/> 
-                    <GameInit 
-                        playerShipLoc = {this._player2LocationArray}
-                        sunkStatus = {this._player2SunkStatus}
-                    />
                     </div>
                 )
             }}/> 
@@ -240,7 +246,8 @@ class App extends Component {
             <Route path='/gamestart' render ={(props) => {
                 return (
                     <div>
-                    <div style={{width: 200+"px", backgroundColor: 'white' }}> {this.state.player1SunkShips} </div>
+                    <div style={{width: 200+"px", backgroundColor: 'white' }}>{this.state.player2SunkShips}  </div>
+
                     <PlayableBoard 
                         playerPieces = {this.state.player1Pieces} 
                         opponentPieces = {this.state.player2Pieces}
@@ -249,17 +256,6 @@ class App extends Component {
                         playerStatus = {this.state.player1Status}
                         playerId = {1}
                         />
-                    <div style={{height: 225+'px'}}/> 
-                    <div style={{width: 200+"px", backgroundColor: 'white' }}>{this.state.player2SunkShips}  </div>
-
-                    <PlayableBoard 
-                        playerPieces = {this.state.player2Pieces}
-                        opponentPieces = {this.state.player1Pieces} 
-                        handleTurnClick = {this._handleTurnClick}
-                        opponentStatus = {this.state.player1Status}
-                        playerStatus = {this.state.player2Status}
-                        playerId = {2}
-                    />
                     </div>
                 )
             }}/>
