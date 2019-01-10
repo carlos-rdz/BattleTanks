@@ -37,15 +37,16 @@ class App extends Component {
                     }else if(message.type === 'shipLayoutDetailed' && message.id !== this.state.socketID){
                         this._player2SunkStatus(message.value)
                         console.log('detailed object set')
-                    }else if (message.type === "shotsFired" ){
-                        this._player2SunkStatus(message.value)
+                    }else if (message.type === "shotsFired" && message.id !== this.state.socketID){
+                        this._setPlayer1Status(message.value)
                         console.log('shotsFired data received')
                     }else{
                         console.log('conditionals broken')
                     }
                     
                 }catch (error){
-
+                    console.log('catch ran')
+                    console.log(error)
                 }    
             }
         } 
@@ -87,6 +88,13 @@ class App extends Component {
       })
     }
 
+    _setPlayer1Status = (updatedShots) => {
+        console.log(updatedShots)
+        console.log('updatedShots')
+        this.setState({
+            player1Status: updatedShots    
+        })
+    }
     
     _setSunkStatus = (id) => {
         let shotsFiredArr;
@@ -169,7 +177,7 @@ class App extends Component {
     }
     
     _sendShotResultsToOpp = () =>{
-        ws.send((JSON.stringify({type: "shotsFired", value: this.state.player1Status, id: this.state.socketID})))
+        ws.send(JSON.stringify({type: "shotsFired", value: this.state.player2Status, id: this.state.socketID}));
         console.log("_sendShotResults ran")
     }
     
@@ -315,8 +323,8 @@ class App extends Component {
                         playerPieces = {this.state.player1Pieces} 
                         opponentPieces = {this.state.player2Pieces}
                         handleTurnClick = {this._handleTurnClick}
-                        opponentStatus = {this.state.player2Status}
-                        playerStatus = {this.state.player1Status}
+                        opponentStatus = {this.state.player1Status}
+                        playerStatus = {this.state.player2Status}
                         playerId = {1}
                         />
                     </div>
