@@ -41,6 +41,8 @@ class App extends Component {
                         this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
                         this._setPlayer1Status(message.value)
                         console.log('shotsFired data received')
+                    }else if (message.type === "gameOver" && message.id !== this.state.socketID){
+                        console.log('You Lost')
                     }else{
                         console.log('conditionals broken')
                     }
@@ -169,7 +171,8 @@ class App extends Component {
         if(id === 1){
             this.setState({
                 player2SunkShips: sunkenShipNames
-            }, this._sendShotResultsToOpp)
+            }, this._sendShotResultsToOpp 
+            )
         }
     }
     
@@ -177,6 +180,7 @@ class App extends Component {
         ws.send(JSON.stringify({type: "shotsFired", value: this.state.player2Status, id: this.state.socketID}));
         this.state.turn ? this.setState({turn : false},console.log("its your turn")) : this.setState({turn : true},console.log("not your turn"))
         console.log("_sendShotResults ran")
+        this._gameIsOver()
     }
     
     _gameIsOver = () =>{
@@ -184,7 +188,8 @@ class App extends Component {
         // It checks the length of both player arrays containing names of their sunken ships
         // If either player array is of length 5, all 5 ships have sunk and the game is over
       if(this.state.player1SunkShips.length === 5 || this.state.player2SunkShips.length === 5){
-        console.log("Game Over")   
+        console.log("You Won") 
+        ws.send({type: 'gameOver'})  
       }
     }
 
