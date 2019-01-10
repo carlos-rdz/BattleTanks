@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Hit from './Hit';
 
 class OpponentBoard extends Component{
   constructor(props) {
@@ -14,13 +15,21 @@ class OpponentBoard extends Component{
  
 
   render() {
+    let onShot; 
+    // if the shot array shows a hit at this tile location
+    if(this.props.opponentStatus[this.state.id-1] === 'X'){
+       onShot = <Hit/>
+    }else if(this.props.opponentStatus[this.state.id-1] === 'O'){
+        onShot = 'O'
+    }
+
     return (
       <div style={{
             backgroundColor: 'lightblue',
             outline: 'red solid 1px',
             width: '25px',
             height: '25px',
-            fontSize: '3em',
+            fontSize: '1em',
           }}
         onClick={() => {
             this.props.handleTurnClick([this.props.playerId,this.state.id])
@@ -33,6 +42,7 @@ class OpponentBoard extends Component{
         }}
       >
       {this.state.renderStatus}
+      {onShot}
       </div>
     );  
   }
