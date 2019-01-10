@@ -38,6 +38,7 @@ class App extends Component {
                         this._player2SunkStatus(message.value)
                         console.log('detailed object set')
                     }else if (message.type === "shotsFired" && message.id !== this.state.socketID){
+                        this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
                         this._setPlayer1Status(message.value)
                         console.log('shotsFired data received')
                     }else{
@@ -174,6 +175,7 @@ class App extends Component {
     
     _sendShotResultsToOpp = () =>{
         ws.send(JSON.stringify({type: "shotsFired", value: this.state.player2Status, id: this.state.socketID}));
+        this.state.turn ? this.setState({turn : false},console.log("its your turn")) : this.setState({turn : true},console.log("not your turn"))
         console.log("_sendShotResults ran")
     }
     
@@ -197,8 +199,7 @@ class App extends Component {
         // If turn true player one's turn
         // else player two's turn
         // toggle turn value
-        if(props[0]===1 ){
-            this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
+        if(props[0]===1 && this.state.turn){
             status = status1; 
             ships = ships1;
         }else if(props[0]=== 2 ){
