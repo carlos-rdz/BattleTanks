@@ -151,13 +151,13 @@ _renderArray = () => {
       <div className="GameInit">
 
       <Start
-      ws = {this.props.ws}
-      playerShipLoc = {this.props.playerShipLoc}
-      shipObject = {this.state.shipsPlaced}
-      flattenedArray = {this._renderArray()}
-      setSocketID = {this.props.setSocketID}
-      sunkStatus = {this.props.sunkStatus}
-      shipObj = {this.props.shipObj}
+        ws = {this.props.ws}
+        playerShipLoc = {this.props.playerShipLoc}
+        shipObject = {this.state.shipsPlaced}
+        flattenedArray = {this._renderArray()}
+        roomId = {this.props.roomId}
+        sunkStatus = {this.props.sunkStatus}
+        shipObj = {this.props.shipObj}
       />
         <div className="shipContainer">
         

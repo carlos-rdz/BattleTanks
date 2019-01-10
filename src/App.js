@@ -19,7 +19,7 @@ class App extends Component {
             player2SinkStat: [],    // array of P2 ship objects (contains name: location: sunk:) 
             player1SunkShips: [],   // contains names of any ships sunk by P2 opponent
             player2SunkShips: [],   // contains names of any ships sunk by P1 opponent
-            socketID: '',
+            roomId: '',
         }
         
     }
@@ -31,17 +31,22 @@ class App extends Component {
                 try{
                     let message = JSON.parse(e.data)
                     console.log(message)
-                    if(message.type === 'shipLayoutFlat' && message.id !== this.state.socketID){
+                    if(message.type === 'roomInit'){
+                        console.log("set room state")
+                        this.setState({
+                            roomId: message.roomId
+                        })    
+                    }else if(message.type === 'shipLayoutFlat' ){
                         this._player2LocationArray(message.value)
                         console.log('set state performed')
-                    }else if(message.type === 'shipLayoutDetailed' && message.id !== this.state.socketID){
+                    }else if(message.type === 'shipLayoutDetailed' ){
                         this._player2SunkStatus(message.value)
                         console.log('detailed object set')
-                    }else if (message.type === "shotsFired" && message.id !== this.state.socketID){
+                    }else if (message.type === "shotsFired" ){
                         this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
                         this._setPlayer1Status(message.value)
                         console.log('shotsFired data received')
-                    }else if (message.type === "gameOver" && message.id !== this.state.socketID){
+                    }else if (message.type === "gameOver" ){
                         console.log('You Lost')
                     }else{
                         console.log('conditionals broken')
@@ -177,7 +182,7 @@ class App extends Component {
     }
     
     _sendShotResultsToOpp = () =>{
-        ws.send(JSON.stringify({type: "shotsFired", value: this.state.player2Status, id: this.state.socketID}));
+        ws.send(JSON.stringify({type: "shotsFired", value: this.state.player2Status, id: this.state.roomId}));
         this.state.turn ? this.setState({turn : false},console.log("its your turn")) : this.setState({turn : true},console.log("not your turn"))
         console.log("_sendShotResults ran")
         this._gameIsOver()
@@ -189,7 +194,7 @@ class App extends Component {
         // If either player array is of length 5, all 5 ships have sunk and the game is over
       if(this.state.player1SunkShips.length === 5 || this.state.player2SunkShips.length === 5){
         console.log("You Won") 
-        ws.send(JSON.stringify({type: 'gameOver', id:this.state.socketID}))  
+        ws.send(JSON.stringify({type: 'gameOver', id:this.state.roomId}))  
       }
     }
 
@@ -235,11 +240,6 @@ class App extends Component {
             }
         }
 
-    _setSocketID = (id) => {
-        this.setState({
-            socketID: id   
-        })
-    }
     
 
     render() {
@@ -258,7 +258,7 @@ class App extends Component {
                         playerShipLoc = {this._player1LocationArray}
                         sunkStatus = {this._player1SunkStatus}
                         shipObj = {this.state.player1SinkStat}
-                        setSocketID = {this._setSocketID}
+                        roomId = {this.state.roomId}
 
                     /> 
                     </div>
