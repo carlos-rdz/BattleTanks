@@ -27,7 +27,6 @@ class PlayableBoard extends Component {
     
   
     render() {
-       console.log(this.props.opponentStatus)
         let counter = 1;
         let player = [];
         let opponent = [];

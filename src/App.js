@@ -228,11 +228,11 @@ class App extends Component {
                     this.setState({
                         player2Status: modifyStatus
                     },()=> {this._setSunkStatus(props[0])})
-                }else{
-                    this.setState({
-                        player1Status: modifyStatus
-                    },()=> {this._setSunkStatus(props[0])})
-                }
+                // }else{
+                //     this.setState({
+                //         player1Status: modifyStatus
+                //     },()=> {this._setSunkStatus(props[0])})
+                 }
             }else{
                 console.log("Not your turn")
             }
@@ -323,8 +323,8 @@ class App extends Component {
                         playerPieces = {this.state.player1Pieces} 
                         opponentPieces = {this.state.player2Pieces}
                         handleTurnClick = {this._handleTurnClick}
-                        opponentStatus = {this.state.player1Status}
-                        playerStatus = {this.state.player2Status}
+                        opponentStatus = {this.state.player2Status}
+                        playerStatus = {this.state.player1Status}
                         playerId = {1}
                         />
                     </div>
