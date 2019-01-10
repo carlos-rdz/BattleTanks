@@ -37,7 +37,7 @@ class App extends Component {
                     }else if(message.type === 'shipLayoutDetailed' && message.id !== this.state.socketID){
                         this._player2SunkStatus(message.value)
                         console.log('detailed object set')
-                    }else if (message.type === "shotsFired" && message.id !== this.state.socketID){
+                    }else if (message.type === "shotsFired" ){
                         this._player2SunkStatus(message.value)
                         console.log('shotsFired data received')
                     }else{
@@ -169,7 +169,7 @@ class App extends Component {
     }
     
     _sendShotResultsToOpp = () =>{
-        ws.send({type: "shotsFired", value: this.state.player1Status, id: this.state.socketID})
+        ws.send((JSON.stringify({type: "shotsFired", value: this.state.player1Status, id: this.state.socketID})))
         console.log("_sendShotResults ran")
     }
     
