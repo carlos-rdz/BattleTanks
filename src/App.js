@@ -189,7 +189,7 @@ class App extends Component {
         // If either player array is of length 5, all 5 ships have sunk and the game is over
       if(this.state.player1SunkShips.length === 5 || this.state.player2SunkShips.length === 5){
         console.log("You Won") 
-        ws.send({type: 'gameOver'})  
+        ws.send(JSON.stringify({type: 'gameOver', id:this.state.socketID}))  
       }
     }
 
@@ -254,6 +254,7 @@ class App extends Component {
                     <Button> </Button> 
                     <div style={{height: 50+'px'}}/> 
                     <GameInit 
+                        ws = {ws}
                         playerShipLoc = {this._player1LocationArray}
                         sunkStatus = {this._player1SunkStatus}
                         shipObj = {this.state.player1SinkStat}

@@ -1,9 +1,10 @@
 import React from 'react';
 import uuid from 'uuid/v4';
-const ws = new WebSocket("ws://localhost:3001");
+// const ws = new WebSocket("ws://localhost:3001");
 
 const Start = (props) => {
     const id = uuid();
+    const ws = props.ws;
 
     return (
         <button onClick={()=> {

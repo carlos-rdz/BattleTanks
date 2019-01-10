@@ -151,6 +151,7 @@ _renderArray = () => {
       <div className="GameInit">
 
       <Start
+      ws = {this.props.ws}
       playerShipLoc = {this.props.playerShipLoc}
       shipObject = {this.state.shipsPlaced}
       flattenedArray = {this._renderArray()}
