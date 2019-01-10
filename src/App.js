@@ -37,7 +37,9 @@ class App extends Component {
                     }else if(message.type === 'shipLayoutDetailed' && message.id !== this.state.socketID){
                         this._player2SunkStatus(message.value)
                         console.log('detailed object set')
-
+                    }else if (message.type === "shotsFired" && message.id !== this.state.socketID){
+                        this._player2SunkStatus(message.value)
+                        console.log('shotsFired data received')
                     }else{
                         console.log('conditionals broken')
                     }
