@@ -8,22 +8,15 @@ class OpponentBoard extends Component{
         coordinates: props.value,
         status: 1,
         renderStatus: null,
-        renderHover: null,
     }
   }
 
-  hoverColor = () => {
-    if(this.props.hover.includes(this.state.id)){
-      return 'red';
-    }else{
-      return 'lightblue';
-    }
-  }
+ 
 
   render() {
     return (
       <div style={{
-            backgroundColor: this.hoverColor(),
+            backgroundColor: 'lightblue',
             outline: 'red solid 1px',
             width: '25px',
             height: '25px',

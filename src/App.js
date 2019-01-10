@@ -3,11 +3,12 @@ import GameInit from './GameInit';
 import Button from './Button';
 import PlayableBoard from './PlayableBoard';
 import {BrowserRouter as Router, Route} from 'react-router-dom';       
+const ws = new WebSocket("ws://localhost:3001");
+
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.ws = new WebSocket("ws://localhost:3001");
         this.state={
             player1Pieces: [],  // P1 placed ships
             player2Pieces: [],  // P2 placed ships
@@ -25,8 +26,8 @@ class App extends Component {
     // Initialize status arrays on component mount 
     // rather than write out a default state of 2x 100 array zeros...
     componentDidMount(){
-        this.ws.onopen = () => {
-            this.ws.onmessage = (e) => {
+        ws.onopen = () => {
+            ws.onmessage = (e) => {
                 try{
                     let message = JSON.parse(e.data)
                     console.log(message)
@@ -157,7 +158,7 @@ class App extends Component {
         if(id === 1){
             this.setState({
                 player1SunkShips: sunkenShipNames
-            },this._gameIsOver)
+            }, this._sendShotResultsToOpp)
         }else if(id === 2){
             this.setState({
                 player2SunkShips: sunkenShipNames
@@ -165,6 +166,10 @@ class App extends Component {
         }
     }
     
+    _sendShotResultsToOpp = () =>{
+        ws.send({type: "shotsFired", value: this.state.player1Status, id: this.state.socketID})
+        console.log("_sendShotResults ran")
+    }
     
     _gameIsOver = () =>{
         // This method is a simple check for game end.
@@ -177,7 +182,6 @@ class App extends Component {
 
 
     _handleTurnClick = (props) => {
-        this.ws.send(props)
         const status1 = this.state.player2Status
         const status2 = this.state.player1Status 
         const ships1 = this.state.player2Pieces
@@ -187,11 +191,11 @@ class App extends Component {
         // If turn true player one's turn
         // else player two's turn
         // toggle turn value
-        if(props[0]===1 && this.state.turn){
+        if(props[0]===1 ){
             this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
             status = status1; 
             ships = ships1;
-        }else if(props[0]=== 2 && !this.state.turn){
+        }else if(props[0]=== 2 ){
             this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
             status = status2;
             ships = ships2
@@ -223,6 +227,53 @@ class App extends Component {
                 console.log("Not your turn")
             }
         }
+    // _handleTurnClick = (props) => {
+    //     this.ws.send(props)
+    //     const status1 = this.state.player2Status
+    //     const status2 = this.state.player1Status 
+    //     const ships1 = this.state.player2Pieces
+    //     const ships2 = this.state.player1Pieces
+    //     let status;
+    //     let ships;
+    //     // If turn true player one's turn
+    //     // else player two's turn
+    //     // toggle turn value
+    //     if(props[0]===1 ){
+    //         this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
+    //         status = status1; 
+    //         ships = ships1;
+    //     }else if(props[0]=== 2 ){
+    //         this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
+    //         status = status2;
+    //         ships = ships2
+    //     }
+
+    //     if (status){
+    //         let modifyStatus = status.map((index,i) => {
+    //             if(i+1 === props[1]){//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
+    //             if(ships.includes(props[1])){//shot index has a ship on it
+    //                 return 'X'; //hit
+    //             }else{
+    //                 return 'O'; //miss
+    //             }  
+    //             }else{//every other index in array return as is
+                    
+    //                 return index;
+    //             }
+    //             })
+    //             if(props[0] === 1){
+    //                 this.setState({
+    //                     player2Status: modifyStatus
+    //                 },()=> {this._setSunkStatus(props[0])})
+    //             }else{
+    //                 this.setState({
+    //                     player1Status: modifyStatus
+    //                 },()=> {this._setSunkStatus(props[0])})
+    //             }
+    //         }else{
+    //             console.log("Not your turn")
+    //         }
+    //     }
 
     _setSocketID = (id) => {
         this.setState({
