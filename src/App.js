@@ -167,12 +167,8 @@ class App extends Component {
 
         if(id === 1){
             this.setState({
-                player1SunkShips: sunkenShipNames
-            }, this._sendShotResultsToOpp)
-        }else if(id === 2){
-            this.setState({
                 player2SunkShips: sunkenShipNames
-            },this._gameIsOver)
+            }, this._sendShotResultsToOpp)
         }
     }
     
@@ -210,7 +206,6 @@ class App extends Component {
             status = status2;
             ships = ships2
         }
-
         if (status){
             let modifyStatus = status.map((index,i) => {
                 if(i+1 === props[1]){//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
@@ -233,7 +228,7 @@ class App extends Component {
                 console.log("Not your turn")
             }
         }
-        
+
     _setSocketID = (id) => {
         this.setState({
             socketID: id   
