@@ -162,6 +162,7 @@ class App extends Component {
         // This method will loop through the sunk statuses of each ship 
         // and set the name in state of any sunken ship 
         // Finally, it calls a check function in gameIsOver for handling if the game has concluded or not
+        // debugger;
         const status1 = this.state.player2SinkStat
         const status2 = this.state.player1SinkStat 
         let status;
@@ -289,6 +290,7 @@ class App extends Component {
                         opponentStatus = {this.state.player2Status}
                         playerStatus = {this.state.player1Status}
                         playerId = {1}
+                        turn = {this.state.turn}
                         />
                     </div>
                 )

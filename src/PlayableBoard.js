@@ -73,25 +73,36 @@ class PlayableBoard extends Component {
             Waiting on opponent
           </div>
         }
-      
+        
+        let whoseTurn;
+        if(this.props.turn){
+          whoseTurn = "Your Turn"
+        }else{
+          whoseTurn = "Their Turn"
+        }
       
 
     return (
-      <div className='sidebyside' style={{
-        display:'grid',
-        gridTemplateColumns:'repeat(2, 250px)',
-        gridGap: '25px', 
-      }}>
-        <div style={{
-          width: '50px',
-          height: '50px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(10, 1fr)',
-          gridTemplateRows: 'repeat(10,1fr)'
+      <div>
+        <h1>
+        {whoseTurn} 
+        </h1>
+        <div className='sidebyside' style={{
+          display:'grid',
+          gridTemplateColumns:'repeat(2, 250px)',
+          gridGap: '25px', 
         }}>
-          {player}
+          <div style={{
+            width: '50px',
+            height: '50px',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(10, 1fr)',
+            gridTemplateRows: 'repeat(10,1fr)'
+          }}>
+            {player}
+          </div>
+          {renderOpponentBoard}
         </div>
-        {renderOpponentBoard}
       </div>
       );
       }

@@ -122,7 +122,7 @@ class GameInit extends Component {
           flag = true;       
         }
       }
-      if(!flag){
+      if(!flag){//if can put ship here 
         const shipsCopy = this.state.shipsPlaced.map((shipObject)=> {
           if(shipObject.name === this.state.selectedShipName){
             return {...shipObject, 
@@ -133,7 +133,7 @@ class GameInit extends Component {
         })
         this.setState({
           shipsPlaced: shipsCopy
-        },this.props.sunkStatus(this.state.shipsPlaced))     
+        }, () => {this.props.sunkStatus(shipsCopy)})     
       } 
       
       
