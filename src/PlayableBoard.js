@@ -74,18 +74,27 @@ class PlayableBoard extends Component {
           </div>
         }
         
-        let whoseTurn;
-        if(this.props.turn){
-          whoseTurn = "Your Turn"
-        }else{
-          whoseTurn = "Their Turn"
-        }
+        // let whoseTurn;
+        let statusDisplay;
+
       
+          if(this.props.turn){
+            statusDisplay = "Your Turn"
+          }else{
+            statusDisplay = "Their Turn"
+          }
+        
+          if(this.props.didWin === true){
+            statusDisplay = "You Won!"
+          }else if(this.props.didWin === false){
+            statusDisplay = "You Lost!"
+          }
+
 
     return (
       <div>
         <h1>
-        {whoseTurn} 
+        {statusDisplay} 
         </h1>
         <div className='sidebyside' style={{
           display:'grid',

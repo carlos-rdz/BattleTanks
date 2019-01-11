@@ -19,6 +19,7 @@ class App extends Component {
             player1SunkShips: [],   // contains names of any ships sunk by P2 opponent
             player2SunkShips: [],   // contains names of any ships sunk by P1 opponent
             roomId: '',
+            didWin: null
         }
         
     }
@@ -57,6 +58,9 @@ class App extends Component {
                           
                         case 'gameOver':
                           console.log('You Lost')
+                          this.setState({
+                            didWin: false   
+                          })
                           break;
                           
                         default:
@@ -208,6 +212,9 @@ class App extends Component {
       if(this.state.player1SunkShips.length === 5 || this.state.player2SunkShips.length === 5){
         console.log("You Won") 
         ws.send(JSON.stringify({type: 'gameOver', id:this.state.roomId}))  
+        this.setState({
+            didWin: true
+        })
       }
     }
 
@@ -291,6 +298,7 @@ class App extends Component {
                         playerStatus = {this.state.player1Status}
                         playerId = {1}
                         turn = {this.state.turn}
+                        didWin = {this.state.didWin}
                         />
                     </div>
                 )
