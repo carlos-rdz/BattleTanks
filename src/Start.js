@@ -1,6 +1,4 @@
 import React from 'react';
-import uuid from 'uuid/v4';
-// const ws = new WebSocket("ws://localhost:3001");
 
 const Start = (props) => {
     const ws = props.ws;

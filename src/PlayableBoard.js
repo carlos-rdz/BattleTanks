@@ -7,23 +7,10 @@ class PlayableBoard extends Component {
  constructor(props) {
    super(props);
    this.state={
-      hover: [],
    }
  }
  
-//  if passed true hover in effect add id to array
-//  else if false set an empty array
- _handleHover = (props) => {
-   if(props[1] === true){
-      this.setState=({
-        hover: props[0]
-      })
-    }else if(!props[1]){
-      this.setState=({
-        hover: []
-      })
-    }
-   }
+
     
   
     render() {

@@ -34,7 +34,8 @@ class App extends Component {
                     if(message.type === 'roomInit'){
                         console.log("set room state")
                         this.setState({
-                            roomId: message.roomId
+                            roomId: message.roomId,
+                            turn: message.turn
                         })    
                     }else if(message.type === 'shipLayoutFlat' ){
                         this._player2LocationArray(message.value)

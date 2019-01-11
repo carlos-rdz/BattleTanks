@@ -8,7 +8,7 @@ class OpponentBoard extends Component{
         id: props.id,
         coordinates: props.value,
         status: 1,
-        renderStatus: null,
+        onHover: "",
     }
   }
 
@@ -22,6 +22,7 @@ class OpponentBoard extends Component{
     }else if(this.props.opponentStatus[this.state.id-1] === 'O'){
         onShot = 'O'
     }
+    let showCoordinates = this.state.onHover;
 
     return (
       <div style={{
@@ -35,14 +36,19 @@ class OpponentBoard extends Component{
             this.props.handleTurnClick([this.props.playerId,this.state.id])
         }}
         onMouseEnter={() => {
-            this.props.whenHover([this.state.id, true]);
+            console.log(this.state.id)
+            this.setState({
+              onHover: this.state.coordinates
+            })
         }}
         onMouseLeave={() => {
-            this.props.whenHover([this.state.id, false]);
+          this.setState({
+            onHover: ""
+          })        
         }}
       >
-      {this.state.renderStatus}
       {onShot}
+      {showCoordinates}
       </div>
     );  
   }
