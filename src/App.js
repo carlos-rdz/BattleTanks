@@ -220,43 +220,49 @@ class App extends Component {
 
 
     _handleTurnClick = (props) => {
-        const status1 = this.state.player2Status
-        const status2 = this.state.player1Status 
-        const ships1 = this.state.player2Pieces
-        const ships2 = this.state.player1Pieces
-        let status;
-        let ships;
-        // If turn true player one's turn
-        // else player two's turn
-        // toggle turn value
-        if(props[0]===1 && this.state.turn){
-            status = status1; 
-            ships = ships1;
-        }else if(props[0]=== 2 ){
-            this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
-            status = status2;
-            ships = ships2
-        }
-        if (status){
-            let modifyStatus = status.map((index,i) => {
-                if(i+1 === props[1]){//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
-                if(ships.includes(props[1])){//shot index has a ship on it
-                    return 'X'; //hit
-                }else{
-                    return 'O'; //miss
-                }  
-                }else{//every other index in array return as is
-                    
-                    return index;
-                }
-                })
-                if(props[0] === 1){
-                    this.setState({
-                        player2Status: modifyStatus
-                    },()=> {this._setSunkStatus(props[0])})
-                 }
-            }else{
-                console.log("Not your turn")
+        // check if any status other than default to prevent clicking on a repeated tile
+            const status1 = this.state.player2Status
+            const status2 = this.state.player1Status 
+            const ships1 = this.state.player2Pieces
+            const ships2 = this.state.player1Pieces
+            let status;
+            let ships;
+            // If turn true player one's turn
+            // else player two's turn
+            // toggle turn value
+            if(props[0]===1 && this.state.turn){
+                status = status1; 
+                ships = ships1;
+            }else if(props[0]=== 2 ){
+                this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
+                status = status2;
+                ships = ships2
+            }
+            if (status){
+                let modifyStatus = status.map((index,i) => {
+                    if(i+1 === props[1]){//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
+                    if(ships.includes(props[1])){//shot index has a ship on it
+                        return 'X'; //hit
+                    }else{
+                        return 'O'; //miss
+                    }  
+                    }else{//every other index in array return as is
+                        
+                        return index;
+                    }
+                    })
+                    if(status[props[1]-1] === 0){
+                        console.log('status')
+                        console.log(status[props[1]-1])
+
+                        this.setState({
+                            player2Status: modifyStatus
+                        },()=> {this._setSunkStatus(props[0])})                   
+                    }else{
+                        console.log('status')
+                            console.log(status[props[1]-1])
+                        console.log("Not your turn")
+                    }
             }
         }
 
