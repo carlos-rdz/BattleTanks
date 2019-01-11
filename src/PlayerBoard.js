@@ -27,6 +27,7 @@ class PlayerBoard extends Component {
                         width: '25px',
                         height: '25px',
                         fontSize: '1em',
+                        fontFamily: 'Contrail One, cursive'
                     }}
                     >
                     {onShot}
@@ -40,6 +41,7 @@ class PlayerBoard extends Component {
                     width: '25px',
                     height: '25px',
                     fontSize: '1em',
+                    fontFamily: 'Contrail One, cursive'
                 }}
                 >
                 {onShot}
