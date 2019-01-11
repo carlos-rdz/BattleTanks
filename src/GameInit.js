@@ -145,7 +145,20 @@ _renderArray = () => {
   return renderLocations.flat();
 }
   
+
   render() {
+    let spinnerText;
+    let waitingSpinner; 
+    if(this.props.roomId){
+      waitingSpinner = ""
+      spinnerText = ""
+      console.log("spinner set empty")
+    }else{
+      spinnerText = "Waiting for opponent"
+      waitingSpinner = "sk-rotating-plane"
+      console.log("spinner set to value")
+    }
+
     return (
       <Router>
       <div className="GameInit">
@@ -197,7 +210,9 @@ _renderArray = () => {
           rotateShip = {this._rotateShip}
           renderedShips = {this._renderArray()}
           />
-        </div>
+          <div className= {waitingSpinner}>  </div>
+          <div> {spinnerText} </div>
+      </div>
       </div>
       </Router>
     );
