@@ -31,27 +31,39 @@ class App extends Component {
                 try{
                     let message = JSON.parse(e.data)
                     console.log(message)
-                    if(message.type === 'roomInit'){
-                        console.log("set room state")
-                        this.setState({
-                            roomId: message.roomId,
-                            turn: message.turn
-                        })    
-                    }else if(message.type === 'shipLayoutFlat' ){
-                        this._player2LocationArray(message.value)
-                        console.log('set state performed')
-                    }else if(message.type === 'shipLayoutDetailed' ){
-                        this._player2SunkStatus(message.value)
-                        console.log('detailed object set')
-                    }else if (message.type === "shotsFired" ){
-                        this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
-                        this._setPlayer1Status(message.value)
-                        console.log('shotsFired data received')
-                    }else if (message.type === "gameOver" ){
-                        console.log('You Lost')
-                    }else{
-                        console.log('conditionals broken')
-                    }
+                    switch(message.type) {
+                        case 'roomInit':
+                          console.log("set room state")
+                          this.setState({
+                              roomId: message.roomId,
+                              turn: message.turn
+                          })    
+                          break;
+                      
+                        case 'shipLayoutFlat':
+                          this._player2LocationArray(message.value)
+                          console.log('set state performed')
+                          break;
+                      
+                        case 'shipLayoutDetailed':
+                          this._player2SunkStatus(message.value)
+                          console.log('detailed object set')
+                          break;
+                      
+                        case 'shotsFired':
+                          this.state.turn ? this.setState({turn : false},console.log(this.state.turn)) : this.setState({turn : true},console.log(this.state.turn))
+                          this._setPlayer1Status(message.value)
+                          console.log('shotsFired data received')
+                          break;
+                          
+                        case 'gameOver':
+                          console.log('You Lost')
+                          break;
+                          
+                        default:
+                          console.log('conditionals broken')
+                          break;
+                        }
                     
                 }catch (error){
                     console.log('catch ran')
