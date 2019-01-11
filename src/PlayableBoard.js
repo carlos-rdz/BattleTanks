@@ -45,6 +45,37 @@ class PlayableBoard extends Component {
               counter++;
           }
         }
+        console.log('this.props.opponentPieces')
+        console.log(this.props.opponentPieces)
+
+        let renderOpponentBoard;
+        if (this.props.opponentPieces.length > 0){
+          console.log('no div');
+          renderOpponentBoard = 
+            <div style={{
+              width: '50px',
+              height: '50px',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(10, 1fr)',
+              gridTemplateRows: 'repeat(10,1fr)'
+            }}>
+              {opponent}
+            </div>
+        }else{
+          console.log('modal div');
+        renderOpponentBoard =
+          <div style={{
+            backgroundColor: 'lightblue',
+            width: '250px',
+            height: '250px',
+            display: 'grid',
+          }}>
+            Waiting on opponent
+          </div>
+        }
+      
+      
+
     return (
       <div className='sidebyside' style={{
         display:'grid',
@@ -60,19 +91,10 @@ class PlayableBoard extends Component {
         }}>
           {player}
         </div>
-
-        <div style={{
-          width: '50px',
-          height: '50px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(10, 1fr)',
-          gridTemplateRows: 'repeat(10,1fr)'
-        }}>
-          {opponent}
-        </div>
-    </div>
+        {renderOpponentBoard}
+      </div>
       );
-  }
+      }
 }
 
 export default PlayableBoard;

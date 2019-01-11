@@ -178,7 +178,6 @@ _renderArray = () => {
         roomId = {this.props.roomId}
         sunkStatus = {this.props.sunkStatus}
         shipObj = {this.props.shipObj}
-        roomId = {this.props.roomId}
 
      /> 
       
