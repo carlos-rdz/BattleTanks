@@ -3,7 +3,6 @@ import InitBoard from './InitBoard';
 import Ship from './Ship';
 import Start from "./Start";
 import './GameInit.css';
-import {BrowserRouter as Router} from 'react-router-dom';
 
 class GameInit extends Component {
   constructor(props) {
@@ -20,7 +19,8 @@ class GameInit extends Component {
         {name: 'carrier',    location:[], sunk: false},
         {name: 'battleship', location:[], sunk: false},
         {name: 'cruiser',    location:[], sunk: false},
-        ]      
+        ],
+        // setFlag: false
       }
   }
 
@@ -133,10 +133,13 @@ class GameInit extends Component {
         })
         this.setState({
           shipsPlaced: shipsCopy
-        },()=> this.props.sunkStatus(this.state.shipsPlaced))     
+        },this.props.sunkStatus(this.state.shipsPlaced))     
       } 
+      
+      
     }
- 
+
+
 _renderArray = () => {
 
   const renderLocations = this.state.shipsPlaced.map((Obj) => {
@@ -144,11 +147,15 @@ _renderArray = () => {
   })
   return renderLocations.flat();
 }
+
+
+
   
 
   render() {
+    //waiting for room to open
     let spinnerText;
-    let waitingSpinner; 
+    let waitingSpinner;
     if(this.props.roomId){
       waitingSpinner = ""
       spinnerText = ""
@@ -159,10 +166,10 @@ _renderArray = () => {
       console.log("spinner set to value")
     }
 
+   
     return (
-      <Router>
       <div className="GameInit">
-
+      
       <Start
         ws = {this.props.ws}
         playerShipLoc = {this.props.playerShipLoc}
@@ -171,7 +178,10 @@ _renderArray = () => {
         roomId = {this.props.roomId}
         sunkStatus = {this.props.sunkStatus}
         shipObj = {this.props.shipObj}
-      />
+        roomId = {this.props.roomId}
+
+     /> 
+      
         <div className="shipContainer">
         
         <Ship 
@@ -214,8 +224,7 @@ _renderArray = () => {
           <div> {spinnerText} </div>
       </div>
       </div>
-      </Router>
-    );
+   );
   }
 }
 

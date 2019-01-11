@@ -264,7 +264,7 @@ class App extends Component {
             <Route path='/' exact render = {(props) => {
                 return (
                     <div> 
-                    <Button> </Button> 
+                        
                     <div style={{height: 50+'px'}}/> 
                     <GameInit 
                         ws = {ws}
