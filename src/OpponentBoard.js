@@ -31,15 +31,17 @@ class OpponentBoard extends Component{
             width: '25px',
             height: '25px',
             fontSize: '1em',
+            fontFamily: 'Contrail One, cursive'
           }}
         onClick={() => {
             this.props.handleTurnClick([this.props.playerId,this.state.id])
         }}
         onMouseEnter={() => {
-            console.log(this.state.id)
-            this.setState({
+          // if(this.props.opponentStatus[this.state.id-1] === '0'){
+          this.setState({
               onHover: this.state.coordinates
             })
+          // }
         }}
         onMouseLeave={() => {
           this.setState({
