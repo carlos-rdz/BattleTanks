@@ -12,17 +12,23 @@ class OpponentBoard extends Component{
     }
   }
 
- 
+  // only show coordinates on tiles with default status
+ _onHover = () => {
+  if(this.props.opponentStatus[this.state.id-1] === 0){
+    this.setState({
+        onHover: this.state.coordinates
+      })
+    } }
 
   render() {
+    let showCoordinates = this.state.onHover;
     let onShot; 
     // if the shot array shows a hit at this tile location
     if(this.props.opponentStatus[this.state.id-1] === 'X'){
-       onShot = <Hit/>
+      onShot = <Hit/>
     }else if(this.props.opponentStatus[this.state.id-1] === 'O'){
-        onShot = 'O'
+      onShot = 'O'
     }
-    let showCoordinates = this.state.onHover;
 
     return (
       <div style={{
@@ -37,11 +43,7 @@ class OpponentBoard extends Component{
             this.props.handleTurnClick([this.props.playerId,this.state.id])
         }}
         onMouseEnter={() => {
-          // if(this.props.opponentStatus[this.state.id-1] === '0'){
-          this.setState({
-              onHover: this.state.coordinates
-            })
-          // }
+          this._onHover()
         }}
         onMouseLeave={() => {
           this.setState({
