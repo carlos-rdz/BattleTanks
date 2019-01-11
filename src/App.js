@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import GameInit from './GameInit';
-import Button from './Button';
 import PlayableBoard from './PlayableBoard';
 import {BrowserRouter as Router, Route} from 'react-router-dom';       
 const ws = new WebSocket("ws://localhost:3001");
@@ -264,7 +263,7 @@ class App extends Component {
             <Route path='/' exact render = {(props) => {
                 return (
                     <div> 
-                        
+
                     <div style={{height: 50+'px'}}/> 
                     <GameInit 
                         ws = {ws}
