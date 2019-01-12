@@ -7,9 +7,13 @@ class Chat extends Component {
 
   render() {
     let chatRoom = this.props.chat.map( (message) => {
+      let textColor = 'blue'
+      if(message.name !== this.props.name){
+        textColor = 'red'
+       }
       return (
         <ul key={uuid()} style={{listStyleType: 'none'}}>
-          <li>  &lt; <strong>{message.name}</strong> &gt; {message.text}</li>
+          <li>  <span style={{color: textColor, fontWeight: 'bold' }}>&lt; {message.name} &gt; </span> {message.text}</li>
         </ul>
       ) 
     })
