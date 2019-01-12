@@ -1,13 +1,10 @@
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import uuid from 'uuid/v4';
 import PlayerBoard from './PlayerBoard';
 import OpponentBoard from './OpponentBoard';
 
 class PlayableBoard extends Component {
-	constructor(props) {
-		super(props);
-	}
+
 
 	render() {
 		let counter = 1;
@@ -35,8 +32,6 @@ class PlayableBoard extends Component {
 						id={counter}
 						handleTurnClick={this.props.handleTurnClick}
 						playerId={this.props.playerId}
-						whenHover={this._handleHover}
-						hover={this.state.hover}
 						opponentStatus={this.props.opponentStatus}
 					/>
 				);

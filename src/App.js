@@ -126,13 +126,8 @@ class App extends Component {
 		let shotsFiredArr;
 		let shipObj;
 		// choose which player arrays to update based on id of calling function
-		if (id === 1) {
-			shotsFiredArr = this.state.player2Status;
-			shipObj = this.state.player2SinkStat;
-		} else if (id === 2) {
-			shotsFiredArr = this.state.player1Status;
-			shipObj = this.state.player1SinkStat;
-		}
+		shotsFiredArr = this.state.player2Status;
+		shipObj = this.state.player2SinkStat;
 		// Make a deep copy of state that we can mutate and then use to setState
 		// Set all ships sunk status to true (this does not setState just updates the copy)
 		let modifiedShipObj = shipObj.map(index => {
@@ -153,25 +148,14 @@ class App extends Component {
 		}
 		// After this is done for all 5 ships we setState overwriting the ship objects with any changes to sunk state
 		// Then we call the checkSunkStatus function to make use of the new data
-		if (id === 1) {
-			this.setState(
-				{
-					player2SinkStat: modifiedShipObj
-				},
-				() => {
-					this._checkSunkStatus(id);
-				}
-			);
-		} else {
-			this.setState(
-				{
-					player1SinkStat: modifiedShipObj
-				},
-				() => {
-					this._checkSunkStatus(id);
-				}
-			);
-		}
+		this.setState(
+			{
+				player2SinkStat: modifiedShipObj
+			},
+			() => {
+				this._checkSunkStatus(id);
+			}
+		);
 	};
 
 	_checkSunkStatus = id => {
@@ -236,57 +220,44 @@ class App extends Component {
 
 	_handleTurnClick = props => {
 		// check if any status other than default to prevent clicking on a repeated tile
-		const status1 = this.state.player2Status;
-		const status2 = this.state.player1Status;
-		const ships1 = this.state.player2Pieces;
-		const ships2 = this.state.player1Pieces;
-		let status;
-		let ships;
+		const status = this.state.player2Status;
+		const ships = this.state.player2Pieces;
 		// If turn true player one's turn
 		// else player two's turn
 		// toggle turn value
-		if (props[0] === 1 && this.state.turn) {
-			status = status1;
-			ships = ships1;
-		} else if (props[0] === 2) {
-			this.state.turn
-				? this.setState({ turn: false }, console.log(this.state.turn))
-				: this.setState({ turn: true }, console.log(this.state.turn));
-			status = status2;
-			ships = ships2;
-		}
-		if (status) {
-			let modifyStatus = status.map((index, i) => {
-				if (i + 1 === props[1]) {
-					//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
-					if (ships.includes(props[1])) {
-						//shot index has a ship on it
-						return 'X'; //hit
+		if (this.state.turn) {
+			if (status) {
+				let modifyStatus = status.map((index, i) => {
+					if (i + 1 === props[1]) {
+						//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
+						if (ships.includes(props[1])) {
+							//shot index has a ship on it
+							return 'X'; //hit
+						} else {
+							return 'O'; //miss
+						}
 					} else {
-						return 'O'; //miss
+						//every other index in array return as is
+						return index;
 					}
+				});
+				if (status[props[1] - 1] === 0) {
+					console.log('status');
+					console.log(status[props[1] - 1]);
+
+					this.setState(
+						{
+							player2Status: modifyStatus
+						},
+						() => {
+							this._setSunkStatus(props[0]);
+						}
+					);
 				} else {
-					//every other index in array return as is
-
-					return index;
+					console.log('status');
+					console.log(status[props[1] - 1]);
+					console.log('Not your turn');
 				}
-			});
-			if (status[props[1] - 1] === 0) {
-				console.log('status');
-				console.log(status[props[1] - 1]);
-
-				this.setState(
-					{
-						player2Status: modifyStatus
-					},
-					() => {
-						this._setSunkStatus(props[0]);
-					}
-				);
-			} else {
-				console.log('status');
-				console.log(status[props[1] - 1]);
-				console.log('Not your turn');
 			}
 		}
 	};

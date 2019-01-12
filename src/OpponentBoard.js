@@ -7,7 +7,6 @@ class OpponentBoard extends Component {
 		this.state = {
 			id: props.id,
 			coordinates: props.value,
-			status: 1,
 			onHover: ''
 		};
 	}
