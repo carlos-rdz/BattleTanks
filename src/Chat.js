@@ -6,24 +6,41 @@ class Chat extends Component {
     this.state = {
       chat: [],
       name: '', 
+      value: '',
     }
   }
-  
-  _handleChat = (e) => {
-    console.log("message passed to handleChat")
-    console.log(e)
+  _handleChange = (e) => {
+    this.setState({
+      value: e.target.value,
+    });
+  }
+
+  _handleChangeName = (e) => {
+    this.setState({
+      name: e.target.value
+    });
+  }
+
+  _handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("message submitted")
+    
   }
 
   render() {
     return (
       <div>
         {/* return both an input form and a chat history div */}
-        <form onSubmit={(e) => { 
-          this._handleChat(e) 
-          e.preventDefault();
-        }}>
-          <input type='text' name='name'></input>
-          <input type='text' placeholder='(Clean!) SmackTalk anyone???'></input>
+        <form onSubmit={this._handleSubmit}>
+          <input type='text' 
+            name={this.state.name} 
+            onChange={this._handleChangeName}>
+          </input>
+          <input type='text' 
+            placeholder='(Clean!) SmackTalk anyone???' 
+            value={this.state.value} 
+            onChange={this._handleChange} >
+          </input>
           <input type='submit' value='Send'></input>
 
         </form>
