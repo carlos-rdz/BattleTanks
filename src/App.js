@@ -153,26 +153,19 @@ class App extends Component {
 				player2SinkStat: modifiedShipObj
 			},
 			() => {
-				this._checkSunkStatus(id);
+				this._checkSunkStatus();
 			}
 		);
 	};
 
-	_checkSunkStatus = id => {
+	_checkSunkStatus = () => {
 		// This method will loop through the sunk statuses of each ship
 		// and set the name in state of any sunken ship
 		// Finally, it calls a check function in gameIsOver for handling if the game has concluded or not
 		// debugger;
-		const status1 = this.state.player2SinkStat;
-		const status2 = this.state.player1SinkStat;
-		let status;
+		const status = this.state.player2SinkStat;
+	
 		let sunkenShips;
-
-		if (id === 1) {
-			status = status1;
-		} else if (id === 2) {
-			status = status2;
-		}
 
 		sunkenShips = status.filter(obj => {
 			if (obj.sunk) {
@@ -186,14 +179,14 @@ class App extends Component {
 			return obj.name;
 		});
 
-		if (id === 1) {
-			this.setState(
-				{
-					player2SunkShips: sunkenShipNames
-				},
-				this._sendShotResultsToOpp
-			);
-		}
+	
+    this.setState(
+      {
+        player2SunkShips: sunkenShipNames
+      },
+      this._sendShotResultsToOpp
+    );
+		
 	};
 
 	_sendShotResultsToOpp = () => {
@@ -291,8 +284,9 @@ class App extends Component {
 						render={props => {
 							return (
 								<div>
-									<div style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips} </div>
-
+                  <div 
+                  style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips} 
+                  </div>
 									<PlayableBoard
 										playerPieces={this.state.player1Pieces}
 										opponentPieces={this.state.player2Pieces}
