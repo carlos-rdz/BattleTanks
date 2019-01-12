@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './index.css'
 
 class Chat extends Component {
   constructor(props) {
@@ -6,16 +7,16 @@ class Chat extends Component {
     this.state = {
       chat: [],
       name: '', 
-      message: '',
+      message: {text: '', name: ''},
     }
   }
 
 
 
   //update message state with each change
-  _handleChange = (e) => {
+  _handleChangeMessage = (e) => {
     this.setState({
-      message: e.target.value
+      message: {text: e.target.value, name: this.state.name}
     })
   }
   
@@ -25,7 +26,7 @@ class Chat extends Component {
     console.log("message submitted")
     this._addToChat()
     this.setState({
-      message: '' 
+      message: {text: '', name: this.state.name}
     })
   }
 
@@ -40,37 +41,48 @@ class Chat extends Component {
     })
   }
 
-  // _handleChangeName = (e) => {
-  //   this.setState({
-  //     name: e.target.value
-  //   });
-  // }
+  _handleChangeName = (e) => {
+    this.setState({
+      name: e.target.value
+    });
+  }
 
 
 
   render() {
-    // let chatRoom = this.state.chat.map( (message) => {
-    //   return () 
-    // })
+    let chatRoom = this.state.chat.map( (message, i ) => {
+      return (
+        <ul style={{listStyleType: 'none'}}>
+          <li>>{message.name}: {message.text}</li>
+        </ul>
+      ) 
+    })
 
     return (
       <div>
         {/* return both an input form and a chat history div */}
         <form onSubmit={this._handleSubmit}>
-          {/* <input type='text' 
+          <input type='text' 
             name={this.state.name} 
             onChange={this._handleChangeName}>
-          </input> */}
+          </input>
           <input type='text' 
             placeholder='(Clean!) SmackTalk anyone???' 
-            value={this.state.message} 
-            onChange={this._handleChange} >
+            value={this.state.message.text} 
+            onChange={this._handleChangeMessage} >
           </input>
           <input type='submit' value='Send'></input>
 
         </form>
-        <div className='chatMessages'>
-          {this.state.chat}
+        <div 
+        className='chatMessages'
+        style ={{
+          width: 200+'px', 
+          height: 200+'px', 
+          fontFamily: 'Contrail One, cursive',
+          backgroundColor: 'dimgrey',
+        }}>
+          {chatRoom}
         </div>
       </div>
     );
