@@ -66,7 +66,7 @@ class App extends Component {
             
             case 'chat':
               console.log("chat message value:")
-              console.log(message.value)
+              console.table(message.value)
               break;
 
 						default:
@@ -302,7 +302,10 @@ class App extends Component {
 										turn={this.state.turn}
 										didWin={this.state.didWin}
 									/>
-                  <Chat/>
+                  <Chat
+                    ws={ws}
+                    roomId = {this.state.roomId}
+                  />
 								</div>
 							);
 						}}

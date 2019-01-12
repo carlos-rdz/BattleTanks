@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid/v4'
 import './index.css'
 
 class Chat extends Component {
@@ -31,7 +32,9 @@ class Chat extends Component {
   }
 
 
-  // copy chat arr add new message, set state to updated arr
+  // copy chat arr add new message, 
+  // set state to updated arr
+  // send copy of history to other player
   _addToChat = () => {
     let chatHistory = this.state.chat;
     chatHistory.push(this.state.message)
@@ -39,6 +42,8 @@ class Chat extends Component {
     this.setState({
       chat: chatHistory 
     })
+    this.props.ws.send(JSON.stringify({type: 'chat', value: chatHistory, id: this.props.roomId}))
+    console.log("message sent websockets")
   }
 
   _handleChangeName = (e) => {
@@ -50,10 +55,10 @@ class Chat extends Component {
 
 
   render() {
-    let chatRoom = this.state.chat.map( (message, i ) => {
+    let chatRoom = this.state.chat.map( (message) => {
       return (
         <ul style={{listStyleType: 'none'}}>
-          <li>>{message.name}: {message.text}</li>
+          <li key={uuid()}>>{message.name}: {message.text}</li>
         </ul>
       ) 
     })
