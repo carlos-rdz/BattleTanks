@@ -92,7 +92,7 @@ class PlayableBoard extends Component {
 			<div>
 				<h1>{statusDisplay}</h1>
 				<div
-					className="sidebyside"
+					className='sidebyside'
 					style={{
 						display: 'grid',
 						gridTemplateColumns: 'repeat(2, 250px)',

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Chat from './Chat';
 const ws = new WebSocket('ws://localhost:3001');
 
 class App extends Component {
@@ -61,7 +62,12 @@ class App extends Component {
 							this.setState({
 								didWin: false
 							});
-							break;
+              break;
+            
+            case 'chat':
+              console.log("chat message value:")
+              console.log(message.value)
+              break;
 
 						default:
 							console.log('conditionals broken');
@@ -135,7 +141,7 @@ class App extends Component {
 		});
 		// For each of a player's 5 ships,
 		// take the location indicies of the ship.
-		// Check shotsFiredArr at those indicies for anything not an "X"
+		// Check shotsFiredArr at those indicies for anything not an 'X'
 		// In effect if only X's were found the true state of sunk is left untouched and is correct.
 		// If instead a value of 0 (default) or 'O' (miss) are found, no hit was registered at these ship coordinates yet
 		// so we set the sunk value back to false.
@@ -177,9 +183,8 @@ class App extends Component {
 
 		let sunkenShipNames = sunkenShips.map(obj => {
 			return obj.name;
-		});
-
-	
+    });
+    
     this.setState(
       {
         player2SunkShips: sunkenShipNames
@@ -261,7 +266,7 @@ class App extends Component {
 				<div>
 					{/* home route covers game initialization boards */}
 					<Route
-						path="/"
+						path='/'
 						exact
 						render={props => {
 							return (
@@ -280,7 +285,7 @@ class App extends Component {
 					/>
 					{/* gamestart route covers playable boards */}
 					<Route
-						path="/gamestart"
+						path='/gamestart'
 						render={props => {
 							return (
 								<div>
@@ -297,6 +302,7 @@ class App extends Component {
 										turn={this.state.turn}
 										didWin={this.state.didWin}
 									/>
+                  <Chat/>
 								</div>
 							);
 						}}

@@ -16,7 +16,7 @@ const Start = props => {
 					console.log(props.shipObj);
 				}}
 			>
-				<Link to="/gamestart">Click to play!</Link>
+				<Link to='/gamestart'>Click to play!</Link>
 			</div>
 		);
 	} else if (!props.roomId && props.flattenedArray.length !== 17) {

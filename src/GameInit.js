@@ -166,7 +166,7 @@ class GameInit extends Component {
 		}
 
 		return (
-			<div className="GameInit">
+			<div className='GameInit'>
 				<Start
 					ws={this.props.ws}
 					playerShipLoc={this.props.playerShipLoc}
@@ -177,14 +177,14 @@ class GameInit extends Component {
 					shipObj={this.props.shipObj}
 				/>
 
-				<div className="shipContainer">
-					<Ship handleShipClick={this._handleShipClick} dimension={2} name="destroyer" />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} name="submarine" />
-					<Ship handleShipClick={this._handleShipClick} dimension={5} name="carrier" />
-					<Ship handleShipClick={this._handleShipClick} dimension={4} name="battleship" />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} name="cruiser" />
+				<div className='shipContainer'>
+					<Ship handleShipClick={this._handleShipClick} dimension={2} name='destroyer' />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} name='submarine' />
+					<Ship handleShipClick={this._handleShipClick} dimension={5} name='carrier' />
+					<Ship handleShipClick={this._handleShipClick} dimension={4} name='battleship' />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} name='cruiser' />
 				</div>
-				<div className="InitBoardContainer">
+				<div className='InitBoardContainer'>
 					<InitBoard
 						handleClick={this._handleClick}
 						handleHover={this._handleHover}

@@ -17,7 +17,7 @@ class Ship extends Component {
       <div
         // dimension={this.props.dimension} 
         onClick={() => { this.props.handleShipClick(this.state) }}
-        style={{ width: `${length}px`, height: "50px", border: "solid 2px black", backgroundColor: "green" }}>
+        style={{ width: `${length}px`, height: '50px', border: 'solid 2px black', backgroundColor: 'green' }}>
         {this.props.name}
       </div>
     );
