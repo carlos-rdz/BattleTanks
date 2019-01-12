@@ -3,59 +3,10 @@ import uuid from 'uuid/v4'
 import './index.css'
 
 class Chat extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      chat: [],
-      name: '', 
-      message: {text: '', name: ''},
-    }
-  }
-
-
-
-  //update message state with each change
-  _handleChangeMessage = (e) => {
-    this.setState({
-      message: {text: e.target.value, name: this.state.name}
-    })
-  }
-  
-  //when message is sent call helper function and clear message state
-  _handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("message submitted")
-    this._addToChat()
-    this.setState({
-      message: {text: '', name: this.state.name}
-    })
-  }
-
-
-  // copy chat arr add new message, 
-  // set state to updated arr
-  // send copy of history to other player
-  _addToChat = () => {
-    let chatHistory = this.state.chat;
-    chatHistory.push(this.state.message)
-    chatHistory.reverse()
-    this.setState({
-      chat: chatHistory 
-    })
-    this.props.ws.send(JSON.stringify({type: 'chat', value: chatHistory, id: this.props.roomId}))
-    console.log("message sent websockets")
-  }
-
-  _handleChangeName = (e) => {
-    this.setState({
-      name: e.target.value
-    });
-  }
-
 
 
   render() {
-    let chatRoom = this.state.chat.map( (message) => {
+    let chatRoom = this.props.chat.map( (message) => {
       return (
         <ul style={{listStyleType: 'none'}}>
           <li key={uuid()}>>{message.name}: {message.text}</li>
@@ -66,15 +17,15 @@ class Chat extends Component {
     return (
       <div>
         {/* return both an input form and a chat history div */}
-        <form onSubmit={this._handleSubmit}>
+        <form onSubmit={this.props.handleSubmit}>
           <input type='text' 
-            name={this.state.name} 
-            onChange={this._handleChangeName}>
+            name={this.props.name} 
+            onChange={this.props.handleChangeName}>
           </input>
           <input type='text' 
             placeholder='(Clean!) SmackTalk anyone???' 
-            value={this.state.message.text} 
-            onChange={this._handleChangeMessage} >
+            value={this.props.message.text} 
+            onChange={this.props.handleChangeMessage} >
           </input>
           <input type='submit' value='Send'></input>
 

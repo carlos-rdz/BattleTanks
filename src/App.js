@@ -19,7 +19,10 @@ class App extends Component {
 			player1SunkShips: [], // contains names of any ships sunk by P2 opponent
 			player2SunkShips: [], // contains names of any ships sunk by P1 opponent
 			roomId: '',
-			didWin: null
+      didWin: null,
+      chat: [],
+      name: '', 
+      message: {text: '', name: ''},
 		};
 	}
 	// Initialize status arrays on component mount
@@ -29,6 +32,7 @@ class App extends Component {
 			ws.onmessage = e => {
 				try {
 					let message = JSON.parse(e.data);
+					console.log('message received');
 					console.log(message);
 					switch (message.type) {
 						case 'roomInit':
@@ -65,8 +69,10 @@ class App extends Component {
               break;
             
             case 'chat':
-              console.log("chat message value:")
-              console.table(message.value)
+              console.log("received a chat message")
+              this.setState({
+                chat: message.value
+              })
               break;
 
 						default:
@@ -258,7 +264,45 @@ class App extends Component {
 				}
 			}
 		}
-	};
+  };
+  
+  //chat methods
+    //update message state with each change
+    _handleChangeMessage = (e) => {
+      this.setState({
+        message: {text: e.target.value, name: this.state.name}
+      })
+    }
+    
+    //when message is sent call helper function and clear message state
+    _handleSubmit = (e) => {
+      e.preventDefault();
+      console.log("message submitted")
+      this._addToChat()
+      this.setState({
+        message: {text: '', name: this.state.name}
+      })
+    }
+  
+    // copy chat arr add new message, 
+    // set state to updated arr
+    // send copy of history to other player
+    _addToChat = () => {
+      let chatHistory = this.state.chat;
+      chatHistory.push(this.state.message)
+      chatHistory.reverse()
+      this.setState({
+        chat: chatHistory 
+      })
+      ws.send(JSON.stringify({type: 'chat', value: chatHistory, id: this.state.roomId}))
+      console.log("message sent websockets")
+    }
+  
+    _handleChangeName = (e) => {
+      this.setState({
+        name: e.target.value
+      });
+    }
 
 	render() {
 		return (
@@ -305,6 +349,13 @@ class App extends Component {
                   <Chat
                     ws={ws}
                     roomId = {this.state.roomId}
+                    chat = {this.state.chat}
+                    message = {this.state.message}
+                    name = {this.state.name}
+                    handleChangeMessage= {this._handleChangeMessage}
+                    handleChangeName= {this._handleChangeName}
+                    handleSubmit = {this._handleSubmit}
+                    addToChat = {this._addToChat}
                   />
 								</div>
 							);
