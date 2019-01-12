@@ -9,17 +9,32 @@ class Chat extends Component {
       message: '',
     }
   }
-  //put message into state and call helper function
+
+
+
+  //update message state with each change
   _handleChange = (e) => {
     this.setState({
       message: e.target.value
     })
   }
   
+  //when message is sent call helper function and clear message state
+  _handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("message submitted")
+    this._addToChat()
+    this.setState({
+      message: '' 
+    })
+  }
+
+
   // copy chat arr add new message, set state to updated arr
   _addToChat = () => {
     let chatHistory = this.state.chat;
     chatHistory.push(this.state.message)
+    chatHistory.reverse()
     this.setState({
       chat: chatHistory 
     })
@@ -31,13 +46,13 @@ class Chat extends Component {
   //   });
   // }
 
-  _handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("message submitted")
-    this._addToChat()
-  }
+
 
   render() {
+    // let chatRoom = this.state.chat.map( (message) => {
+    //   return () 
+    // })
+
     return (
       <div>
         {/* return both an input form and a chat history div */}
