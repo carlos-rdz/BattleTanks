@@ -19,10 +19,10 @@ class App extends Component {
 			player1SunkShips: [], // contains names of any ships sunk by P2 opponent
 			player2SunkShips: [], // contains names of any ships sunk by P1 opponent
 			roomId: '',
-      didWin: null,
-      chat: [],
-      name: '', 
-      message: {text: '', name: '', color: 'blue'},
+			didWin: null,
+			chat: [],
+			name: '',
+			message: { text: '', name: '' }
 		};
 	}
 	// Initialize status arrays on component mount
@@ -66,14 +66,14 @@ class App extends Component {
 							this.setState({
 								didWin: false
 							});
-              break;
-            
-            case 'chat':
-              console.log("received a chat message")
-              this.setState({
-                chat: message.value
-              })
-              break;
+							break;
+
+						case 'chat':
+							console.log('received a chat message');
+							this.setState({
+								chat: message.value
+							});
+							break;
 
 						default:
 							console.log('conditionals broken');
@@ -176,7 +176,7 @@ class App extends Component {
 		// Finally, it calls a check function in gameIsOver for handling if the game has concluded or not
 		// debugger;
 		const status = this.state.player2SinkStat;
-	
+
 		let sunkenShips;
 
 		sunkenShips = status.filter(obj => {
@@ -189,15 +189,14 @@ class App extends Component {
 
 		let sunkenShipNames = sunkenShips.map(obj => {
 			return obj.name;
-    });
-    
-    this.setState(
-      {
-        player2SunkShips: sunkenShipNames
-      },
-      this._sendShotResultsToOpp
-    );
-		
+		});
+
+		this.setState(
+			{
+				player2SunkShips: sunkenShipNames
+			},
+			this._sendShotResultsToOpp
+		);
 	};
 
 	_sendShotResultsToOpp = () => {
@@ -264,45 +263,48 @@ class App extends Component {
 				}
 			}
 		}
+	};
+
+  //****chat methods****
+  // set name
+  _handleChangeName = e => {
+		this.setState({
+			name: e.target.value
+		});
   };
   
-  //chat methods
-    //update message state with each change
-    _handleChangeMessage = (e) => {
-      this.setState({
-        message: {text: e.target.value, name: this.state.name}
-      })
-    }
-    
-    //when message is sent call helper function and clear message state
-    _handleSubmit = (e) => {
-      e.preventDefault();
-      console.log("message submitted")
-      this._addToChat()
-      this.setState({
-        message: {text: '', name: this.state.name}
-      })
-    }
-  
-    // copy chat arr add new message, 
-    // set state to updated arr
-    // send copy of history to other player
-    _addToChat = () => {
-      let chatHistory = this.state.chat;
-      chatHistory.push(this.state.message)
-      chatHistory.reverse()
-      this.setState({
-        chat: chatHistory 
-      })
-      ws.send(JSON.stringify({type: 'chat', value: chatHistory, id: this.state.roomId}))
-      console.log("message sent websockets")
-    }
-  
-    _handleChangeName = (e) => {
-      this.setState({
-        name: e.target.value
-      });
-    }
+	// update message state with each change
+	_handleChangeMessage = e => {
+		this.setState({
+			message: { text: e.target.value, name: this.state.name }
+		});
+	};
+
+	// when message is sent call helper function and clear message state
+	_handleSubmit = e => {
+		e.preventDefault();
+		console.log('message submitted');
+		this._addToChat();
+		this.setState({
+			message: { text: '', name: this.state.name }
+		});
+	};
+
+	// copy chat arr and add new message,
+	// set state to updated arr
+	// send copy of history to other player
+	_addToChat = () => {
+		let chatHistory = this.state.chat;
+		chatHistory.push(this.state.message);
+		chatHistory.reverse();
+		this.setState({
+			chat: chatHistory
+		});
+		ws.send(JSON.stringify({ type: 'chat', value: chatHistory, id: this.state.roomId }));
+		console.log('message sent websockets');
+	};
+
+
 
 	render() {
 		return (
@@ -310,7 +312,7 @@ class App extends Component {
 				<div>
 					{/* home route covers game initialization boards */}
 					<Route
-						path='/'
+						path="/"
 						exact
 						render={props => {
 							return (
@@ -329,13 +331,11 @@ class App extends Component {
 					/>
 					{/* gamestart route covers playable boards */}
 					<Route
-						path='/gamestart'
+						path="/gamestart"
 						render={props => {
 							return (
 								<div>
-                  <div 
-                  style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips} 
-                  </div>
+									<div style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips}</div>
 									<PlayableBoard
 										playerPieces={this.state.player1Pieces}
 										opponentPieces={this.state.player2Pieces}
@@ -346,17 +346,17 @@ class App extends Component {
 										turn={this.state.turn}
 										didWin={this.state.didWin}
 									/>
-                  <Chat
-                    ws={ws}
-                    roomId = {this.state.roomId}
-                    chat = {this.state.chat}
-                    message = {this.state.message}
-                    name = {this.state.name}
-                    handleChangeMessage= {this._handleChangeMessage}
-                    handleChangeName= {this._handleChangeName}
-                    handleSubmit = {this._handleSubmit}
-                    addToChat = {this._addToChat}
-                  />
+									<Chat
+										ws={ws}
+										roomId={this.state.roomId}
+										chat={this.state.chat}
+										message={this.state.message}
+										name={this.state.name}
+										handleChangeMessage={this._handleChangeMessage}
+										handleChangeName={this._handleChangeName}
+										handleSubmit={this._handleSubmit}
+										addToChat={this._addToChat}
+									/>
 								</div>
 							);
 						}}
