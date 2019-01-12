@@ -8,8 +8,8 @@ class Chat extends Component {
   render() {
     let chatRoom = this.props.chat.map( (message) => {
       return (
-        <ul style={{listStyleType: 'none'}}>
-          <li key={uuid()}>>{message.name}: {message.text}</li>
+        <ul key={uuid()} style={{listStyleType: 'none'}}>
+          <li>  &lt; <strong>{message.name}</strong> &gt; {message.text}</li>
         </ul>
       ) 
     })

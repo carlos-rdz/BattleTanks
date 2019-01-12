@@ -22,7 +22,7 @@ class App extends Component {
       didWin: null,
       chat: [],
       name: '', 
-      message: {text: '', name: ''},
+      message: {text: '', name: '', color: ''},
 		};
 	}
 	// Initialize status arrays on component mount
