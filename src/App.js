@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
 import Chat from './Chat';
-import ExplosionFX from './ExplosionFX';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 const ws = new WebSocket('ws://localhost:3001');
 
@@ -24,7 +23,6 @@ class App extends Component {
 			chat: [],
 			name: '',
       message: { text: '', name: '' },
-      // explosion: "",
 		};
 	}
 	// Initialize status arrays on component mount

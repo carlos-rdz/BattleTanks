@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Hit from './Hit';
-import ExplosionFX from './ExplosionFX';
+import HitFX from './HitFX';
+import MissFX from './MissFX';
 
 class OpponentBoard extends Component {
 	constructor(props) {
@@ -8,9 +9,19 @@ class OpponentBoard extends Component {
 		this.state = {
 			id: props.id,
 			coordinates: props.value,
-			onHover: ''
+			onHover: '',
+      beenShot: [],
+      onShot: '',
 		};
 	}
+  //initialize beenShot array 
+  componentDidMount = () => {
+    let newArr = new Array(100).fill('no');
+		// this.setState({
+    //   beenShot: newArr
+    // })
+    let shots = newArr;
+  }
 
 	// only show coordinates on tiles with default status
 	_onHover = () => {
@@ -19,20 +30,34 @@ class OpponentBoard extends Component {
 				onHover: this.state.coordinates
 			});
 		}
-	};
+  };
+  
 
 	render() {
 		let showCoordinates = this.state.onHover;
-    let onShot;
-    let explosion;
-		// if the shot array shows a hit at this tile location
-		if (this.props.opponentStatus[this.state.id - 1] === 'X') {
-      onShot = <Hit />;
-      explosion = <ExplosionFX />; //only explosion on hit
-		} else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
-      onShot = 'O';
-		}
-
+		let onShot;
+		let firingSolution;
+		// if the shot array shows a hit at this tile location and isn't a previous shot value
+    // render both the visual and audio effects else don't do anything
+    if(this.state.beenShot[this.state.id] === 'no'){
+	  	if (this.props.opponentStatus[this.state.id - 1] === 'X') {
+        onShot = <Hit />;
+        firingSolution = <HitFX />;
+      } else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
+        onShot = 'O';
+        firingSolution = <MissFX />;
+      }
+    
+      // make a copy of state
+      let prevShot = [...this.state.beenShot]
+      // add new shot location to array
+      prevShot[this.state.id] = 'yes';
+      // update state with revised shot record
+      this.setState({
+        beenShot: prevShot
+      });
+    }
+    
 		return (
 			<div
 				style={{
@@ -44,7 +69,8 @@ class OpponentBoard extends Component {
 					fontFamily: 'Contrail One, cursive'
 				}}
 				onClick={() => {
-					this.props.handleTurnClick([this.props.playerId, this.state.id]);
+          this.props.handleTurnClick([this.props.playerId, this.state.id]);
+          
 				}}
 				onMouseEnter={() => {
 					this._onHover();
@@ -55,8 +81,8 @@ class OpponentBoard extends Component {
 					});
 				}}
 			>
-        {onShot}
-        {explosion}
+				{onShot}
+				{firingSolution}
 				{showCoordinates}
 			</div>
 		);
