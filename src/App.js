@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Chat from './Chat';
+import SoundFX from './SoundFX';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 const ws = new WebSocket('ws://localhost:3001');
 
 class App extends Component {
@@ -232,6 +233,8 @@ class App extends Component {
 			if (status) {
 				let modifyStatus = status.map((index, i) => {
 					if (i + 1 === props[1]) {
+            //have sound fire on valid shot
+            this._fireForEffect()
 						//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
 						if (ships.includes(props[1])) {
 							//shot index has a ship on it
@@ -263,25 +266,32 @@ class App extends Component {
 				}
 			}
 		}
-	};
+  };
+  
+  //***Sounds***
+  _fireForEffect = () => {
+    console.log("sounds???")
+    // let audio  = new Audio('./Assets/Sounds/explosion1.wav')
+    // audio.play()
+  }
 
-  //****chat methods****
+  //****Chat Methods****
   // set name
-  _handleChangeName = e => {
+  _handleChangeName = (e) => {
 		this.setState({
 			name: e.target.value
 		});
   };
   
 	// update message state with each change
-	_handleChangeMessage = e => {
+	_handleChangeMessage = (e) => {
 		this.setState({
 			message: { text: e.target.value, name: this.state.name }
 		});
 	};
 
 	// when message is sent call helper function and clear message state
-	_handleSubmit = e => {
+	_handleSubmit = (e) => {
 		e.preventDefault();
 		console.log('message submitted');
 		this._addToChat();
@@ -307,9 +317,11 @@ class App extends Component {
 
 
 	render() {
+
 		return (
 			<Router>
 				<div>
+       
 					{/* home route covers game initialization boards */}
 					<Route
 						path="/"
@@ -335,6 +347,7 @@ class App extends Component {
 						render={props => {
 							return (
 								<div>
+                  <SoundFX />  
 									<div style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips}</div>
 									<PlayableBoard
 										playerPieces={this.state.player1Pieces}
