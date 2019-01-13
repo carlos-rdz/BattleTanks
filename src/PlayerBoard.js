@@ -36,7 +36,7 @@ class PlayerBoard extends Component {
     } else { //all player tiles without ships
       return (
         <div style={{
-          backgroundColor: `lightblue`,
+          backgroundColor: `white`,
           outline: 'red solid 1px',
           width: '75px',
           height: '75px',

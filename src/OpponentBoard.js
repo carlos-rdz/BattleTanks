@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Hit from './Hit';
-import SoundFX from './SoundFX';
+import ExplosionFX from './ExplosionFX';
 
 class OpponentBoard extends Component {
 	constructor(props) {
@@ -28,10 +28,9 @@ class OpponentBoard extends Component {
 		// if the shot array shows a hit at this tile location
 		if (this.props.opponentStatus[this.state.id - 1] === 'X') {
       onShot = <Hit />;
-      explosion = <SoundFX />;
+      explosion = <ExplosionFX />; //only explosion on hit
 		} else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
       onShot = 'O';
-      explosion = <SoundFX />;
 		}
 
 		return (

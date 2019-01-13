@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Boom1 from './Assets/Sounds/explosion1.wav'
-import Boom2 from './Assets/Sounds/explosion2.wav'
-import Boom3 from './Assets/Sounds/explosion3.wav'
+import Boom1 from './Assets/Sounds/explosion1.wav';
+import Boom2 from './Assets/Sounds/explosion2.wav';
+import Boom3 from './Assets/Sounds/explosion3.wav';
+import Boom4 from './Assets/Sounds/firecombined.wav';
 
-class SoundFX extends Component {
+class ExplosionFX extends Component {
   constructor(props) {
     super(props);
     this.state=({
@@ -40,10 +41,10 @@ class SoundFX extends Component {
 
     return (
       <audio autoPlay = {true}>
-          <source src={Boom} type="audio/wav"/>
+          <source src={Boom4} type="audio/wav"/>
       </audio>
     );
   }
 }
 
-export default SoundFX;
+export default ExplosionFX;

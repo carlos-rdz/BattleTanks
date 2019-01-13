@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
 import Chat from './Chat';
-import SoundFX from './SoundFX';
+import ExplosionFX from './ExplosionFX';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 const ws = new WebSocket('ws://localhost:3001');
 
@@ -270,17 +270,17 @@ class App extends Component {
   };
   
   //***Sounds***
-  _fireForEffect = (bool) => {
-    if(bool){
-    this.setState({
-      explosion: <SoundFX /> 
-    })
-    }else{
-      this.setState({
-        explosion: "" 
-      })
-    }
-  }
+  // _fireForEffect = (bool) => {
+  //   if(bool){
+  //   this.setState({
+  //     explosion: <SoundFX /> 
+  //   })
+  //   }else{
+  //     this.setState({
+  //       explosion: "" 
+  //     })
+  //   }
+  // }
 
   //****Chat Methods****
   // set name
