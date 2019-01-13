@@ -23,7 +23,8 @@ class App extends Component {
 			didWin: null,
 			chat: [],
 			name: '',
-			message: { text: '', name: '' }
+      message: { text: '', name: '' },
+      // explosion: "",
 		};
 	}
 	// Initialize status arrays on component mount
@@ -234,7 +235,7 @@ class App extends Component {
 				let modifyStatus = status.map((index, i) => {
 					if (i + 1 === props[1]) {
             //have sound fire on valid shot
-            this._fireForEffect()
+            // this._fireForEffect(true)
 						//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
 						if (ships.includes(props[1])) {
 							//shot index has a ship on it
@@ -269,10 +270,16 @@ class App extends Component {
   };
   
   //***Sounds***
-  _fireForEffect = () => {
-    console.log("sounds???")
-    // let audio  = new Audio('./Assets/Sounds/explosion1.wav')
-    // audio.play()
+  _fireForEffect = (bool) => {
+    if(bool){
+    this.setState({
+      explosion: <SoundFX /> 
+    })
+    }else{
+      this.setState({
+        explosion: "" 
+      })
+    }
   }
 
   //****Chat Methods****
@@ -321,7 +328,6 @@ class App extends Component {
 		return (
 			<Router>
 				<div>
-       
 					{/* home route covers game initialization boards */}
 					<Route
 						path="/"
@@ -347,7 +353,7 @@ class App extends Component {
 						render={props => {
 							return (
 								<div>
-                  <SoundFX />  
+                  {/* {this.state.explosion}   */}
 									<div style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips}</div>
 									<PlayableBoard
 										playerPieces={this.state.player1Pieces}

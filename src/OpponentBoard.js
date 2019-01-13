@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Hit from './Hit';
+import SoundFX from './SoundFX';
 
 class OpponentBoard extends Component {
 	constructor(props) {
@@ -22,12 +23,15 @@ class OpponentBoard extends Component {
 
 	render() {
 		let showCoordinates = this.state.onHover;
-		let onShot;
+    let onShot;
+    let explosion;
 		// if the shot array shows a hit at this tile location
 		if (this.props.opponentStatus[this.state.id - 1] === 'X') {
-			onShot = <Hit />;
+      onShot = <Hit />;
+      explosion = <SoundFX />;
 		} else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
-			onShot = 'O';
+      onShot = 'O';
+      explosion = <SoundFX />;
 		}
 
 		return (
@@ -52,7 +56,8 @@ class OpponentBoard extends Component {
 					});
 				}}
 			>
-				{onShot}
+        {onShot}
+        {explosion}
 				{showCoordinates}
 			</div>
 		);
