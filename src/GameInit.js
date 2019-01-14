@@ -188,11 +188,11 @@ class GameInit extends Component {
           </div>
         </div>
 				<div className='shipContainer'>
-        <Ship handleShipClick={this._handleShipClick} dimension={5} name='PT-2M Citadel' />
-					<Ship handleShipClick={this._handleShipClick} dimension={4} name='R5 Typhoon' />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} name='J76A Zepher' />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} name='DL08 Challenger' />
-					<Ship handleShipClick={this._handleShipClick} dimension={2} name='VB-4 Lynx' />
+        <Ship handleShipClick={this._handleShipClick} dimension={5} ship='ship1' name='PT-2M Citadel' />
+					<Ship handleShipClick={this._handleShipClick} dimension={4} ship='ship2' name='R5 Typhoon' />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} ship='ship3' name='J76A Zepher' />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} ship='ship4' name='DL08 Challenger' />
+					<Ship handleShipClick={this._handleShipClick} dimension={2} ship='ship5' name='VB-4 Lynx' />
           <div className='instructions'>
             <div>Click your tank - Hover over the board - Click to place</div>
             <div>(shift + click) toggles vert/horiz placement</div>
