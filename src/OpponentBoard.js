@@ -41,12 +41,18 @@ class OpponentBoard extends Component {
 		// if the shot array shows a hit at this tile location and isn't a previous shot value
     // render both the visual and audio effects else don't do anything
     // if(this.state.beenShot[this.state.id] === 'no'){
-	  	if (this.props.opponentStatus[this.state.id - 1] === 'X') {
+      console.log('this.props.opponentStatus')
+      console.log(this.props.opponentStatus)
+	  	if (this.props.opponentStatus[this.state.id - 1] === 'tempX') {
         onShot = <Hit />;
         firingSolution = <HitFX />;
-      } else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
+      } else if (this.props.opponentStatus[this.state.id - 1] === 'tempO') {
         onShot = <Miss />;
         firingSolution = <MissFX />;
+      }else if (this.props.opponentStatus[this.state.id - 1] === 'X') {
+        onShot = 'X';
+      } else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
+        onShot = 'O';
       }
     
       // make a copy of state

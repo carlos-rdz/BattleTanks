@@ -19,10 +19,14 @@ class PlayerBoard extends Component {
   render() {
     let onShot;
     // if the shot array shows a hit at this tile location
-    if (this.props.playerStatus[this.state.id - 1] === 'X') {
+    if (this.props.playerStatus[this.state.id - 1] === 'tempX') {
+      onShot = <Hit />
+    } else if (this.props.playerStatus[this.state.id - 1] === 'tempO') {
       onShot = <Miss />
+    }else if (this.props.playerStatus[this.state.id - 1] === 'X') {
+      onShot = 'X';
     } else if (this.props.playerStatus[this.state.id - 1] === 'O') {
-      onShot = 'O'
+      onShot = 'O';
     }
     // render tiles, yellow for ship, blue no ship
     if (this.props.player1SinkStat[0].location.includes(this.state.id)) {
@@ -31,7 +35,8 @@ class PlayerBoard extends Component {
           backgroundImage: `url(${ship1R})`,
           width: '75px',
           height: '75px',
-          fontSize: '1em',
+          fontSize: '3em',
+          color: 'yellow',
           fontFamily: 'Contrail One, cursive'
         }}
         >
