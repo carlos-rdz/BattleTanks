@@ -57,11 +57,21 @@ class App extends Component {
 							console.log('detailed object set');
 							break;
 
-						case 'shotsFired':
+            case 'shotsFired':
+            let updatePlayerRender = this.state.player2Status.map((index) => {
+              if(index === 'tempX'){
+                return 'X'
+              }else if (index === 'tempO'){
+                return 'O'
+              }else{
+                return index
+              }
+            })
 							this.state.turn
-								? this.setState({ turn: false }, console.log(this.state.turn))
-								: this.setState({ turn: true }, console.log(this.state.turn));
-							this._setPlayer1Status(message.value);
+								? this.setState({ turn: false, player2Status: updatePlayerRender }, console.log(this.state.turn))
+								: this.setState({ turn: true, player2Status: updatePlayerRender }, console.log(this.state.turn));
+              this._setPlayer1Status(message.value);
+              
 							console.log('shotsFired data received');
 							break;
 

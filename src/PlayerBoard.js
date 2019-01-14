@@ -23,12 +23,11 @@ class PlayerBoard extends Component {
       onShot = <Hit />
     } else if (this.props.playerStatus[this.state.id - 1] === 'tempO') {
       onShot = <Miss />
+    }else if (this.props.playerStatus[this.state.id - 1] === 'X') {
+      onShot = 'X';
+    } else if (this.props.playerStatus[this.state.id - 1] === 'O') {
+      onShot = 'O';
     }
-    // }else if (this.props.playerStatus[this.state.id - 1] === 'X') {
-    //   onShot = 'X';
-    // } else if (this.props.playerStatus[this.state.id - 1] === 'O') {
-    //   onShot = 'O';
-    // }
     // render tiles, yellow for ship, blue no ship
     if (this.props.player1SinkStat[0].location.includes(this.state.id)) {
       return (
