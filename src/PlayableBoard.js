@@ -29,12 +29,15 @@ class PlayableBoard extends Component {
 				// click handler and id only required on OpponentBoard
 				opponent.push(
 					<OpponentBoard
+            setPlayer1Status = {this.props.setPlayer1Status}
 						key={uuid()}
 						value={coord[i] + (j + 1)}
 						id={counter}
 						handleTurnClick={this.props.handleTurnClick}
 						playerId={this.props.playerId}
-						opponentStatus={this.props.opponentStatus}
+            opponentStatus={this.props.opponentStatus}
+            playerStatus={this.props.playerStatus}
+
 					/>
 				);
 				counter++;

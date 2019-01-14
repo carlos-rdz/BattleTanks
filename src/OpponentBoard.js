@@ -64,18 +64,28 @@ class OpponentBoard extends Component {
       //   beenShot: prevShot
       // });
     // }
+      let updatePlayerRender = this.props.playerStatus.map((index) => {
+        if(index === 'tempX'){
+          return 'X'
+        }else if (index === 'tempO'){
+          return 'O'
+        }else{
+          return index
+        }
+      })
 
 		return (
 			<div
 				style={{
 					backgroundColor: 'white',
-					outline: 'red solid 1px',
+					outline: 'black solid 1px',
 					width: '75px',
 					height: '75px',
 					fontSize: '1em',
 					fontFamily: 'Contrail One, cursive'
 				}}
 				onClick={() => {
+          this.props.setPlayer1Status(updatePlayerRender);
           this.props.handleTurnClick([this.props.playerId, this.state.id]);
           
 				}}

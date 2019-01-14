@@ -204,6 +204,8 @@ class App extends Component {
 	};
 
 	_sendShotResultsToOpp = () => {
+   
+ 
 		ws.send(JSON.stringify({ type: 'shotsFired', value: this.state.player2Status, id: this.state.roomId }));
 		this.state.turn
 			? this.setState({ turn: false }, console.log('its your turn'))
@@ -352,6 +354,7 @@ class App extends Component {
 									<div style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips}</div>
 									{/* <div className='playableBoard'>  */}
                     <PlayableBoard
+                    setPlayer1Status = {this._setPlayer1Status}
 										playerPieces={this.state.player1Pieces}
 										opponentPieces={this.state.player2Pieces}
 										handleTurnClick={this._handleTurnClick}
