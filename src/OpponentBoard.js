@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Hit from './Hit';
+import Miss from './Miss';
 import HitFX from './HitFX';
 import MissFX from './MissFX';
 
@@ -39,12 +40,12 @@ class OpponentBoard extends Component {
 		let firingSolution;
 		// if the shot array shows a hit at this tile location and isn't a previous shot value
     // render both the visual and audio effects else don't do anything
-    if(this.state.beenShot[this.state.id] === 'no'){
+    // if(this.state.beenShot[this.state.id] === 'no'){
 	  	if (this.props.opponentStatus[this.state.id - 1] === 'X') {
         onShot = <Hit />;
         firingSolution = <HitFX />;
       } else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
-        onShot = 'O';
+        onShot = <Miss />;
         firingSolution = <MissFX />;
       }
     
@@ -53,18 +54,18 @@ class OpponentBoard extends Component {
       // add new shot location to array
       prevShot[this.state.id] = 'yes';
       // update state with revised shot record
-      this.setState({
-        beenShot: prevShot
-      });
-    }
-    
+      // this.setState({
+      //   beenShot: prevShot
+      // });
+    // }
+
 		return (
 			<div
 				style={{
 					backgroundColor: 'lightblue',
 					outline: 'red solid 1px',
-					width: '25px',
-					height: '25px',
+					width: '75px',
+					height: '75px',
 					fontSize: '1em',
 					fontFamily: 'Contrail One, cursive'
 				}}

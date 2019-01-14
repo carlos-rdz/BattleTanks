@@ -63,8 +63,8 @@ class PlayableBoard extends Component {
 				<div
 					style={{
 						backgroundColor: 'lightblue',
-						width: '250px',
-						height: '250px',
+						width: '750px',
+						height: '750px',
 						display: 'grid'
 					}}
 				>
@@ -95,8 +95,9 @@ class PlayableBoard extends Component {
 					className='sidebyside'
 					style={{
 						display: 'grid',
-						gridTemplateColumns: 'repeat(2, 250px)',
-						gridGap: '25px'
+						// gridTemplateColumns: 'repeat(2, 250px)',
+						gridTemplateColumns: '750px 400px 750px',
+						gridGap: '10px'
 					}}
 				>
 					<div

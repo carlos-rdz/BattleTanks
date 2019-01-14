@@ -267,18 +267,6 @@ class App extends Component {
 		}
   };
   
-  //***Sounds***
-  // _fireForEffect = (bool) => {
-  //   if(bool){
-  //   this.setState({
-  //     explosion: <SoundFX /> 
-  //   })
-  //   }else{
-  //     this.setState({
-  //       explosion: "" 
-  //     })
-  //   }
-  // }
 
   //****Chat Methods****
   // set name
@@ -350,10 +338,10 @@ class App extends Component {
 						path="/gamestart"
 						render={props => {
 							return (
-								<div>
-                  {/* {this.state.explosion}   */}
+								<div className='gamestart'>
 									<div style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips}</div>
-									<PlayableBoard
+									<div className='playableBoard'> 
+                    <PlayableBoard
 										playerPieces={this.state.player1Pieces}
 										opponentPieces={this.state.player2Pieces}
 										handleTurnClick={this._handleTurnClick}
@@ -362,18 +350,21 @@ class App extends Component {
 										playerId={1}
 										turn={this.state.turn}
 										didWin={this.state.didWin}
-									/>
-									<Chat
-										ws={ws}
-										roomId={this.state.roomId}
-										chat={this.state.chat}
-										message={this.state.message}
-										name={this.state.name}
-										handleChangeMessage={this._handleChangeMessage}
-										handleChangeName={this._handleChangeName}
-										handleSubmit={this._handleSubmit}
-										addToChat={this._addToChat}
-									/>
+									  />
+                  </div>
+                  <div className='chat'>
+                    <Chat
+                      ws={ws}
+                      roomId={this.state.roomId}
+                      chat={this.state.chat}
+                      message={this.state.message}
+                      name={this.state.name}
+                      handleChangeMessage={this._handleChangeMessage}
+                      handleChangeName={this._handleChangeName}
+                      handleSubmit={this._handleSubmit}
+                      addToChat={this._addToChat}
+                    />
+								  </div>
 								</div>
 							);
 						}}
