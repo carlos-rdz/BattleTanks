@@ -10,6 +10,8 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
+  font-family: Contrail One, cursive;
+
 }
 
 .sk-rotating-plane {
@@ -55,7 +57,7 @@ html, body {
 .GameInit {
   text-align: center;
   display: grid;
-  grid-template-columns: 1fr 2fr 6fr;
+  grid-template-columns: 1fr 3fr 5fr 1fr;
   grid-template-rows: 11;
   }
 
@@ -67,8 +69,8 @@ html, body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding-top: 75px;
-  padding-bottom: 75px;
+  font-size: 1.3em;
+
 }
 
 .InitBoardContainer{
@@ -82,20 +84,22 @@ html, body {
 }
 
 .initDisplay{
+  height: 80px;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
   display: flex;
   flex-direction: column;
-  font-family: Contrail One, cursive;
   font-size: 2em;
 }
 .readyWrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-bottom: 10px;
+  align-content: flex-end;
+  /* padding-bottom: 10px; */
+  flex-grow: 1;
 }
 
 

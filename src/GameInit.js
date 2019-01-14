@@ -193,6 +193,10 @@ class GameInit extends Component {
 					<Ship handleShipClick={this._handleShipClick} dimension={3} name='J76A Zepher' />
 					<Ship handleShipClick={this._handleShipClick} dimension={3} name='DL08 Challenger' />
 					<Ship handleShipClick={this._handleShipClick} dimension={2} name='VB-4 Lynx' />
+          <div className='instructions'>
+            <div>Click your tank - Hover over the board - Click to place</div>
+            <div>(shift + click) toggles vert/horiz placement</div>
+          </div>
 				</div>
 				<div className='InitBoardContainer'>
 					<InitBoard
