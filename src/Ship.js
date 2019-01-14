@@ -49,9 +49,7 @@ class Ship extends Component {
         shipArr.push(shipImg)
       }
     return (
-      <div
-        // dimension={this.props.dimension} 
-        
+      <div        
         style={{ width: `${length}px`, height: '75px',  }}>
         {/* {this.props.name} */}
         {shipArr}
