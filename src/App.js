@@ -353,21 +353,17 @@ class App extends Component {
 										playerStatus={this.state.player1Status}
 										playerId={1}
 										turn={this.state.turn}
-										didWin={this.state.didWin}
+                    didWin={this.state.didWin}
+                    ws={ws}
+                    roomId={this.state.roomId}
+                    chat={this.state.chat}
+                    message={this.state.message}
+                    name={this.state.name}
+                    handleChangeMessage={this._handleChangeMessage}
+                    handleChangeName={this._handleChangeName}
+                    handleSubmit={this._handleSubmit}
+                    addToChat={this._addToChat}
 									  />
-                    <div className='chat'>
-                      <Chat
-                        ws={ws}
-                        roomId={this.state.roomId}
-                        chat={this.state.chat}
-                        message={this.state.message}
-                        name={this.state.name}
-                        handleChangeMessage={this._handleChangeMessage}
-                        handleChangeName={this._handleChangeName}
-                        handleSubmit={this._handleSubmit}
-                        addToChat={this._addToChat}
-                      />
-                    </div>
                   </div>
 								// </div>
 							);

@@ -3,6 +3,7 @@ import uuid from 'uuid/v4';
 import PlayerBoard from './PlayerBoard';
 import OpponentBoard from './OpponentBoard';
 import Title from './Title';
+import Chat from './Chat';
 class PlayableBoard extends Component {
 
 
@@ -89,7 +90,7 @@ class PlayableBoard extends Component {
 		}
 
 		return (
-			<div>
+			<div className='playableBoard'>
 				{/* <div className='sidebyside'> */}
 					<div className='playerBoard'>
 						{player}
@@ -100,6 +101,20 @@ class PlayableBoard extends Component {
 				  <h1 className='statusDisplay'>{statusDisplay}</h1>
           <div className='opponentBoard'>
           {renderOpponentBoard}
+          </div>
+          <div className='chat'>
+            <Chat 
+              turn={this.props.turn}
+              didWin={this.props.didWin}
+              ws={this.props.ws}
+              roomId={this.props.roomId}
+              chat={this.props.chat}
+              message={this.props.message}
+              name={this.props.name}
+              handleChangeMessage={this.props.handleChangeMessage}
+              handleChangeName={this.props.handleChangeName}
+              handleSubmit={this.props.handleSubmit}
+              addToChat={this.props.addToChat}/>
           </div>
 				{/* </div> */}
 			</div>
