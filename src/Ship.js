@@ -6,10 +6,6 @@ import ship4R from './Assets/Ships/Red/ship4R.png';
 import ship5R from './Assets/Ships/Red/ship5R.png';
 
 class Ship extends Component {
-  constructor(props) {
-    super(props);
-  
-  }
   
   render() {
     let ship;

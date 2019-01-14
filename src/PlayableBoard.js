@@ -22,7 +22,8 @@ class PlayableBoard extends Component {
 						value={coord[i] + (j + 1)}
 						id={counter}
 						playerPieces={this.props.playerPieces}
-						playerStatus={this.props.playerStatus}
+            playerStatus={this.props.playerStatus}
+            player1SinkStat = {this.props.player1SinkStat}
 					/>
 				);
 				// click handler and id only required on OpponentBoard

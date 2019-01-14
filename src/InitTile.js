@@ -22,7 +22,6 @@ class InitTile extends Component {
 	};
 
 	render() {
-    // const tempArray = this.props.renderedShips;
     const tempArray = this.props.shipsPlacedObj;
    
     
@@ -171,31 +170,6 @@ class InitTile extends Component {
 					{this.state.renderShip}
 				</div>
       );
-      
-		// } else if (tempArray.includes(this.state.id)) {
-		// 	return (
-		// 		<div
-		// 			style={{
-    //         backgroundImage: `url(${this.props.currentShipImg})`,
-		// 				width: '75px',
-		// 				height: '75px',
-		// 				fontSize: '3em'
-		// 			}}
-		// 			onMouseEnter={() => {
-		// 				this.props.hover(this.state.id);
-		// 			}}
-		// 			onMouseLeave={this._removeShip}
-		// 			onClick={e => {
-		// 				if (e.shiftKey) {
-		// 					this.props.rotateShip();
-		// 				} else {
-		// 					this.props.handleClick();
-		// 				}
-		// 			}}
-		// 		>
-		// 			{this.state.renderShip}
-		// 		</div>
-		// 	);
 		} else {
 			return (
 				<div

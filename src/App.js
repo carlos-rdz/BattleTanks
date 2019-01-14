@@ -241,14 +241,20 @@ class App extends Component {
 						//index = shot index (our ids are from 1-100 not 0-99 hence the +1)
 						if (ships.includes(props[1])) {
 							//shot index has a ship on it
-							return 'X'; //hit
+							return 'tempX'; //hit
 						} else {
-							return 'O'; //miss
+							return 'tempO'; //miss
 						}
 					} else {
-						//every other index in array return as is
+            if(index === 'tempX'){
+              return 'X'
+            }else if(index === 'tempO'){
+              return 'O'
+            }else{
+            //every other index in array return as is
 						return index;
-					}
+            }
+          }
 				});
 				if (status[props[1] - 1] === 0) {
 					console.log('status');
@@ -363,6 +369,7 @@ class App extends Component {
                     handleChangeName={this._handleChangeName}
                     handleSubmit={this._handleSubmit}
                     addToChat={this._addToChat}
+                    player1SinkStat = {this.state.player1SinkStat}
 									  />
                   </div>
 								// </div>
