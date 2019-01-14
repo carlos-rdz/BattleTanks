@@ -21,7 +21,11 @@ class InitBoard extends Component {
 						selectedShipRotation={this.props.selectedShipRotation}
 						rotateShip={this.props.rotateShip}
 						renderedShips={this.props.renderedShips}
-						playerShipLoc={this.props.playerShipLoc}
+            playerShipLoc={this.props.playerShipLoc}
+            currentShipImg = {this.props.currentShipImg}
+            handleHoverRemove= {this.props.handleHoverRemove}
+            shipsPlacedObj = {this.props.shipsPlacedObj}
+
 					/>
 				);
 			}

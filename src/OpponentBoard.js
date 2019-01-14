@@ -62,7 +62,7 @@ class OpponentBoard extends Component {
 		return (
 			<div
 				style={{
-					backgroundColor: 'lightblue',
+					backgroundColor: 'white',
 					outline: 'red solid 1px',
 					width: '75px',
 					height: '75px',

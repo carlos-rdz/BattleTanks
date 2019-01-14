@@ -22,16 +22,25 @@ class GameInit extends Component {
 				{ name: 'J76A Zepher', location: [], sunk: false },
 				{ name: 'DL08 Challenger', location: [], sunk: false },
 				{ name: 'VB-4 Lynx', location: [], sunk: false },
-			]
+      ],
+      currentShipImg: ""
 		};
 	}
 
-	_handleShipClick = props => {
+	_handleShipClick = (props, ship) => {
+
 		this.setState({
 			selectedShipLength: props.dimension,
-			selectedShipName: props.name
+      selectedShipName: props.name,
+      currentShipImg: ship,
 		});
 	};
+
+  _handleHoverRemove = () => {
+    this.setState({
+      displayHoverArray: []
+    })
+  }
 
 	_handleHover = id => {
 		// based on boolean pass tiles to appropriate helper
@@ -188,11 +197,11 @@ class GameInit extends Component {
           </div>
         </div>
 				<div className='shipContainer'>
-        <Ship handleShipClick={this._handleShipClick} dimension={5} ship='ship1' name='PT-2M Citadel' />
-					<Ship handleShipClick={this._handleShipClick} dimension={4} ship='ship2' name='R5 Typhoon' />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} ship='ship3' name='J76A Zepher' />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} ship='ship4' name='DL08 Challenger' />
-					<Ship handleShipClick={this._handleShipClick} dimension={2} ship='ship5' name='VB-4 Lynx' />
+        <Ship handleShipClick={this._handleShipClick} dimension={5} ship='ship1R' name='PT-2M Citadel' />
+					<Ship handleShipClick={this._handleShipClick} dimension={4} ship='ship2R' name='R5 Typhoon' />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} ship='ship3R' name='J76A Zepher' />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} ship='ship4R' name='DL08 Challenger' />
+					<Ship handleShipClick={this._handleShipClick} dimension={2} ship='ship5R' name='VB-4 Lynx' />
           <div className='instructions'>
             <div>Click your tank - Hover over the board - Click to place</div>
             <div>(shift + click) toggles vert/horiz placement</div>
@@ -200,13 +209,16 @@ class GameInit extends Component {
 				</div>
 				<div className='InitBoardContainer'>
 					<InitBoard
+            handleHoverRemove= {this._handleHoverRemove}
+            currentShipImg = {this.state.currentShipImg}
 						handleClick={this._handleClick}
 						handleHover={this._handleHover}
 						hoverArray={this.state.displayHoverArray}
 						selectedShipName={this.state.selectedShipName}
 						selectedShipRotation={this.state.selectedShipRotation}
 						rotateShip={this._rotateShip}
-						renderedShips={this._renderArray()}
+            renderedShips={this._renderArray()}
+            shipsPlacedObj = {this.state.shipsPlaced}
 					/>
 				</div>
 			</div>
