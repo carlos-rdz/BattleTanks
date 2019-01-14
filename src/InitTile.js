@@ -25,8 +25,8 @@ class InitTile extends Component {
 					style={{
 						backgroundColor: `red`,
 						outline: 'red solid 1px',
-						width: '50px',
-						height: '50px',
+						width: '75px',
+						height: '75px',
 						fontSize: '3em'
 					}}
 					onMouseEnter={() => {
@@ -50,8 +50,8 @@ class InitTile extends Component {
 					style={{
 						backgroundColor: `yellow`,
 						outline: 'red solid 1px',
-						width: '50px',
-						height: '50px',
+						width: '75px',
+						height: '75px',
 						fontSize: '3em'
 					}}
 					onMouseEnter={() => {
@@ -73,10 +73,10 @@ class InitTile extends Component {
 			return (
 				<div
 					style={{
-						backgroundColor: `lightblue`,
+						backgroundColor: `white`,
 						outline: 'black solid 1px',
-						width: '50px',
-						height: '50px',
+						width: '75px',
+						height: '75px',
 						fontSize: '3em'
 					}}
 					onMouseEnter={() => {

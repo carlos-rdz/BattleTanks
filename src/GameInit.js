@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import InitBoard from './InitBoard';
 import Ship from './Ship';
 import Start from './Start';
+import Title from './Title';
 import './GameInit.css';
+
 
 class GameInit extends Component {
 	constructor(props) {
@@ -15,11 +17,11 @@ class GameInit extends Component {
 			displayHoverArray: [], // the hover effect is invoked on these tile locations
 			shipsPlaced: [
 				// each object is a ship
-				{ name: 'submarine', location: [], sunk: false },
-				{ name: 'destroyer', location: [], sunk: false },
-				{ name: 'carrier', location: [], sunk: false },
-				{ name: 'battleship', location: [], sunk: false },
-				{ name: 'cruiser', location: [], sunk: false }
+        { name: 'PT-2M Citadel', location: [], sunk: false },
+				{ name: 'R5 Typhoon', location: [], sunk: false },
+				{ name: 'J76A Zepher', location: [], sunk: false },
+				{ name: 'DL08 Challenger', location: [], sunk: false },
+				{ name: 'VB-4 Lynx', location: [], sunk: false },
 			]
 		};
 	}
@@ -167,22 +169,28 @@ class GameInit extends Component {
 
 		return (
 			<div className='GameInit'>
-				<Start
-					ws={this.props.ws}
-					playerShipLoc={this.props.playerShipLoc}
-					shipObject={this.state.shipsPlaced}
-					flattenedArray={this._renderArray()}
-					roomId={this.props.roomId}
-					sunkStatus={this.props.sunkStatus}
-					shipObj={this.props.shipObj}
-				/>
-
+      <Title />
+       <div className ='initDisplay'>
+          <div className={waitingSpinner}> </div>
+					<div> {spinnerText} </div>
+        </div>
+        <div className='startButton'>
+          <Start
+            ws={this.props.ws}
+            playerShipLoc={this.props.playerShipLoc}
+            shipObject={this.state.shipsPlaced}
+            flattenedArray={this._renderArray()}
+            roomId={this.props.roomId}
+            sunkStatus={this.props.sunkStatus}
+            shipObj={this.props.shipObj}
+          />
+        </div>
 				<div className='shipContainer'>
-					<Ship handleShipClick={this._handleShipClick} dimension={2} name='destroyer' />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} name='submarine' />
-					<Ship handleShipClick={this._handleShipClick} dimension={5} name='carrier' />
-					<Ship handleShipClick={this._handleShipClick} dimension={4} name='battleship' />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} name='cruiser' />
+        <Ship handleShipClick={this._handleShipClick} dimension={5} name='PT-2M Citadel' />
+					<Ship handleShipClick={this._handleShipClick} dimension={4} name='R5 Typhoon' />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} name='J76A Zepher' />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} name='DL08 Challenger' />
+					<Ship handleShipClick={this._handleShipClick} dimension={2} name='VB-4 Lynx' />
 				</div>
 				<div className='InitBoardContainer'>
 					<InitBoard
@@ -194,8 +202,6 @@ class GameInit extends Component {
 						rotateShip={this._rotateShip}
 						renderedShips={this._renderArray()}
 					/>
-					<div className={waitingSpinner}> </div>
-					<div> {spinnerText} </div>
 				</div>
 			</div>
 		);

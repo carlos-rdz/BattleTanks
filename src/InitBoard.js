@@ -30,12 +30,12 @@ class InitBoard extends Component {
 		return (
 			<div
 				style={{
-					width: '100px',
-					height: '100px',
+					width: '750px',
+					height: '750px',
 					display: 'grid',
 					gridTemplateColumns: 'repeat(10, 1fr)',
-					gridTemplateRows: 'repeat(10,1fr)'
-				}}
+          gridTemplateRows: 'repeat(10,1fr)',
+          }}
 			>
 				{squares}
 			</div>

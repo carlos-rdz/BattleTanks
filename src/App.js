@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
 import Chat from './Chat';
+import './index.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+
+
 const ws = new WebSocket('ws://localhost:3001');
 
 class App extends Component {
@@ -340,7 +344,7 @@ class App extends Component {
 							return (
 								<div className='gamestart'>
 									<div style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips}</div>
-									<div className='playableBoard'> 
+									{/* <div className='playableBoard'>  */}
                     <PlayableBoard
 										playerPieces={this.state.player1Pieces}
 										opponentPieces={this.state.player2Pieces}
@@ -351,21 +355,21 @@ class App extends Component {
 										turn={this.state.turn}
 										didWin={this.state.didWin}
 									  />
+                    <div className='chat'>
+                      <Chat
+                        ws={ws}
+                        roomId={this.state.roomId}
+                        chat={this.state.chat}
+                        message={this.state.message}
+                        name={this.state.name}
+                        handleChangeMessage={this._handleChangeMessage}
+                        handleChangeName={this._handleChangeName}
+                        handleSubmit={this._handleSubmit}
+                        addToChat={this._addToChat}
+                      />
+                    </div>
                   </div>
-                  <div className='chat'>
-                    <Chat
-                      ws={ws}
-                      roomId={this.state.roomId}
-                      chat={this.state.chat}
-                      message={this.state.message}
-                      name={this.state.name}
-                      handleChangeMessage={this._handleChangeMessage}
-                      handleChangeName={this._handleChangeName}
-                      handleSubmit={this._handleSubmit}
-                      addToChat={this._addToChat}
-                    />
-								  </div>
-								</div>
+								// </div>
 							);
 						}}
 					/>

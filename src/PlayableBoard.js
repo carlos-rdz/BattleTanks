@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import uuid from 'uuid/v4';
 import PlayerBoard from './PlayerBoard';
 import OpponentBoard from './OpponentBoard';
-
+import Title from './Title';
 class PlayableBoard extends Component {
 
 
@@ -90,29 +90,18 @@ class PlayableBoard extends Component {
 
 		return (
 			<div>
-				<h1>{statusDisplay}</h1>
-				<div
-					className='sidebyside'
-					style={{
-						display: 'grid',
-						// gridTemplateColumns: 'repeat(2, 250px)',
-						gridTemplateColumns: '750px 400px 750px',
-						gridGap: '10px'
-					}}
-				>
-					<div
-						style={{
-							width: '50px',
-							height: '50px',
-							display: 'grid',
-							gridTemplateColumns: 'repeat(10, 1fr)',
-							gridTemplateRows: 'repeat(10,1fr)'
-						}}
-					>
+				{/* <div className='sidebyside'> */}
+					<div className='playerBoard'>
 						{player}
 					</div>
-					{renderOpponentBoard}
-				</div>
+          <div className='playableTitle'>
+            <Title />
+          </div>
+				  <h1 className='statusDisplay'>{statusDisplay}</h1>
+          <div className='opponentBoard'>
+          {renderOpponentBoard}
+          </div>
+				{/* </div> */}
 			</div>
 		);
 	}
