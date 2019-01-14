@@ -170,20 +170,22 @@ class GameInit extends Component {
 		return (
 			<div className='GameInit'>
       <Title />
-       <div className ='initDisplay'>
-          <div className={waitingSpinner}> </div>
-					<div> {spinnerText} </div>
-        </div>
-        <div className='startButton'>
-          <Start
-            ws={this.props.ws}
-            playerShipLoc={this.props.playerShipLoc}
-            shipObject={this.state.shipsPlaced}
-            flattenedArray={this._renderArray()}
-            roomId={this.props.roomId}
-            sunkStatus={this.props.sunkStatus}
-            shipObj={this.props.shipObj}
-          />
+        <div className ='initDisplay'>
+          <div className='readyWrapper'>
+            <div> {spinnerText} </div>
+            <div className={waitingSpinner}> </div>
+          </div>
+          <div className='startButton'>
+            <Start
+              ws={this.props.ws}
+              playerShipLoc={this.props.playerShipLoc}
+              shipObject={this.state.shipsPlaced}
+              flattenedArray={this._renderArray()}
+              roomId={this.props.roomId}
+              sunkStatus={this.props.sunkStatus}
+              shipObj={this.props.shipObj}
+            />
+          </div>
         </div>
 				<div className='shipContainer'>
         <Ship handleShipClick={this._handleShipClick} dimension={5} name='PT-2M Citadel' />

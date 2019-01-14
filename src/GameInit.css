@@ -15,8 +15,10 @@ html, body {
 .sk-rotating-plane {
   width: 40px;
   height: 40px;
-  background-color: #333;
-  margin: 40px auto;
+  background-color: white;
+  background-image: url('./Assets/crosshair026.png');
+  background-size: cover;
+  margin-left: 30px;
   -webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
           animation: sk-rotatePlane 1.2s infinite ease-in-out; }
 @-webkit-keyframes sk-rotatePlane {
@@ -49,52 +51,57 @@ html, body {
 
   
 
-.shipContainer {
-  height: 500px;
-  display: grid;
-  /* display: flex;
-  flex-direction: column;
-  align-items: end; */
-  justify-content: center;
-}
-
-
 
 .GameInit {
   text-align: center;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 2fr 6fr;
   grid-template-rows: 11;
-
   }
 
-
 .shipContainer {
-  grid-row-start: 3;
-  grid-column-start: 1;
-  height: 500px;
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-column-end:3;
   display: flex;
   flex-direction: column;
-  align-items: end;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 75px;
+  padding-bottom: 75px;
 }
 
 .InitBoardContainer{
-  grid-column-start: 2;
-  /* justify-self: center; */
+  grid-column-start: 3;
+  justify-self: center;
 }
 
 .startButton{
-  grid-column-start: 1;
+  grid-column-start: 2;
   grid-row-start: 2;
 }
 
 .initDisplay{
-  grid-column-start: 2
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  flex-direction: column;
+  font-family: Contrail One, cursive;
+  font-size: 2em;
+}
+.readyWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 10px;
 }
 
+
 .gameTitle{
-  grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-start: 3;
+  grid-column-end: 4;
   display: flex;
   justify-self: center;
 
