@@ -15,120 +15,127 @@ import StaticExplosion from './Assets/staticExplosion.png';
 import StaticMiss from './Assets/staticMiss.png';
 
 class PlayerBoard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: props.id,
-      coordinates: props.value,
-      status: 1,
-    }
-  }
-  render() {
-    let onShot;
-    // if the shot array shows a hit at this tile location
-    if (this.props.playerStatus[this.state.id - 1] === 'tempX') {
-      onShot = <Hit />
-    } else if (this.props.playerStatus[this.state.id - 1] === 'tempO') {
-      onShot = <Miss />
-    }else if (this.props.playerStatus[this.state.id - 1] === 'X') {
-      onShot = <img src={StaticExplosion} alt='explosion hit' style={{ maxHeight: 100+'%', maxWidth: 100+'%'}} />
-    } else if (this.props.playerStatus[this.state.id - 1] === 'O') {
-      onShot = <img src={StaticMiss} alt='explosion miss' style={{ maxHeight: 100+'%', maxWidth: 100+'%'}} />
-    }
-    
-    let ship; 
-    if (this.props.player1SinkStat[0].location.includes(this.state.id)) {
-        if(this.props.player1SinkStat[0].sunk === false){
-           ship = ship1R
-        }else{
-           ship = ship1Rbroken
-        }
-      
-      return (
-        <div style={{
-          backgroundImage: `url(${ship})`,
-          width: '75px',
-          height: '75px',
-          fontSize: '3em',
-          color: 'yellow',
-          fontFamily: 'Contrail One, cursive'
-        }}
-        >
-          {onShot}
-        </div>
-      );
-    }else if (this.props.player1SinkStat[1].location.includes(this.state.id)) {
-      return (
-        <div style={{
-          backgroundImage: `url(${ship2R})`,
-          width: '75px',
-          height: '75px',
-          fontSize: '3em',
-          color: 'yellow',
-          fontFamily: 'Contrail One, cursive'
-        }}
-        >
-          {onShot}
-        </div>
-      );
-    }else if (this.props.player1SinkStat[2].location.includes(this.state.id)) {
-      return (
-        <div style={{
-          backgroundImage: `url(${ship3R})`,
-          width: '75px',
-          height: '75px',
-          fontSize: '3em',
-          color: 'yellow',
-          fontFamily: 'Contrail One, cursive'
-        }}
-        >
-          {onShot}
-        </div>
-      );
-    }else if (this.props.player1SinkStat[3].location.includes(this.state.id)) {
-      return (
-        <div style={{
-          backgroundImage: `url(${ship4R})`,
-          width: '75px',
-          height: '75px',
-          fontSize: '3em',
-          color: 'yellow',
-          fontFamily: 'Contrail One, cursive'
-        }}
-        >
-          {onShot}
-        </div>
-      );
-    }else if (this.props.player1SinkStat[4].location.includes(this.state.id)) {
-      return (
-        <div style={{
-          backgroundImage: `url(${ship5R})`,
-          width: '75px',
-          height: '75px',
-          fontSize: '3em',
-          color: 'yellow',
-          fontFamily: 'Contrail One, cursive'
-        }}
-        >
-          {onShot}
-        </div>
-      );
-    } else { //all player tiles without ships
-      return (
-        <div style={{
-          backgroundColor: `white`,
-          outline: 'black solid 1px',
-          width: '75px',
-          height: '75px',
-          fontSize: '1em',
-          fontFamily: 'Contrail One, cursive'
-        }}
-        >
-          {onShot}
-        </div>
-      );
-    }
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			id: props.id,
+			coordinates: props.value,
+			status: 1
+		};
+	}
+	render() {
+		let onShot;
+		// if the shot array shows a hit at this tile location
+		if (this.props.playerStatus[this.state.id - 1] === 'tempX') {
+			onShot = <Hit />;
+		} else if (this.props.playerStatus[this.state.id - 1] === 'tempO') {
+			onShot = <Miss />;
+		} else if (this.props.playerStatus[this.state.id - 1] === 'X') {
+			onShot = <img src={StaticExplosion} alt="" style={{ maxHeight: 100 + '%', maxWidth: 100 + '%' }} />;
+		} else if (this.props.playerStatus[this.state.id - 1] === 'O') {
+			onShot = <img src={StaticMiss} alt="" style={{ maxHeight: 100 + '%', maxWidth: 100 + '%' }} />;
+		}
+
+		let ship;
+		if (this.props.player1SinkStat[0].location.includes(this.state.id)) {
+			if (this.props.player1SinkStat[0].sunk === false) {
+				ship = ship1R;
+			} else {
+				ship = ship1Rbroken;
+			}
+
+			return (
+				<div
+					style={{
+						backgroundImage: `url(${ship})`,
+						width: '75px',
+						height: '75px',
+						fontSize: '3em',
+						color: 'yellow',
+						fontFamily: 'Contrail One, cursive'
+					}}
+				>
+					{onShot}
+				</div>
+			);
+		} else if (this.props.player1SinkStat[1].location.includes(this.state.id)) {
+			return (
+				<div
+					style={{
+						backgroundImage: `url(${ship2R})`,
+						width: '75px',
+						height: '75px',
+						fontSize: '3em',
+						color: 'yellow',
+						fontFamily: 'Contrail One, cursive'
+					}}
+				>
+					{onShot}
+				</div>
+			);
+		} else if (this.props.player1SinkStat[2].location.includes(this.state.id)) {
+			return (
+				<div
+					style={{
+						backgroundImage: `url(${ship3R})`,
+						width: '75px',
+						height: '75px',
+						fontSize: '3em',
+						color: 'yellow',
+						fontFamily: 'Contrail One, cursive'
+					}}
+				>
+					{onShot}
+				</div>
+			);
+		} else if (this.props.player1SinkStat[3].location.includes(this.state.id)) {
+			return (
+				<div
+					style={{
+						backgroundImage: `url(${ship4R})`,
+						width: '75px',
+						height: '75px',
+						fontSize: '3em',
+						color: 'yellow',
+						fontFamily: 'Contrail One, cursive'
+					}}
+				>
+					{onShot}
+				</div>
+			);
+		} else if (this.props.player1SinkStat[4].location.includes(this.state.id)) {
+			return (
+				<div
+					style={{
+						backgroundImage: `url(${ship5R})`,
+						width: '75px',
+						height: '75px',
+						fontSize: '3em',
+						color: 'yellow',
+						fontFamily: 'Contrail One, cursive'
+					}}
+				>
+					{onShot}
+				</div>
+			);
+		} else {
+			//all player tiles without ships
+			return (
+				<div
+					style={{
+						backgroundColor: `white`,
+						outline: 'black solid 1px',
+						width: '75px',
+						height: '75px',
+						fontSize: '1em',
+						fontFamily: 'Contrail One, cursive'
+					}}
+				>
+					{onShot}
+				</div>
+			);
+		}
+	}
 }
 
 export default PlayerBoard;

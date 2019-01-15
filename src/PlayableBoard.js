@@ -4,9 +4,9 @@ import PlayerBoard from './PlayerBoard';
 import OpponentBoard from './OpponentBoard';
 import Title from './Title';
 import Chat from './Chat';
+import { Link } from 'react-router-dom';
+
 class PlayableBoard extends Component {
-
-
 	render() {
 		let counter = 1;
 		let player = [];
@@ -22,22 +22,21 @@ class PlayableBoard extends Component {
 						value={coord[i] + (j + 1)}
 						id={counter}
 						playerPieces={this.props.playerPieces}
-            playerStatus={this.props.playerStatus}
-            player1SinkStat = {this.props.player1SinkStat}
+						playerStatus={this.props.playerStatus}
+						player1SinkStat={this.props.player1SinkStat}
 					/>
 				);
 				// click handler and id only required on OpponentBoard
 				opponent.push(
 					<OpponentBoard
-            setPlayer1Status = {this.props.setPlayer1Status}
+						setPlayer1Status={this.props.setPlayer1Status}
 						key={uuid()}
 						value={coord[i] + (j + 1)}
 						id={counter}
 						handleTurnClick={this.props.handleTurnClick}
 						playerId={this.props.playerId}
-            opponentStatus={this.props.opponentStatus}
-            playerStatus={this.props.playerStatus}
-
+						opponentStatus={this.props.opponentStatus}
+						playerStatus={this.props.playerStatus}
 					/>
 				);
 				counter++;
@@ -82,44 +81,55 @@ class PlayableBoard extends Component {
 		let statusDisplay;
 
 		if (this.props.turn) {
-			statusDisplay = 'Your Turn';
+			statusDisplay = <h1 className="statusDisplay">Your Turn</h1>;
 		} else {
-			statusDisplay = 'Their Turn';
+			statusDisplay = <h1 className="statusDisplay">Their Turn</h1>;
 		}
 
 		if (this.props.didWin === true) {
-			statusDisplay = 'You Won!';
+			statusDisplay = (
+				<div className="statusDisplay">
+					<h1>You Won</h1>
+					<h1>
+						<Link to="/">Play Again?</Link>
+					</h1>
+				</div>
+			);
 		} else if (this.props.didWin === false) {
-			statusDisplay = 'You Lost!';
+			statusDisplay = (
+				<div className="statusDisplay">
+					<h1>You Lost</h1>
+					<h1>
+						<Link to="/">Play Again?</Link>
+					</h1>
+				</div>
+			);
 		}
 
 		return (
-			<div className='playableBoard'>
+			<div className="playableBoard">
 				{/* <div className='sidebyside'> */}
-					<div className='playerBoard'>
-						{player}
-					</div>
-          <div className='playableTitle'>
-            <Title />
-          </div>
-				  <h1 className='statusDisplay'>{statusDisplay}</h1>
-          <div className='opponentBoard'>
-          {renderOpponentBoard}
-          </div>
-          <div className='chat'>
-            <Chat 
-              turn={this.props.turn}
-              didWin={this.props.didWin}
-              ws={this.props.ws}
-              roomId={this.props.roomId}
-              chat={this.props.chat}
-              message={this.props.message}
-              name={this.props.name}
-              handleChangeMessage={this.props.handleChangeMessage}
-              handleChangeName={this.props.handleChangeName}
-              handleSubmit={this.props.handleSubmit}
-              addToChat={this.props.addToChat}/>
-          </div>
+				<div className="playerBoard">{player}</div>
+				<div className="playableTitle">
+					<Title />
+				</div>
+				{statusDisplay}
+				<div className="opponentBoard">{renderOpponentBoard}</div>
+				<div className="chat">
+					<Chat
+						turn={this.props.turn}
+						didWin={this.props.didWin}
+						ws={this.props.ws}
+						roomId={this.props.roomId}
+						chat={this.props.chat}
+						message={this.props.message}
+						name={this.props.name}
+						handleChangeMessage={this.props.handleChangeMessage}
+						handleChangeName={this.props.handleChangeName}
+						handleSubmit={this.props.handleSubmit}
+						addToChat={this.props.addToChat}
+					/>
+				</div>
 				{/* </div> */}
 			</div>
 		);

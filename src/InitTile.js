@@ -22,15 +22,13 @@ class InitTile extends Component {
 	};
 
 	render() {
-    const tempArray = this.props.shipsPlacedObj;
-   
-    
+		const tempArray = this.props.shipsPlacedObj;
 
 		if (this.props.hoverArray.includes(this.state.id)) {
 			return (
 				<div
 					style={{
-            backgroundImage: `url(${this.props.currentShipImg})`,
+						backgroundImage: `url(${this.props.currentShipImg})`,
 						width: '75px',
 						height: '75px',
 						fontSize: '3em'
@@ -54,7 +52,7 @@ class InitTile extends Component {
 			return (
 				<div
 					style={{
-            backgroundImage: `url(${ship1R})`,
+						backgroundImage: `url(${ship1R})`,
 						width: '75px',
 						height: '75px',
 						fontSize: '3em'
@@ -73,12 +71,12 @@ class InitTile extends Component {
 				>
 					{this.state.renderShip}
 				</div>
-      );
+			);
 		} else if (tempArray[1].location && tempArray[1].location.includes(this.state.id)) {
 			return (
 				<div
 					style={{
-            backgroundImage: `url(${ship2R})`,
+						backgroundImage: `url(${ship2R})`,
 						width: '75px',
 						height: '75px',
 						fontSize: '3em'
@@ -97,12 +95,12 @@ class InitTile extends Component {
 				>
 					{this.state.renderShip}
 				</div>
-      );
+			);
 		} else if (tempArray[2].location && tempArray[2].location.includes(this.state.id)) {
 			return (
 				<div
 					style={{
-            backgroundImage: `url(${ship3R})`,
+						backgroundImage: `url(${ship3R})`,
 						width: '75px',
 						height: '75px',
 						fontSize: '3em'
@@ -121,12 +119,12 @@ class InitTile extends Component {
 				>
 					{this.state.renderShip}
 				</div>
-      );
+			);
 		} else if (tempArray[3].location && tempArray[3].location.includes(this.state.id)) {
 			return (
 				<div
 					style={{
-            backgroundImage: `url(${ship4R})`,
+						backgroundImage: `url(${ship4R})`,
 						width: '75px',
 						height: '75px',
 						fontSize: '3em'
@@ -145,12 +143,12 @@ class InitTile extends Component {
 				>
 					{this.state.renderShip}
 				</div>
-      );
+			);
 		} else if (tempArray[4].location && tempArray[4].location.includes(this.state.id)) {
 			return (
 				<div
 					style={{
-            backgroundImage: `url(${ship5R})`,
+						backgroundImage: `url(${ship5R})`,
 						width: '75px',
 						height: '75px',
 						fontSize: '3em'
@@ -169,7 +167,7 @@ class InitTile extends Component {
 				>
 					{this.state.renderShip}
 				</div>
-      );
+			);
 		} else {
 			return (
 				<div
@@ -183,7 +181,9 @@ class InitTile extends Component {
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
 					}}
-					 onMouseLeave={() => {this.props.handleHoverRemove()}}
+					onMouseLeave={() => {
+						this.props.handleHoverRemove();
+					}}
 					onClick={e => {
 						if (e.shiftKey) {
 							this.props.rotateShip();

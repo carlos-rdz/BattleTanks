@@ -12,7 +12,7 @@ class OpponentBoard extends Component {
 		this.state = {
 			id: props.id,
 			coordinates: props.value,
-			onHover: '',
+			onHover: ''
 		};
 	}
 
@@ -23,41 +23,38 @@ class OpponentBoard extends Component {
 				onHover: this.state.coordinates
 			});
 		}
-  };
-  
+	};
 
 	render() {
 		let showCoordinates = this.state.onHover;
 		let onShot;
 		let firingSolution;
 		// if the shot array shows a hit at this tile location and isn't a previous shot value
-    // render both the visual and audio effects else don't do anything
-    // if(this.state.beenShot[this.state.id] === 'no'){
-      console.log('this.props.opponentStatus')
-      console.log(this.props.opponentStatus)
-	  	if (this.props.opponentStatus[this.state.id - 1] === 'tempX') {
-        onShot = <Hit />;
-        firingSolution = <HitFX />;
-      } else if (this.props.opponentStatus[this.state.id - 1] === 'tempO') {
-        onShot = <Miss />;
-        firingSolution = <MissFX />;
-      }else if (this.props.opponentStatus[this.state.id - 1] === 'X') {
-        onShot = <img src={StaticExplosion} alt='' style={{ maxHeight: 100+'%', maxWidth: 100+'%'}} />
-        ;
-      } else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
-        onShot = <img src={StaticMiss} alt='' style={{ maxHeight: 100+'%', maxWidth: 100+'%'}} />
+		// render both the visual and audio effects else don't do anything
+		// if(this.state.beenShot[this.state.id] === 'no'){
+		console.log('this.props.opponentStatus');
+		console.log(this.props.opponentStatus);
+		if (this.props.opponentStatus[this.state.id - 1] === 'tempX') {
+			onShot = <Hit />;
+			firingSolution = <HitFX />;
+		} else if (this.props.opponentStatus[this.state.id - 1] === 'tempO') {
+			onShot = <Miss />;
+			firingSolution = <MissFX />;
+		} else if (this.props.opponentStatus[this.state.id - 1] === 'X') {
+			onShot = <img src={StaticExplosion} alt="" style={{ maxHeight: 100 + '%', maxWidth: 100 + '%' }} />;
+		} else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
+			onShot = <img src={StaticMiss} alt="" style={{ maxHeight: 100 + '%', maxWidth: 100 + '%' }} />;
+		}
 
-      }
-    
-      let updatePlayerRender = this.props.playerStatus.map((index) => {
-        if(index === 'tempX'){
-          return 'X'
-        }else if (index === 'tempO'){
-          return 'O'
-        }else{
-          return index
-        }
-      })
+		let updatePlayerRender = this.props.playerStatus.map(index => {
+			if (index === 'tempX') {
+				return 'X';
+			} else if (index === 'tempO') {
+				return 'O';
+			} else {
+				return index;
+			}
+		});
 
 		return (
 			<div
@@ -70,9 +67,8 @@ class OpponentBoard extends Component {
 					fontFamily: 'Contrail One, cursive'
 				}}
 				onClick={() => {
-          this.props.setPlayer1Status(updatePlayerRender);
-          this.props.handleTurnClick([this.props.playerId, this.state.id]);
-
+					this.props.setPlayer1Status(updatePlayerRender);
+					this.props.handleTurnClick([this.props.playerId, this.state.id]);
 				}}
 				onMouseEnter={() => {
 					this._onHover();
