@@ -3,6 +3,8 @@ import Hit from './Hit';
 import Miss from './Miss';
 import HitFX from './HitFX';
 import MissFX from './MissFX';
+import StaticExplosion from './Assets/staticExplosion.png';
+import StaticMiss from './Assets/staticMiss.png';
 
 class OpponentBoard extends Component {
 	constructor(props) {
@@ -50,9 +52,11 @@ class OpponentBoard extends Component {
         onShot = <Miss />;
         firingSolution = <MissFX />;
       }else if (this.props.opponentStatus[this.state.id - 1] === 'X') {
-        onShot = 'X';
+        onShot = <img src={StaticExplosion} alt='' style={{ maxHeight: 100+'%', maxWidth: 100+'%'}} />
+        ;
       } else if (this.props.opponentStatus[this.state.id - 1] === 'O') {
-        onShot = 'O';
+        onShot = <img src={StaticMiss} alt='' style={{ maxHeight: 100+'%', maxWidth: 100+'%'}} />
+
       }
     
       // make a copy of state

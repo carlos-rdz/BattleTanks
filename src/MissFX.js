@@ -1,5 +1,5 @@
 import React from 'react';
-import MissAudio from './Assets/Sounds/misscombined.wav';
+import MissAudio from './Assets/Sounds/explosionMiss.wav';
 
 const MissFX = () => {
     return (

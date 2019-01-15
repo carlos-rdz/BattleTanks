@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import ship1R from './Assets/Ships/Red/ship1R.png';
-import ship2R from './Assets/Ships/Red/ship2R.png';
-import ship3R from './Assets/Ships/Red/ship3R.png';
-import ship4R from './Assets/Ships/Red/ship4R.png';
-import ship5R from './Assets/Ships/Red/ship5R.png';
+import ship1R from './Assets/Red/ship1R.png';
+import ship2R from './Assets/Red/ship2R.png';
+import ship3R from './Assets/Red/ship3R.png';
+import ship4R from './Assets/Red/ship4R.png';
+import ship5R from './Assets/Red/ship5R.png';
 
 class Ship extends Component {
   

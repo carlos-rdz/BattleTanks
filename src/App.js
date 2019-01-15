@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
-import Chat from './Chat';
+import ship1BBrokenFull from './Assets/Ships/Blue/ship1BbrokenFull.png'
+import ship2BBrokenFull from './Assets/Ships/Blue/ship2BbrokenFull.png'
+import ship3BBrokenFull from './Assets/Ships/Blue/ship3BbrokenFull.png'
+import ship4BBrokenFull from './Assets/Ships/Blue/ship4BbrokenFull.png'
+import ship5BBrokenFull from './Assets/Ships/Blue/ship5BbrokenFull.png'
+import Blank from './Assets/Ships/Red/blank.png'
 import './index.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 
-const ws = new WebSocket('ws://localhost:3001');
+const ws = new WebSocket('ws://18.188.167.90:3001');
 
 class App extends Component {
 	constructor(props) {
@@ -20,8 +25,8 @@ class App extends Component {
 			turn: true, // boolean tracking turn order with true = P1 false = P2
 			player1SinkStat: [], // array of P1 ship objects (contains name: location: sunk:)
 			player2SinkStat: [], // array of P2 ship objects (contains name: location: sunk:)
-			player1SunkShips: [], // contains names of any ships sunk by P2 opponent
-			player2SunkShips: [], // contains names of any ships sunk by P1 opponent
+			player1SunkShips: ['blank'], // contains names of any ships sunk by P2 opponent
+			player2SunkShips: ['blank'], // contains names of any ships sunk by P1 opponent
 			roomId: '',
 			didWin: null,
 			chat: [],
@@ -152,6 +157,7 @@ class App extends Component {
 	};
 
 	_setSunkStatus = id => {
+    
 		let shotsFiredArr;
 		let shipObj;
 		// choose which player arrays to update based on id of calling function
@@ -167,12 +173,25 @@ class App extends Component {
 		// Check shotsFiredArr at those indicies for anything not an 'X'
 		// In effect if only X's were found the true state of sunk is left untouched and is correct.
 		// If instead a value of 0 (default) or 'O' (miss) are found, no hit was registered at these ship coordinates yet
-		// so we set the sunk value back to false.
+    // so we set the sunk value back to false.
+    // debugger;
 		for (let i = 0; i < 5; i++) {
-			shipObj[i].location.forEach(index => {
-				if (shotsFiredArr[index - 1] !== 'tempX' || shotsFiredArr[index - 1] !== 'X') {
-					modifiedShipObj[i].sunk = false;
-				}
+			 shipObj[i].location.forEach(index => {
+        switch(shotsFiredArr[index-1]) {
+
+          case 0:
+            modifiedShipObj[i].sunk = false;
+          case 'tempO':
+            modifiedShipObj[i].sunk = false;
+          case 'O':
+            modifiedShipObj[i].sunk = false;
+        }
+
+			// 	if (shotsFiredArr[index - 1] !== 'X') {
+			// 		modifiedShipObj[i].sunk = false;
+			// 	}else if(shotsFiredArr[index - 1] !== 'tempX') {
+      //     modifiedShipObj[i].sunk = false;
+      //   }
 			});
 		}
 		// After this is done for all 5 ships we setState overwriting the ship objects with any changes to sunk state
@@ -180,44 +199,41 @@ class App extends Component {
 		this.setState(
 			{
 				player2SinkStat: modifiedShipObj
-			}, this._checkSunkStatus()
+			}, this._checkSunkStatus(modifiedShipObj)
 		);
 	};
 
-	_checkSunkStatus = () => {
+	_checkSunkStatus = (modifiedShipObj) => {
 		// This method will loop through the sunk statuses of each ship
 		// and set the name in state of any sunken ship
 		// Finally, it calls a check function in gameIsOver for handling if the game has concluded or not
 	
-		const status = this.state.player2SinkStat;
+		// const status = this.state.player2SinkStat;
+		const status = modifiedShipObj;
 
 		let sunkenShips;
 
-		sunkenShips = status.filter(obj => {
+		sunkenShips = status.map(obj => {
 			if (obj.sunk) {
-				return true;
+        return obj.name;
 			} else {
-				return false;
+				return 'blank';
 			}
-		});
-
-		let sunkenShipNames = sunkenShips.map(obj => {
-			return obj.name;
 		});
 
 		this.setState(
 			{
-				player2SunkShips: sunkenShipNames
+				player2SunkShips: sunkenShips
 			},
-			this._sendShotResultsToOpp
+			this._sendShotResultsToOpp(sunkenShips)
 		);
 	};
 
-	_sendShotResultsToOpp = () => {
+	_sendShotResultsToOpp = (sunkenShips) => {
 
     console.log('this.state.player1SinkStat')
     console.log(this.state.player1SinkStat)
-		ws.send(JSON.stringify({ type: 'shotsFired', value: this.state.player2Status, id: this.state.roomId}));
+		ws.send(JSON.stringify({ type: 'shotsFired', value: this.state.player2Status, id: this.state.roomId, sunkenShipsArr: sunkenShips}));
 		this.state.turn
 			? this.setState({ turn: false }, console.log('its your turn'))
 			: this.setState({ turn: true }, console.log('not your turn'));
@@ -229,12 +245,12 @@ class App extends Component {
 		// This method is a simple check for game end.
 		// It checks the length of both player arrays containing names of their sunken ships
 		// If either player array is of length 5, all 5 ships have sunk and the game is over
-		if (this.state.player1SunkShips.length === 5 || this.state.player2SunkShips.length === 5) {
-			console.log('You Won');
+		if (!this.state.player1SunkShips.includes('blank')){
+      console.log('You Won');
 			ws.send(JSON.stringify({ type: 'gameOver', id: this.state.roomId }));
 			this.setState({
 				didWin: true
-			});
+			});   
 		}
 	};
 
@@ -330,7 +346,25 @@ class App extends Component {
 		console.log('message sent websockets');
 	};
 
-
+  _opponentSunkShips =  () => {
+    let sunkShips = this.state.player2SunkShips.map(name => {
+      switch(name) {
+        case 'PT-2M Citadel':
+          return  <img src={ship1BBrokenFull} alt=''></img>
+        case 'R5 Typhoon':
+          return  <img src={ship2BBrokenFull} alt=''></img>
+        case 'J76A Zepher':
+          return  <img src={ship3BBrokenFull} alt=''></img>
+        case 'DL08 Challenger':
+          return  <img src={ship4BBrokenFull} alt=''></img>
+        case 'VB-4 Lynx':
+          return  <img src={ship5BBrokenFull} alt=''></img>
+        case 'blank':
+        return  <img src={Blank} alt=''></img>
+      }
+    })
+    return sunkShips;
+  }
 
 	render() {
 
@@ -362,7 +396,6 @@ class App extends Component {
 						render={props => {
 							return (
 								<div className='gamestart'>
-									<div style={{ width: 200 + 'px', backgroundColor: 'white' }}>{this.state.player2SunkShips}</div>
 									{/* <div className='playableBoard'>  */}
                     <PlayableBoard
                     setPlayer1Status = {this._setPlayer1Status}
@@ -385,6 +418,7 @@ class App extends Component {
                     addToChat={this._addToChat}
                     player1SinkStat = {this.state.player1SinkStat}
 									  />
+                    <div className='sunkShips' style={{ backgroundColor: 'white' }}>{this._opponentSunkShips()}</div>
                   </div>
 								// </div>
 							);

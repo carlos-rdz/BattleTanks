@@ -116,3 +116,8 @@ font-family: Contrail One, cursive;
   width: 70%;
   
 }
+
+.sunkShips{
+  display:flex;
+  flex-direction: row;
+}

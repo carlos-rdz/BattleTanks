@@ -1,10 +1,10 @@
 import React from 'react';
-import Hit from './Assets/firecombined.gif';
+import Hit from './Assets/explosion.gif';
 
 const onHit = () => {
 	return (
 		<div>
-			<img src={Hit} alt='explosion' style={{ width: 75 + 'px', height: 75+'px', objectFit: 'none'}} />
+			<img src={Hit} alt='' style={{ width: 80+'px', height: 80+'px'}} />
 		</div>
 	);
 };

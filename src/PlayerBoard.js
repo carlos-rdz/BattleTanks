@@ -11,6 +11,8 @@ import ship2Rbroken from './Assets/Ships/Red/ship2Rbroken.png';
 import ship3Rbroken from './Assets/Ships/Red/ship3Rbroken.png';
 import ship4Rbroken from './Assets/Ships/Red/ship4Rbroken.png';
 import ship5Rbroken from './Assets/Ships/Red/ship5Rbroken.png';
+import StaticExplosion from './Assets/staticExplosion.png';
+import StaticMiss from './Assets/staticMiss.png';
 
 class PlayerBoard extends Component {
   constructor(props) {
@@ -29,9 +31,9 @@ class PlayerBoard extends Component {
     } else if (this.props.playerStatus[this.state.id - 1] === 'tempO') {
       onShot = <Miss />
     }else if (this.props.playerStatus[this.state.id - 1] === 'X') {
-      onShot = 'X';
+      onShot = <img src={StaticExplosion} alt='explosion hit' style={{ maxHeight: 100+'%', maxWidth: 100+'%'}} />
     } else if (this.props.playerStatus[this.state.id - 1] === 'O') {
-      onShot = 'O';
+      onShot = <img src={StaticMiss} alt='explosion miss' style={{ maxHeight: 100+'%', maxWidth: 100+'%'}} />
     }
     
     let ship; 
