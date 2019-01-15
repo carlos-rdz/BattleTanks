@@ -16,7 +16,7 @@ class App extends Component {
 			player1Pieces: [], // P1 placed ships
 			player2Pieces: [], // P2 placed ships
 			player1Status: [], // array of shots made against P1
-			player2Status: [], // array of shots made against P1
+			player2Status: [], // array of shots made against P2
 			turn: true, // boolean tracking turn order with true = P1 false = P2
 			player1SinkStat: [], // array of P1 ship objects (contains name: location: sunk:)
 			player2SinkStat: [], // array of P2 ship objects (contains name: location: sunk:)
@@ -71,8 +71,8 @@ class App extends Component {
             console.log('message.detailedValues')
             console.log(message.detailedValues)
 							this.state.turn
-								? this.setState({ turn: false, player2Status: updatePlayerRender, player1SinkStat: message.detailedValues }, console.log(this.state.turn))
-								: this.setState({ turn: true, player2Status: updatePlayerRender, player1SinkStat: message.detailedValues }, console.log(this.state.turn));
+								? this.setState({ turn: false, player2Status: updatePlayerRender  }, console.log(this.state.turn))
+								: this.setState({ turn: true, player2Status: updatePlayerRender }, console.log(this.state.turn));
               this._setPlayer1Status(message.value);
               
 							console.log('shotsFired data received');
@@ -170,7 +170,7 @@ class App extends Component {
 		// so we set the sunk value back to false.
 		for (let i = 0; i < 5; i++) {
 			shipObj[i].location.forEach(index => {
-				if (shotsFiredArr[index - 1] !== 'X') {
+				if (shotsFiredArr[index - 1] !== 'tempX' || shotsFiredArr[index - 1] !== 'X') {
 					modifiedShipObj[i].sunk = false;
 				}
 			});
@@ -180,10 +180,7 @@ class App extends Component {
 		this.setState(
 			{
 				player2SinkStat: modifiedShipObj
-			},
-			() => {
-				this._checkSunkStatus();
-			}
+			}, this._checkSunkStatus()
 		);
 	};
 
@@ -191,7 +188,7 @@ class App extends Component {
 		// This method will loop through the sunk statuses of each ship
 		// and set the name in state of any sunken ship
 		// Finally, it calls a check function in gameIsOver for handling if the game has concluded or not
-		// debugger;
+	
 		const status = this.state.player2SinkStat;
 
 		let sunkenShips;
@@ -220,8 +217,7 @@ class App extends Component {
 
     console.log('this.state.player1SinkStat')
     console.log(this.state.player1SinkStat)
-    debugger;
-		ws.send(JSON.stringify({ type: 'shotsFired', value: this.state.player2Status, id: this.state.roomId, detailedValues: this.state.player1SinkStat}));
+		ws.send(JSON.stringify({ type: 'shotsFired', value: this.state.player2Status, id: this.state.roomId}));
 		this.state.turn
 			? this.setState({ turn: false }, console.log('its your turn'))
 			: this.setState({ turn: true }, console.log('not your turn'));
