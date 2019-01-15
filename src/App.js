@@ -60,16 +60,19 @@ class App extends Component {
             case 'shotsFired':
             let updatePlayerRender = this.state.player2Status.map((index) => {
               if(index === 'tempX'){
-                return 'X'
+                return 'X' // pass static image
               }else if (index === 'tempO'){
-                return 'O'
+                return 'O' // pass static image
               }else{
                 return index
               }
             })
+            
+            console.log('message.detailedValues')
+            console.log(message.detailedValues)
 							this.state.turn
-								? this.setState({ turn: false, player2Status: updatePlayerRender }, console.log(this.state.turn))
-								: this.setState({ turn: true, player2Status: updatePlayerRender }, console.log(this.state.turn));
+								? this.setState({ turn: false, player2Status: updatePlayerRender, player1SinkStat: message.detailedValues }, console.log(this.state.turn))
+								: this.setState({ turn: true, player2Status: updatePlayerRender, player1SinkStat: message.detailedValues }, console.log(this.state.turn));
               this._setPlayer1Status(message.value);
               
 							console.log('shotsFired data received');
@@ -214,9 +217,11 @@ class App extends Component {
 	};
 
 	_sendShotResultsToOpp = () => {
-   
- 
-		ws.send(JSON.stringify({ type: 'shotsFired', value: this.state.player2Status, id: this.state.roomId }));
+
+    console.log('this.state.player1SinkStat')
+    console.log(this.state.player1SinkStat)
+    debugger;
+		ws.send(JSON.stringify({ type: 'shotsFired', value: this.state.player2Status, id: this.state.roomId, detailedValues: this.state.player1SinkStat}));
 		this.state.turn
 			? this.setState({ turn: false }, console.log('its your turn'))
 			: this.setState({ turn: true }, console.log('not your turn'));

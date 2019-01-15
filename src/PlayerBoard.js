@@ -6,6 +6,11 @@ import ship2R from './Assets/Ships/Red/ship2R.png';
 import ship3R from './Assets/Ships/Red/ship3R.png';
 import ship4R from './Assets/Ships/Red/ship4R.png';
 import ship5R from './Assets/Ships/Red/ship5R.png';
+import ship1Rbroken from './Assets/Ships/Red/ship1Rbroken.png';
+import ship2Rbroken from './Assets/Ships/Red/ship2Rbroken.png';
+import ship3Rbroken from './Assets/Ships/Red/ship3Rbroken.png';
+import ship4Rbroken from './Assets/Ships/Red/ship4Rbroken.png';
+import ship5Rbroken from './Assets/Ships/Red/ship5Rbroken.png';
 
 class PlayerBoard extends Component {
   constructor(props) {
@@ -28,11 +33,18 @@ class PlayerBoard extends Component {
     } else if (this.props.playerStatus[this.state.id - 1] === 'O') {
       onShot = 'O';
     }
-    // render tiles, yellow for ship, blue no ship
+    
+    let ship; 
     if (this.props.player1SinkStat[0].location.includes(this.state.id)) {
+        if(this.props.player1SinkStat[0].sunk === false){
+           ship = ship1R
+        }else{
+           ship = ship1Rbroken
+        }
+      
       return (
         <div style={{
-          backgroundImage: `url(${ship1R})`,
+          backgroundImage: `url(${ship})`,
           width: '75px',
           height: '75px',
           fontSize: '3em',
