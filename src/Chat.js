@@ -32,9 +32,8 @@ class Chat extends Component {
               <input 
                 className='inputName'
                 type="text" 
-                // name={this.props.name} 
-                // onChange={this.props.handleChangeName} 
                 placeholder= 'Custom Call-Sign'
+                color='red'
               />
            
             
@@ -42,8 +41,8 @@ class Chat extends Component {
                 className='inputMessage'
                 type="text"
                 placeholder="(Clean!) SmackTalk anyone???"
-                // value=
-                // onChange={this._handleChangeMessage}
+                
+      
               />
            
           </div>

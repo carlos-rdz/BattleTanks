@@ -66,10 +66,14 @@ class PlayableBoard extends Component {
 			renderOpponentBoard = (
 				<div
 					style={{
-						backgroundColor: 'lightblue',
+						backgroundColor: 'blue',
 						width: '750px',
 						height: '750px',
-						display: 'grid'
+            display: 'grid',
+            color: 'white',
+            textAlign: 'center',
+            fontSize: '3em',
+            paddingTop: '50%',
 					}}
 				>
 					Waiting on opponent

@@ -68,7 +68,8 @@ body {
 }
 
 .chatMessages {
-	overflow: scroll;
+  overflow: scroll;
+  font-size: 1.2em;
 }
 
 input[type='submit'] {

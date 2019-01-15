@@ -15,8 +15,8 @@ import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
 import './index.css';
 // rerun build
-const ws = new WebSocket('ws://18.188.167.90:3001');
-// const ws = new WebSocket('ws://localhost:3001');
+// const ws = new WebSocket('ws://18.188.167.90:3001');
+const ws = new WebSocket('ws://localhost:3001');
 
 class App extends Component {
 	constructor(props) {
