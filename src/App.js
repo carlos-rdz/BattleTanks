@@ -12,7 +12,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 
-const ws = new WebSocket('ws://18.188.167.90:3001');
+// const ws = new WebSocket('ws://18.188.167.90:3001');
+const ws = new WebSocket('ws://localhost:3001');
 
 class App extends Component {
 	constructor(props) {
@@ -238,14 +239,14 @@ class App extends Component {
 			? this.setState({ turn: false }, console.log('its your turn'))
 			: this.setState({ turn: true }, console.log('not your turn'));
 		console.log('_sendShotResults ran');
-		this._gameIsOver();
+		this._gameIsOver(sunkenShips);
 	};
 
-	_gameIsOver = () => {
+	_gameIsOver = (sunkenShips) => {
 		// This method is a simple check for game end.
 		// It checks the length of both player arrays containing names of their sunken ships
 		// If either player array is of length 5, all 5 ships have sunk and the game is over
-		if (!this.state.player1SunkShips.includes('blank')){
+		if (!sunkenShips.includes('blank')){
       console.log('You Won');
 			ws.send(JSON.stringify({ type: 'gameOver', id: this.state.roomId }));
 			this.setState({
