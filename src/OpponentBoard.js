@@ -13,18 +13,8 @@ class OpponentBoard extends Component {
 			id: props.id,
 			coordinates: props.value,
 			onHover: '',
-      beenShot: [],
-      onShot: '',
 		};
 	}
-  //initialize beenShot array 
-  componentDidMount = () => {
-    let newArr = new Array(100).fill('no');
-		// this.setState({
-    //   beenShot: newArr
-    // })
-    let shots = newArr;
-  }
 
 	// only show coordinates on tiles with default status
 	_onHover = () => {
@@ -59,15 +49,6 @@ class OpponentBoard extends Component {
 
       }
     
-      // make a copy of state
-      let prevShot = [...this.state.beenShot]
-      // add new shot location to array
-      prevShot[this.state.id] = 'yes';
-      // update state with revised shot record
-      // this.setState({
-      //   beenShot: prevShot
-      // });
-    // }
       let updatePlayerRender = this.props.playerStatus.map((index) => {
         if(index === 'tempX'){
           return 'X'
@@ -91,7 +72,7 @@ class OpponentBoard extends Component {
 				onClick={() => {
           this.props.setPlayer1Status(updatePlayerRender);
           this.props.handleTurnClick([this.props.playerId, this.state.id]);
-          
+
 				}}
 				onMouseEnter={() => {
 					this._onHover();

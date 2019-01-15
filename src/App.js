@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
-import ship1BBrokenFull from './Assets/Ships/Blue/ship1BbrokenFull.png'
-import ship2BBrokenFull from './Assets/Ships/Blue/ship2BbrokenFull.png'
-import ship3BBrokenFull from './Assets/Ships/Blue/ship3BbrokenFull.png'
-import ship4BBrokenFull from './Assets/Ships/Blue/ship4BbrokenFull.png'
-import ship5BBrokenFull from './Assets/Ships/Blue/ship5BbrokenFull.png'
-import Blank from './Assets/Ships/Red/blank.png'
+import ship1BBrokenFull from './Assets/Ships/Blue/ship1BbrokenFull.png';
+import ship2BBrokenFull from './Assets/Ships/Blue/ship2BbrokenFull.png';
+import ship3BBrokenFull from './Assets/Ships/Blue/ship3BbrokenFull.png';
+import ship4BBrokenFull from './Assets/Ships/Blue/ship4BbrokenFull.png';
+import ship5BBrokenFull from './Assets/Ships/Blue/ship5BbrokenFull.png';
+import ship1RBrokenFull from './Assets/Ships/Red/ship1RbrokenFull.png';
+import ship2RBrokenFull from './Assets/Ships/Red/ship2RbrokenFull.png';
+import ship3RBrokenFull from './Assets/Ships/Red/ship3RbrokenFull.png';
+import ship4RBrokenFull from './Assets/Ships/Red/ship4RbrokenFull.png';
+import ship5RBrokenFull from './Assets/Ships/Red/ship5RbrokenFull.png';
+import Blank from './Assets/Ships/blank.png';
 import './index.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -73,12 +78,13 @@ class App extends Component {
                 return index
               }
             })
+            //will display player's ships that have been sunk
+            console.log('message.sunkenShipsArr')
+            console.log(message.sunkenShipsArr)
             
-            console.log('message.detailedValues')
-            console.log(message.detailedValues)
 							this.state.turn
-								? this.setState({ turn: false, player2Status: updatePlayerRender  }, console.log(this.state.turn))
-								: this.setState({ turn: true, player2Status: updatePlayerRender }, console.log(this.state.turn));
+								? this.setState({ turn: false, player2Status: updatePlayerRender, player1SunkShips: message.sunkenShipsArr }, console.log(this.state.turn))
+								: this.setState({ turn: true, player2Status: updatePlayerRender, player1SunkShips: message.sunkenShipsArr }, console.log(this.state.turn));
               this._setPlayer1Status(message.value);
               
 							console.log('shotsFired data received');
@@ -182,17 +188,17 @@ class App extends Component {
 
           case 0:
             modifiedShipObj[i].sunk = false;
+            break;
           case 'tempO':
             modifiedShipObj[i].sunk = false;
+            break;
           case 'O':
             modifiedShipObj[i].sunk = false;
+            break;
+          default :
+            break;
         }
 
-			// 	if (shotsFiredArr[index - 1] !== 'X') {
-			// 		modifiedShipObj[i].sunk = false;
-			// 	}else if(shotsFiredArr[index - 1] !== 'tempX') {
-      //     modifiedShipObj[i].sunk = false;
-      //   }
 			});
 		}
 		// After this is done for all 5 ships we setState overwriting the ship objects with any changes to sunk state
@@ -209,7 +215,6 @@ class App extends Component {
 		// and set the name in state of any sunken ship
 		// Finally, it calls a check function in gameIsOver for handling if the game has concluded or not
 	
-		// const status = this.state.player2SinkStat;
 		const status = modifiedShipObj;
 
 		let sunkenShips;
@@ -231,9 +236,6 @@ class App extends Component {
 	};
 
 	_sendShotResultsToOpp = (sunkenShips) => {
-
-    console.log('this.state.player1SinkStat')
-    console.log(this.state.player1SinkStat)
 		ws.send(JSON.stringify({ type: 'shotsFired', value: this.state.player2Status, id: this.state.roomId, sunkenShipsArr: sunkenShips}));
 		this.state.turn
 			? this.setState({ turn: false }, console.log('its your turn'))
@@ -360,12 +362,34 @@ class App extends Component {
           return  <img src={ship4BBrokenFull} alt=''></img>
         case 'VB-4 Lynx':
           return  <img src={ship5BBrokenFull} alt=''></img>
-        case 'blank':
-        return  <img src={Blank} alt=''></img>
+        default :
+          return  <img src={Blank} alt=''></img>
       }
     })
     return sunkShips;
   }
+
+  _playerSunkShips =  () => {
+    let sunkShips = this.state.player1SunkShips.map(name => {
+      switch(name) {
+        case 'PT-2M Citadel':
+          return  <img src={ship1RBrokenFull} alt=''></img>
+        case 'R5 Typhoon':
+          return  <img src={ship2RBrokenFull} alt=''></img>
+        case 'J76A Zepher':
+          return  <img src={ship3RBrokenFull} alt=''></img>
+        case 'DL08 Challenger':
+          return  <img src={ship4RBrokenFull} alt=''></img>
+        case 'VB-4 Lynx':
+          return  <img src={ship5RBrokenFull} alt=''></img>
+        default :
+          return  <img src={Blank} alt=''></img>
+      }
+    })
+    return sunkShips;
+  }
+
+
 
 	render() {
 
@@ -419,7 +443,10 @@ class App extends Component {
                     addToChat={this._addToChat}
                     player1SinkStat = {this.state.player1SinkStat}
 									  />
-                    <div className='sunkShips' style={{ backgroundColor: 'white' }}>{this._opponentSunkShips()}</div>
+                    <div className='sunkShipsImgs'>
+                      <div className='sunkShipsOpp' style={{ backgroundColor: 'white' }}>{this._opponentSunkShips()}</div>
+                      <div className='sunkShipsPlayer' style={{ backgroundColor: 'white' }}>{this._playerSunkShips()}</div>
+                    </div>
                   </div>
 								// </div>
 							);
