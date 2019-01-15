@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
+import './GameInit.css';
 import InitBoard from './InitBoard';
 import Ship from './Ship';
 import Start from './Start';
 import Title from './Title';
-import './GameInit.css';
-
 
 class GameInit extends Component {
 	constructor(props) {
@@ -17,19 +16,27 @@ class GameInit extends Component {
 			displayHoverArray: [], // the hover effect is invoked on these tile locations
 			shipsPlaced: [
 				// each object is a ship
-        { name: 'PT-2M Citadel', location: [], sunk: false },
+				{ name: 'PT-2M Citadel', location: [], sunk: false },
 				{ name: 'R5 Typhoon', location: [], sunk: false },
 				{ name: 'J76A Zepher', location: [], sunk: false },
 				{ name: 'DL08 Challenger', location: [], sunk: false },
-				{ name: 'VB-4 Lynx', location: [], sunk: false },
-			]
+				{ name: 'VB-4 Lynx', location: [], sunk: false }
+			],
+			currentShipImg: ''
 		};
 	}
 
-	_handleShipClick = props => {
+	_handleShipClick = (props, ship) => {
 		this.setState({
 			selectedShipLength: props.dimension,
-			selectedShipName: props.name
+			selectedShipName: props.name,
+			currentShipImg: ship
+		});
+	};
+
+	_handleHoverRemove = () => {
+		this.setState({
+			displayHoverArray: []
 		});
 	};
 
@@ -168,38 +175,40 @@ class GameInit extends Component {
 		}
 
 		return (
-			<div className='GameInit'>
-      <Title />
-        <div className ='initDisplay'>
-          <div className='readyWrapper'>
-            <div> {spinnerText} </div>
-            <div className={waitingSpinner}> </div>
-          </div>
-          <div className='startButton'>
-            <Start
-              ws={this.props.ws}
-              playerShipLoc={this.props.playerShipLoc}
-              shipObject={this.state.shipsPlaced}
-              flattenedArray={this._renderArray()}
-              roomId={this.props.roomId}
-              sunkStatus={this.props.sunkStatus}
-              shipObj={this.props.shipObj}
-            />
-          </div>
-        </div>
-				<div className='shipContainer'>
-        <Ship handleShipClick={this._handleShipClick} dimension={5} ship='ship1' name='PT-2M Citadel' />
-					<Ship handleShipClick={this._handleShipClick} dimension={4} ship='ship2' name='R5 Typhoon' />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} ship='ship3' name='J76A Zepher' />
-					<Ship handleShipClick={this._handleShipClick} dimension={3} ship='ship4' name='DL08 Challenger' />
-					<Ship handleShipClick={this._handleShipClick} dimension={2} ship='ship5' name='VB-4 Lynx' />
-          <div className='instructions'>
-            <div>Click your tank - Hover over the board - Click to place</div>
-            <div>(shift + click) toggles vert/horiz placement</div>
-          </div>
+			<div className="GameInit">
+				<Title />
+				<div className="initDisplay">
+					<div className="readyWrapper">
+						<div> {spinnerText} </div>
+						<div className={waitingSpinner}> </div>
+					</div>
+					<div className="startButton">
+						<Start
+							ws={this.props.ws}
+							playerShipLoc={this.props.playerShipLoc}
+							shipObject={this.state.shipsPlaced}
+							flattenedArray={this._renderArray()}
+							roomId={this.props.roomId}
+							sunkStatus={this.props.sunkStatus}
+							shipObj={this.props.shipObj}
+						/>
+					</div>
 				</div>
-				<div className='InitBoardContainer'>
+				<div className="shipContainer">
+					<Ship handleShipClick={this._handleShipClick} dimension={5} ship="ship1R" name="PT-2M Citadel" />
+					<Ship handleShipClick={this._handleShipClick} dimension={4} ship="ship2R" name="R5 Typhoon" />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} ship="ship3R" name="J76A Zepher" />
+					<Ship handleShipClick={this._handleShipClick} dimension={3} ship="ship4R" name="DL08 Challenger" />
+					<Ship handleShipClick={this._handleShipClick} dimension={2} ship="ship5R" name="VB-4 Lynx" />
+					<div className="instructions">
+						<div>Click your tank - Hover over the board - Click to place</div>
+						<div>(shift + click) toggles vert/horiz placement</div>
+					</div>
+				</div>
+				<div className="InitBoardContainer">
 					<InitBoard
+						handleHoverRemove={this._handleHoverRemove}
+						currentShipImg={this.state.currentShipImg}
 						handleClick={this._handleClick}
 						handleHover={this._handleHover}
 						hoverArray={this.state.displayHoverArray}
@@ -207,6 +216,7 @@ class GameInit extends Component {
 						selectedShipRotation={this.state.selectedShipRotation}
 						rotateShip={this._rotateShip}
 						renderedShips={this._renderArray()}
+						shipsPlacedObj={this.state.shipsPlaced}
 					/>
 				</div>
 			</div>

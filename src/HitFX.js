@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
-import Boom1 from './Assets/Sounds/explosion1.wav';
-import Boom2 from './Assets/Sounds/explosion2.wav';
-import Boom3 from './Assets/Sounds/explosion3.wav';
-import HitAudio from './Assets/Sounds/firecombined.wav';
+import HitAudio from './Assets/Sounds/explosionHit.wav';
+// import HitAudio from './Assets/Sounds/firecombined.wav';
 
 class HitFX extends Component {
-  constructor(props) {
-    super(props);
-    this.state=({
-      explosion: [Boom1,Boom2,Boom3],
-      usedSounds: [],
-    })
-  }
-  
- 
 
   _shuffleArr = (array) => {
     let i = array.length,
@@ -37,7 +26,6 @@ class HitFX extends Component {
   }
 
   render() {
-    let Boom = this.state.explosion[this._getRandomIntInclusive()]
 
     return (
       <audio autoPlay = {true}>

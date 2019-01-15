@@ -22,6 +22,9 @@ class InitBoard extends Component {
 						rotateShip={this.props.rotateShip}
 						renderedShips={this.props.renderedShips}
 						playerShipLoc={this.props.playerShipLoc}
+						currentShipImg={this.props.currentShipImg}
+						handleHoverRemove={this.props.handleHoverRemove}
+						shipsPlacedObj={this.props.shipsPlacedObj}
 					/>
 				);
 			}
@@ -34,8 +37,8 @@ class InitBoard extends Component {
 					height: '750px',
 					display: 'grid',
 					gridTemplateColumns: 'repeat(10, 1fr)',
-          gridTemplateRows: 'repeat(10,1fr)',
-          }}
+					gridTemplateRows: 'repeat(10,1fr)'
+				}}
 			>
 				{squares}
 			</div>

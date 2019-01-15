@@ -1,62 +1,59 @@
 import React, { Component } from 'react';
-import ship1 from './Assets/Ships/ship1.png';
-import ship2 from './Assets/Ships/ship2.png';
-import ship3 from './Assets/Ships/ship3.png';
-import ship4 from './Assets/Ships/ship4.png';
-import ship5 from './Assets/Ships/ship5.png';
+import ship1R from './Assets/Red/ship1R.png';
+import ship2R from './Assets/Red/ship2R.png';
+import ship3R from './Assets/Red/ship3R.png';
+import ship4R from './Assets/Red/ship4R.png';
+import ship5R from './Assets/Red/ship5R.png';
 
 class Ship extends Component {
-  constructor(props) {
-    super(props);
-  
-  }
-  
+	render() {
+		let ship;
+		switch (this.props.ship) {
+			case 'ship1R':
+				ship = ship1R;
+				break;
+			case 'ship2R':
+				ship = ship2R;
+				break;
+			case 'ship3R':
+				ship = ship3R;
+				break;
+			case 'ship4R':
+				ship = ship4R;
+				break;
+			case 'ship5R':
+				ship = ship5R;
+				break;
+			default:
+				ship = '';
+				break;
+		}
 
-  render() {
-    let ship;
-    if(this.props.ship === 'ship2' ){
-      ship = ship2;
-    }else{
-      ship = ship2;
-    }
-    switch(this.props.ship){
-      case 'ship1':
-        ship = ship1
-        break;
-      case 'ship2':
-        ship = ship2
-        break;
-      case 'ship3':
-        ship = ship3
-        break;
-      case 'ship4':
-        ship = ship4
-        break;
-      case 'ship5':
-        ship = ship5
-        break;
-      default :
-        ship = ''
-        break;
-    }
+		const length = 75 * this.props.dimension;
+		const shipImg = (
+			<img
+				src={ship}
+				alt="ship"
+				onClick={() => {
+					this.props.handleShipClick(this.props, ship);
+				}}
+			/>
+		);
+		const shipArr = [];
+		for (let i = 0; i < this.props.dimension; i++) {
+			shipArr.push(shipImg);
+		}
+		return (
+			<div
+				// dimension={this.props.dimension}
 
-
-
-    const length = 75 * this.props.dimension;
-    const shipImg = <img src={ship} alt="ship" onClick={() => { this.props.handleShipClick(this.props) }} ></img>
-    const shipArr =[];
-      for(let i = 0; i < this.props.dimension; i++){
-        shipArr.push(shipImg)
-      }
-    return (
-      <div        
-        style={{ width: `${length}px`, height: '75px',  }}>
-        {/* {this.props.name} */}
-        {shipArr}
-      </div>
-    )
-    
-  }
+				style={{ width: `${length}px`, height: '75px' }}
+			>
+				{/* {this.props.name} */}
+				{shipArr}
+			</div>
+		);
+	}
 }
 
 export default Ship;
