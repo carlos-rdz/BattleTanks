@@ -14,9 +14,8 @@ import ship5RBrokenFull from './Assets/Ships/Red/ship5RbrokenFull.png';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
 import './index.css';
-
-const ws = new WebSocket('ws://18.188.167.90:3001');
-// const ws = new WebSocket('ws://localhost:3001');
+// const ws = new WebSocket('ws://18.188.167.90:3001');
+const ws = new WebSocket('ws://localhost:3001');
 
 class App extends Component {
 	constructor(props) {
@@ -355,7 +354,8 @@ class App extends Component {
 		chatHistory.push(message);
 		chatHistory.reverse();
 		this.setState({
-			chat: chatHistory
+      chat: chatHistory,
+      name: message.name
 		});
 		ws.send(JSON.stringify({ type: 'chat', value: chatHistory, id: this.state.roomId }));
 		console.log('message sent websockets');

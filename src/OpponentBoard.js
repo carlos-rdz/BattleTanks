@@ -5,6 +5,7 @@ import HitFX from './HitFX';
 import MissFX from './MissFX';
 import StaticExplosion from './Assets/staticExplosion.png';
 import StaticMiss from './Assets/staticMiss.png';
+import Reticle from './Assets/crosshair026.png';
 
 class OpponentBoard extends Component {
 	constructor(props) {
@@ -12,7 +13,8 @@ class OpponentBoard extends Component {
 		this.state = {
 			id: props.id,
 			coordinates: props.value,
-			onHover: ''
+      coordinatesOnHover: '',
+      reticleHover: '',
 		};
 	}
 
@@ -20,13 +22,14 @@ class OpponentBoard extends Component {
 	_onHover = () => {
 		if (this.props.opponentStatus[this.state.id - 1] === 0) {
 			this.setState({
-				onHover: this.state.coordinates
+        coordinatesOnHover: <div >{this.state.coordinates}</div>,
+        reticleHover: <img style={{width:'75px'}}src={Reticle} alt=''/>
 			});
 		}
 	};
 
 	render() {
-		let showCoordinates = this.state.onHover;
+		let showCoordinates = this.state.coordinatesOnHover;
 		let onShot;
 		let firingSolution;
 		// if the shot array shows a hit at this tile location and isn't a previous shot value
@@ -75,13 +78,22 @@ class OpponentBoard extends Component {
 				}}
 				onMouseLeave={() => {
 					this.setState({
-						onHover: ''
+            coordinatesOnHover: '',
+            reticleHover: ''
 					});
 				}}
 			>
 				{onShot}
-				{firingSolution}
-				{showCoordinates}
+        {firingSolution}
+        <div className='hoverWrapper' >
+          <div className='coordinates'>
+            {this.state.coordinatesOnHover}
+          </div>
+          <div className='reticle'>
+            {this.state.reticleHover}
+          </div>
+        </div>
+       
 			</div>
 		);
 	}

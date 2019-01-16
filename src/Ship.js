@@ -45,12 +45,14 @@ class Ship extends Component {
 		}
 		return (
 			<div
-				// dimension={this.props.dimension}
-
 				style={{ width: `${length}px`, height: '75px' }}
 			>
-				{/* {this.props.name} */}
-				{shipArr}
+				<div>
+        {shipArr}
+        </div>
+        <div>
+				{this.props.name}
+        </div>
 			</div>
 		);
 	}

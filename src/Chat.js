@@ -10,9 +10,9 @@ class Chat extends Component {
     // if my name in state make it blue
     // else for incoming messages make them red
 		let chatRoom = this.props.chat.map(message => {
-			let textColor = 'blue';
+			let textColor = 'red';
 			if (message.name !== this.props.name) {
-				textColor = 'red';
+				textColor = 'blue';
 			}
 			return (
 				<ul key={uuid()} style={{ listStyleType: 'none' }}>
@@ -32,9 +32,8 @@ class Chat extends Component {
               <input 
                 className='inputName'
                 type="text" 
-                // name={this.props.name} 
-                // onChange={this.props.handleChangeName} 
                 placeholder= 'Custom Call-Sign'
+                color='red'
               />
            
             
@@ -42,8 +41,8 @@ class Chat extends Component {
                 className='inputMessage'
                 type="text"
                 placeholder="(Clean!) SmackTalk anyone???"
-                // value=
-                // onChange={this._handleChangeMessage}
+                
+      
               />
            
           </div>
