@@ -14,10 +14,15 @@ import ship5RBrokenFull from './Assets/Ships/Red/ship5RbrokenFull.png';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
 import './index.css';
+<<<<<<< HEAD
 
+=======
+>>>>>>> dbfe1f37b09c9d35dc4e4e1ee6d446f2132fc319
 const ws = new WebSocket('ws://18.188.167.90:3001');
 // const ws = new WebSocket('ws://localhost:3001');
 
+// 
+// 
 class App extends Component {
 	constructor(props) {
 		super(props);
