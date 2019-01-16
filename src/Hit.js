@@ -4,7 +4,7 @@ import Hit from './Assets/hit.gif';
 const onHit = () => {
 	return (
 		<div>
-			<img src={Hit} alt='' style={{ width: 75+'px', height: 75+'px'}} />
+			<img src={Hit} alt="" style={{ width: '75px', height: '75px' }} />
 		</div>
 	);
 };

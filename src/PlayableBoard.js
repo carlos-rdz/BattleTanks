@@ -62,25 +62,22 @@ class PlayableBoard extends Component {
 		} else {
 			console.log('modal div');
 			renderOpponentBoard = (
-				<div 
+				<div
 					style={{
 						backgroundColor: 'blue',
 						width: '750px',
 						height: '750px',
-            display: 'grid',
-            color: 'white',
-            textAlign: 'center',
-            fontSize: '3em',
-            paddingTop: '25%',
+						display: 'grid',
+						color: 'white',
+						textAlign: 'center',
+						fontSize: '3em',
+						paddingTop: '25%'
 					}}
 				>
-
-         
-					<div className='oppShipPlacementMessage'>
-            <div className='sk-rotating-plane2'> </div>
-            Waiting for opponent to place tanks
-          </div>
-
+					<div className="oppShipPlacementMessage">
+						<div className="sk-rotating-plane2"> </div>
+						Waiting for opponent to place tanks
+					</div>
 				</div>
 			);
 		}

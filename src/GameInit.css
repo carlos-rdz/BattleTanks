@@ -1,151 +1,159 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
 }
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  font-family: Contrail One, cursive;
-
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: Contrail One, cursive;
 }
-
-
 
 .sk-rotating-plane {
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  background-image: url('./Assets/crosshair026.png');
-  background-size: cover;
-  margin-left: 30px;
-  -webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
-          animation: sk-rotatePlane 1.2s infinite ease-in-out; }
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	background-image: url('./Assets/crosshair026.png');
+	background-size: cover;
+	margin-left: 30px;
+	-webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
+	animation: sk-rotatePlane 1.2s infinite ease-in-out;
+}
 @-webkit-keyframes sk-rotatePlane {
+	0% {
+		transition: background-color red 0.5s ease-in;
+		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	}
+	50% {
+		transition: background-color red 0.5s ease-in;
 
-  0% {
-    transition: background-color red .5s ease-in;
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) ;
-            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
-  50% {
-    transition: background-color red .5s ease-in;
+		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+	}
+	100% {
+		transition: background-color red 0.5s ease-in;
 
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
-  100% {
-    transition: background-color red .5s ease-in;
-
-    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+		-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+		transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	}
+}
 @keyframes sk-rotatePlane {
-
-  0% {
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
-  50% {
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
-  100% {
-    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+	0% {
+		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	}
+	50% {
+		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+	}
+	100% {
+		-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+		transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	}
+}
 
 .sk-rotating-plane2 {
-  width: 250px;
-  height: 110px;
-  background-image: url('./Assets/crosshairWhite.png');
-  background-size: cover;
-  margin-top: 40px;
-  margin-right: 30px;
-  -webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
-          animation: sk-rotatePlane 1.2s infinite ease-in-out; }
-  @-webkit-keyframes sk-rotatePlane {
-
-  0% {
-    transition: background-color red .5s ease-in;
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) ;
-            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
-  50% {
-    transition: background-color red .5s ease-in;
-
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
-  100% {
-    transition: background-color red .5s ease-in;
-
-    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
-  @keyframes sk-rotatePlane {
-
-  0% {
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
-  50% {
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
-  100% {
-    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } 
+	width: 250px;
+	height: 110px;
+	background-image: url('./Assets/crosshairWhite.png');
+	background-size: cover;
+	margin-top: 40px;
+	margin-right: 30px;
+	-webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
+	animation: sk-rotatePlane 1.2s infinite ease-in-out;
 }
-              
+@-webkit-keyframes sk-rotatePlane {
+	0% {
+		transition: background-color red 0.5s ease-in;
+		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	}
+	50% {
+		transition: background-color red 0.5s ease-in;
 
+		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+	}
+	100% {
+		transition: background-color red 0.5s ease-in;
+
+		-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+		transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	}
+}
+@keyframes sk-rotatePlane {
+	0% {
+		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	}
+	50% {
+		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+	}
+	100% {
+		-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+		transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	}
+}
 
 .GameInit {
-  text-align: center;
-  display: grid;
-  grid-template-columns: 1fr 3fr 5fr 1fr;
-  grid-template-rows: 11;
-  }
+	text-align: center;
+	display: grid;
+	grid-template-columns: 1fr 3fr 5fr 1fr;
+	grid-template-rows: 11;
+}
 
 .shipContainer {
-  grid-row-start: 2;
-  grid-column-start: 2;
-  grid-column-end:3;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 1.3em;
-
+	grid-row-start: 2;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 1.3em;
 }
 
-.InitBoardContainer{
-  grid-column-start: 3;
-  justify-self: center;
+.InitBoardContainer {
+	grid-column-start: 3;
+	justify-self: center;
 }
 
-.startButton{
-  grid-column-start: 2;
-  grid-row-start: 2;
+.startButton {
+	grid-column-start: 2;
+	grid-row-start: 2;
 }
 
-.initDisplay{
-  height: 80px;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  display: flex;
-  flex-direction: column;
-  font-size: 2em;
+.initDisplay {
+	height: 80px;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+	display: flex;
+	flex-direction: column;
+	font-size: 2em;
 }
 .readyWrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: flex-end;
-  /* padding-bottom: 10px; */
-  flex-grow: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: flex-end;
+	/* padding-bottom: 10px; */
+	flex-grow: 1;
 }
 
-
-.gameTitle{
-  grid-column-start: 3;
-  grid-column-end: 4;
-  display: flex;
-  justify-self: center;
-
+.gameTitle {
+	grid-column-start: 3;
+	grid-column-end: 4;
+	display: flex;
+	justify-self: center;
 }

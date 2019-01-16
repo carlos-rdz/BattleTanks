@@ -355,8 +355,8 @@ class App extends Component {
 		chatHistory.push(message);
 		chatHistory.reverse();
 		this.setState({
-      chat: chatHistory,
-      name: message.name
+			chat: chatHistory,
+			name: message.name
 		});
 		ws.send(JSON.stringify({ type: 'chat', value: chatHistory, id: this.state.roomId }));
 		console.log('message sent websockets');
@@ -450,8 +450,7 @@ class App extends Component {
 										handleChangeName={this._handleChangeName}
 										handleSubmit={this._handleSubmit}
 										addToChat={this._addToChat}
-                    player1SinkStat={this.state.player1SinkStat}
-                    
+										player1SinkStat={this.state.player1SinkStat}
 									/>
 									<div className="sunkShipsImgs">
 										<div className="sunkShipsOpp" style={{ backgroundColor: 'white' }}>

@@ -13,8 +13,8 @@ class OpponentBoard extends Component {
 		this.state = {
 			id: props.id,
 			coordinates: props.value,
-      coordinatesOnHover: '',
-      reticleHover: '',
+			coordinatesOnHover: '',
+			reticleHover: ''
 		};
 	}
 
@@ -22,8 +22,8 @@ class OpponentBoard extends Component {
 	_onHover = () => {
 		if (this.props.opponentStatus[this.state.id - 1] === 0) {
 			this.setState({
-        coordinatesOnHover: <div >{this.state.coordinates}</div>,
-        reticleHover: <img style={{width:'75px'}}src={Reticle} alt=''/>
+				coordinatesOnHover: <div>{this.state.coordinates}</div>,
+				reticleHover: <img style={{ width: '75px' }} src={Reticle} alt="" />
 			});
 		}
 	};
@@ -77,22 +77,17 @@ class OpponentBoard extends Component {
 				}}
 				onMouseLeave={() => {
 					this.setState({
-            coordinatesOnHover: '',
-            reticleHover: ''
+						coordinatesOnHover: '',
+						reticleHover: ''
 					});
 				}}
 			>
 				{onShot}
-        {firingSolution}
-        <div className='hoverWrapper' >
-          <div className='coordinates'>
-            {this.state.coordinatesOnHover}
-          </div>
-          <div className='reticle'>
-            {this.state.reticleHover}
-          </div>
-        </div>
-       
+				{firingSolution}
+				<div className="hoverWrapper">
+					<div className="coordinates">{this.state.coordinatesOnHover}</div>
+					<div className="reticle">{this.state.reticleHover}</div>
+				</div>
 			</div>
 		);
 	}

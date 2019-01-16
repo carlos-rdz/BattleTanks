@@ -44,15 +44,9 @@ class Ship extends Component {
 			shipArr.push(shipImg);
 		}
 		return (
-			<div
-				style={{ width: `${length}px`, height: '75px' }}
-			>
-				<div>
-        {shipArr}
-        </div>
-        <div>
-				{this.props.name}
-        </div>
+			<div style={{ width: `${length}px`, height: '75px' }}>
+				<div>{shipArr}</div>
+				<div>{this.props.name}</div>
 			</div>
 		);
 	}
