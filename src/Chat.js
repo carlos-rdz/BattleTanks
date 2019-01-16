@@ -10,9 +10,9 @@ class Chat extends Component {
     // if my name in state make it blue
     // else for incoming messages make them red
 		let chatRoom = this.props.chat.map(message => {
-			let textColor = 'blue';
+			let textColor = 'red';
 			if (message.name !== this.props.name) {
-				textColor = 'red';
+				textColor = 'blue';
 			}
 			return (
 				<ul key={uuid()} style={{ listStyleType: 'none' }}>

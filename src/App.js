@@ -354,7 +354,8 @@ class App extends Component {
 		chatHistory.push(message);
 		chatHistory.reverse();
 		this.setState({
-			chat: chatHistory
+      chat: chatHistory,
+      name: message.name
 		});
 		ws.send(JSON.stringify({ type: 'chat', value: chatHistory, id: this.state.roomId }));
 		console.log('message sent websockets');

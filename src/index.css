@@ -13,7 +13,8 @@ body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	font-family: Contrail One, cursive;
+  font-family: Contrail One, cursive;
+  
 }
 
 .playableBoard {
