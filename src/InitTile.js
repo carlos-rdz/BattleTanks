@@ -25,7 +25,6 @@ class InitTile extends Component {
 						backgroundImage: `url(${this.props.currentShipImg})`,
 						width: '75px',
 						height: '75px',
-						fontSize: '3em'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -50,7 +49,6 @@ class InitTile extends Component {
 						backgroundImage: `url(${ship1R})`,
 						width: '75px',
 						height: '75px',
-						fontSize: '3em'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -72,7 +70,6 @@ class InitTile extends Component {
 						backgroundImage: `url(${ship2R})`,
 						width: '75px',
 						height: '75px',
-						fontSize: '3em'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -94,7 +91,6 @@ class InitTile extends Component {
 						backgroundImage: `url(${ship3R})`,
 						width: '75px',
 						height: '75px',
-						fontSize: '3em'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -116,7 +112,6 @@ class InitTile extends Component {
 						backgroundImage: `url(${ship4R})`,
 						width: '75px',
 						height: '75px',
-						fontSize: '3em'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -138,7 +133,6 @@ class InitTile extends Component {
 						backgroundImage: `url(${ship5R})`,
 						width: '75px',
 						height: '75px',
-						fontSize: '3em'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -161,7 +155,6 @@ class InitTile extends Component {
 						outline: 'black solid 1px',
 						width: '75px',
 						height: '75px',
-						fontSize: '3em'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);

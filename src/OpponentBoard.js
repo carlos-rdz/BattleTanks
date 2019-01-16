@@ -6,7 +6,6 @@ import MissFX from './MissFX';
 import StaticExplosion from './Assets/staticExplosion.png';
 import StaticMiss from './Assets/staticMiss.png';
 import Reticle from './Assets/crosshair026.png';
-import { relative } from 'path';
 
 class OpponentBoard extends Component {
 	constructor(props) {
