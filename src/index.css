@@ -146,3 +146,10 @@ input[type='text'] {
   top: 35%;
   left: 40%;
 }
+
+.playerBoardShip{
+  width: 75px;
+  height: 75px;
+  font-size: 3em;
+  font-family: Contrail One, cursive;
+}
