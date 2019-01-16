@@ -4,7 +4,7 @@ import ship2R from './Assets/Red/ship2R.png';
 import ship3R from './Assets/Red/ship3R.png';
 import ship4R from './Assets/Red/ship4R.png';
 import ship5R from './Assets/Red/ship5R.png';
-
+//
 class InitTile extends Component {
 	constructor(props) {
 		super(props);
