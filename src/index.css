@@ -17,6 +17,7 @@ body {
   
 }
 
+
 .playableBoard {
 	display: grid;
 	grid-template-columns: 750px 400px 750px;
