@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import ship1R from './Assets/Ships/Red/ship1R.png';
-import ship2R from './Assets/Ships/Red/ship2R.png';
-import ship3R from './Assets/Ships/Red/ship3R.png';
-import ship4R from './Assets/Ships/Red/ship4R.png';
-import ship5R from './Assets/Ships/Red/ship5R.png';
+import ship1R from './Assets/Red/ship1R.png';
+import ship2R from './Assets/Red/ship2R.png';
+import ship3R from './Assets/Red/ship3R.png';
+import ship4R from './Assets/Red/ship4R.png';
+import ship5R from './Assets/Red/ship5R.png';
 
 class InitTile extends Component {
 	constructor(props) {
@@ -24,7 +24,7 @@ class InitTile extends Component {
 						backgroundImage: `url(${this.props.currentShipImg})`,
 						width: '75px',
 						height: '75px',
-						border: '1px black solid'
+						outline: '1px black solid'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -47,7 +47,8 @@ class InitTile extends Component {
 					style={{
 						backgroundImage: `url(${ship1R})`,
 						width: '75px',
-						height: '75px'
+            height: '75px',
+            outline: '1px black solid',
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -67,7 +68,8 @@ class InitTile extends Component {
 					style={{
 						backgroundImage: `url(${ship2R})`,
 						width: '75px',
-						height: '75px'
+            height: '75px',
+            outline: '1px black solid'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -87,7 +89,8 @@ class InitTile extends Component {
 					style={{
 						backgroundImage: `url(${ship3R})`,
 						width: '75px',
-						height: '75px'
+            height: '75px',
+            outline: '1px black solid'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -107,7 +110,8 @@ class InitTile extends Component {
 					style={{
 						backgroundImage: `url(${ship4R})`,
 						width: '75px',
-						height: '75px'
+            height: '75px',
+            outline: '1px black solid'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
@@ -127,7 +131,8 @@ class InitTile extends Component {
 					style={{
 						backgroundImage: `url(${ship5R})`,
 						width: '75px',
-						height: '75px'
+            height: '75px',
+            outline: '1px black solid'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
