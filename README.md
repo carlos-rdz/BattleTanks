@@ -1,3 +1,45 @@
+DC-Capstone Project
+
+# BattleTanks
+
+## Synopsis
+BattleTanks is an adaptation of the classic guessing game Battleship.  The game pairs two players together
+and allows each to place their tanks in strategic locations before taking turns to guess each other's
+tank locations and ultimately be the first one to destroy the other's tanks before being declared the winner.
+This simple clone allows players to have fun without having to ever deal with the hassle of 
+carrying a physical game around.  It's quick, easy and fun!
+
+## Why?
+
+- With two weeks to build our Digital Crafts capstone project, we chose BattleTanks because we wanted a relatively simple idea/mechanic that could become a highly polished project finished within that timeframe. This project would help solidify our understanding of React and component lifecycles
+- We built upon our prior knowledge of React components, state, and React Router 
+
+## Features
+- Immediate responsiveness with React
+- Matchmaking and live chat with Websockets
+- Unique artwork and sound FX
+
+## Successes
+- Maintained focus on creating a simple product with few bugs
+- Set up server to assign every two players and handle message/data passing integral to game mechanics 
+- Wrote code to take into account edge cases and deal with identified abnormal user interactions
+
+## Challenges
+- Switching from a local client with distinct Player 1 and Player 2 to a message passing model with Websockets posed some interesting puzzles. With the Websocket server we now have a client always set in logic as Player 1 with messages received pertaining to the opponent. Without moving our game logic to the server it became difficult to differentiate players.
+- Fixing React rendering issues to deal with both png's and gifs
+- State never seemed to be updated when we needed it to be for sequential method calls
+
+
+
+Play Live:
+
+<http://battletanks.online>
+
+
+
+
+
+******************************************************************************************************************************
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
