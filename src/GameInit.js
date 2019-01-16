@@ -167,11 +167,9 @@ class GameInit extends Component {
 		if (this.props.roomId) {
 			waitingSpinner = '';
 			spinnerText = '';
-			console.log('spinner set empty');
 		} else {
 			spinnerText = 'Waiting for opponent';
 			waitingSpinner = 'sk-rotating-plane';
-			console.log('spinner set to value');
 		}
 
 		return (

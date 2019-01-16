@@ -11,7 +11,7 @@ import ship2Rbroken from './Assets/Ships/Red/ship2Rbroken.png';
 import ship3Rbroken from './Assets/Ships/Red/ship3Rbroken.png';
 import ship4Rbroken from './Assets/Ships/Red/ship4Rbroken.png';
 import ship5Rbroken from './Assets/Ships/Red/ship5Rbroken.png';
-import StaticExplosion from './Assets/staticExplosion.png';
+import StaticExplosion from './Assets/boom.png';
 import StaticMiss from './Assets/staticMiss.png';
 
 class PlayerBoard extends Component {
@@ -47,14 +47,10 @@ class PlayerBoard extends Component {
         ship = ship1Rbroken;
         
         return (
-          <div
+          <div className='shipsOnPlayerBoard'
             style={{
               backgroundImage: `url(${ship})`,
-              width: '75px',
-              height: '75px',
-              fontSize: '3em',
-              color: 'yellow',
-              fontFamily: 'Contrail One, cursive'
+             
             }}
           >
             {onShot}
@@ -65,30 +61,23 @@ class PlayerBoard extends Component {
 				ship = ship1R;
 
 			return (
-				<div
+				<div className='shipsOnPlayerBoard'
 					style={{
 						backgroundImage: `url(${ship})`,
-						width: '75px',
-						height: '75px',
-						fontSize: '3em',
-						fontFamily: 'Contrail One, cursive'
+						
 					}}
 				>
 					{onShot}
 				</div>
 			);
-      }else if (this.props.player1SinkStat[1].location.includes(this.state.id) && this.props.playerStatus[this.state.id - 1] === 'tempX'){
+      }else if (this.props.player1SinkStat[1].location.includes(this.state.id) && hitFlag === true){
         ship = ship2Rbroken;
         
         return (
-          <div
+          <div className='shipsOnPlayerBoard'
             style={{
               backgroundImage: `url(${ship})`,
-              width: '75px',
-              height: '75px',
-              fontSize: '3em',
-              color: 'yellow',
-              fontFamily: 'Contrail One, cursive'
+             
             }}
           >
             {onShot}
@@ -99,30 +88,23 @@ class PlayerBoard extends Component {
 				ship = ship2R;
 
 			return (
-				<div
+				<div className='shipsOnPlayerBoard'
 					style={{
 						backgroundImage: `url(${ship})`,
-						width: '75px',
-						height: '75px',
-						fontSize: '3em',
-						fontFamily: 'Contrail One, cursive'
+						
 					}}
 				>
 					{onShot}
 				</div>
       );
-      }else if (this.props.player1SinkStat[2].location.includes(this.state.id) && this.props.playerStatus[this.state.id - 1] === 'tempX'){
+      }else if (this.props.player1SinkStat[2].location.includes(this.state.id) && hitFlag === true){
         ship = ship3Rbroken;
         
         return (
-          <div
+          <div className='shipsOnPlayerBoard'
             style={{
               backgroundImage: `url(${ship})`,
-              width: '75px',
-              height: '75px',
-              fontSize: '3em',
-              color: 'yellow',
-              fontFamily: 'Contrail One, cursive'
+             
             }}
           >
             {onShot}
@@ -133,30 +115,23 @@ class PlayerBoard extends Component {
 				ship = ship3R;
 
 			return (
-				<div
+				<div className='shipsOnPlayerBoard'
 					style={{
 						backgroundImage: `url(${ship})`,
-						width: '75px',
-						height: '75px',
-						fontSize: '3em',
-						fontFamily: 'Contrail One, cursive'
+						
 					}}
 				>
 					{onShot}
 				</div>
       );
-        }else if (this.props.player1SinkStat[3].location.includes(this.state.id) && this.props.playerStatus[this.state.id - 1] === 'tempX'){
+        }else if (this.props.player1SinkStat[3].location.includes(this.state.id) && hitFlag === true){
         ship = ship4Rbroken;
         
         return (
-          <div
+          <div className='shipsOnPlayerBoard'
             style={{
               backgroundImage: `url(${ship})`,
-              width: '75px',
-              height: '75px',
-              fontSize: '3em',
-              color: 'yellow',
-              fontFamily: 'Contrail One, cursive'
+             
             }}
           >
             {onShot}
@@ -167,30 +142,23 @@ class PlayerBoard extends Component {
 				ship = ship4R;
 
 			return (
-				<div
+				<div className='shipsOnPlayerBoard'
 					style={{
 						backgroundImage: `url(${ship})`,
-						width: '75px',
-						height: '75px',
-						fontSize: '3em',
-						fontFamily: 'Contrail One, cursive'
+						
 					}}
 				>
 					{onShot}
 				</div>
       );
-      }else if (this.props.player1SinkStat[4].location.includes(this.state.id) && this.props.playerStatus[this.state.id - 1] === 'tempX'){
+      }else if (this.props.player1SinkStat[4].location.includes(this.state.id) && hitFlag === true){
         ship = ship5Rbroken;
         
         return (
-          <div
+          <div className='shipsOnPlayerBoard'
             style={{
               backgroundImage: `url(${ship})`,
-              width: '75px',
-              height: '75px',
-              fontSize: '3em',
-              color: 'yellow',
-              fontFamily: 'Contrail One, cursive'
+             
             }}
           >
             {onShot}
@@ -201,13 +169,10 @@ class PlayerBoard extends Component {
 				ship = ship5R;
 
 			return (
-				<div
+				<div className='shipsOnPlayerBoard'
 					style={{
 						backgroundImage: `url(${ship})`,
-						width: '75px',
-						height: '75px',
-						fontSize: '3em',
-						fontFamily: 'Contrail One, cursive'
+					
 					}}
 				>
 					{onShot}
@@ -216,14 +181,10 @@ class PlayerBoard extends Component {
 		} else {
 			//all player tiles without ships
 			return (
-				<div
+				<div className='shipsOnPlayerBoard'
 					style={{
 						backgroundColor: `white`,
 						outline: 'black solid 1px',
-						width: '75px',
-						height: '75px',
-						fontSize: '1em',
-						fontFamily: 'Contrail One, cursive'
 					}}
 				>
 					{onShot}

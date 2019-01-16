@@ -147,9 +147,34 @@ input[type='text'] {
   left: 40%;
 }
 
-.playerBoardShip{
+.shipsOnPlayerBoard{
   width: 75px;
   height: 75px;
-  font-size: 3em;
   font-family: Contrail One, cursive;
+}
+
+ /* unvisited link */
+ a:link {
+  color: black;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: dimgray;
+}
+
+/* selected link */
+a:active {
+  color: black;
+} 
+
+.oppShipPlacementMessage{
+  display:flex;
+  padding-left: 20%;
+  padding-right: 20%;
 }
