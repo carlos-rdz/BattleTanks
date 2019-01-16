@@ -15,7 +15,7 @@ class Chat extends Component {
 				textColor = 'blue';
 			}
 			return (
-				<ul key={uuid()} style={{ listStyleType: 'none' }}>
+				<ul key={uuid()} style={{ listStyleType: 'none', padding:"none"}}>
 					<li>
 						<span style={{ color: textColor, fontWeight: 'bold' }}> &lt; {message.name} &gt; </span> {message.text}
 					</li>

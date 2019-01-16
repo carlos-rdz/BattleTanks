@@ -42,8 +42,6 @@ class PlayableBoard extends Component {
 				counter++;
 			}
 		}
-		console.log('this.props.opponentPieces');
-		console.log(this.props.opponentPieces);
 
 		let renderOpponentBoard;
 		if (this.props.opponentPieces.length > 0) {

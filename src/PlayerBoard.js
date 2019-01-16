@@ -11,7 +11,6 @@ import ship2Rbroken from './Assets/Ships/Red/ship2Rbroken.png';
 import ship3Rbroken from './Assets/Ships/Red/ship3Rbroken.png';
 import ship4Rbroken from './Assets/Ships/Red/ship4Rbroken.png';
 import ship5Rbroken from './Assets/Ships/Red/ship5Rbroken.png';
-import StaticExplosion from './Assets/boom.png';
 import StaticMiss from './Assets/staticMiss.png';
 
 class PlayerBoard extends Component {

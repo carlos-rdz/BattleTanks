@@ -14,8 +14,9 @@ import ship5RBrokenFull from './Assets/Ships/Red/ship5RbrokenFull.png';
 import GameInit from './GameInit';
 import PlayableBoard from './PlayableBoard';
 import './index.css';
-// const ws = new WebSocket('ws://18.188.167.90:3001');
-const ws = new WebSocket('ws://localhost:3001');
+
+const ws = new WebSocket('ws://18.188.167.90:3001');
+// const ws = new WebSocket('ws://localhost:3001');
 
 class App extends Component {
 	constructor(props) {
@@ -430,7 +431,6 @@ class App extends Component {
 						render={props => {
 							return (
 								<div className="gamestart">
-									{/* <div className='playableBoard'>  */}
 									<PlayableBoard
 										setPlayer1Status={this._setPlayer1Status}
 										playerPieces={this.state.player1Pieces}
@@ -450,7 +450,8 @@ class App extends Component {
 										handleChangeName={this._handleChangeName}
 										handleSubmit={this._handleSubmit}
 										addToChat={this._addToChat}
-										player1SinkStat={this.state.player1SinkStat}
+                    player1SinkStat={this.state.player1SinkStat}
+                    
 									/>
 									<div className="sunkShipsImgs">
 										<div className="sunkShipsOpp" style={{ backgroundColor: 'white' }}>
@@ -461,7 +462,6 @@ class App extends Component {
 										</div>
 									</div>
 								</div>
-								// </div>
 							);
 						}}
 					/>

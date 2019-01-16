@@ -29,7 +29,6 @@ class OpponentBoard extends Component {
 	};
 
 	render() {
-		let showCoordinates = this.state.coordinatesOnHover;
 		let onShot;
 		let firingSolution;
 		// if the shot array shows a hit at this tile location and isn't a previous shot value

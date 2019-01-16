@@ -24,7 +24,8 @@ class InitTile extends Component {
 					style={{
 						backgroundImage: `url(${this.props.currentShipImg})`,
 						width: '75px',
-						height: '75px',
+            height: '75px',
+            border: '1px black solid'
 					}}
 					onMouseEnter={() => {
 						this.props.hover(this.state.id);
